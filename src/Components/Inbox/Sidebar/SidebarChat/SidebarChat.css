@@ -1,0 +1,54 @@
+.sidebarChat {
+    display: flex;
+    padding: 15px;
+    cursor: pointer;
+    margin: 20px 20px 10px 20px !important;
+    background-color: #f1f1f1;
+    border-radius: 20px;
+    max-height: 50px;
+    min-height: 43px;
+    padding-right: 20px;
+}
+
+.avatar {
+    margin-left: 15px;
+    margin-top: 2px;
+}
+.sidebarInfo {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+}
+
+.sidebarChat:hover {
+    background-color: lightgrey;
+    color: white;
+}
+
+.sidebarInfo > h2 {
+    margin-left: 7px;
+    font-size: 16px;
+}
+
+.sidebarMessage {
+    width: 225px;
+    font-size: small;
+    margin-left: 7px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: inline-block;
+}
+
+.addnewChat {
+    display: flex;
+    padding: 20px;
+    cursor: pointer;
+    margin: 20px 20px 10px 20px !important;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+}
+
+.addnewChat > h3 {
+    margin-left: 15px;
+}

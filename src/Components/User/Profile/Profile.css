@@ -1,0 +1,28 @@
+.profile_row {
+  display: grid;
+  text-align: center;
+  justify-content: center;
+  grid-template-columns: 20% 27% 20%;
+  grid-column-gap: 50px;
+  margin-top: 110px;
+}
+
+.center_profile {
+  margin-top: 27px;
+}
+
+@media only screen and (max-width: 620px) {
+  
+  .center_profile {
+    margin-top: 50px;
+  }
+  .rightCol_profile {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 1200px) {
+  .rightCol_profile {
+    display: none;
+  }
+}

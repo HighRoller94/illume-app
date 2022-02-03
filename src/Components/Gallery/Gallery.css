@@ -1,0 +1,21 @@
+.upload_gallerypost {
+  text-align: center;
+  justify-content: center;
+  margin-top: 147px;
+}
+
+.gallery_avatar {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.galleryposts {
+  width: 75%;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  margin-top: 50px !important;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
+  margin: 0 auto;
+  padding-bottom: 100px;
+}

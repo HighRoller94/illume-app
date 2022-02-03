@@ -1,0 +1,26 @@
+.following {
+    background-color: white;
+    height: 400px;
+    border-radius: 20px;
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    min-width: 275px;
+    justify-content: center;
+    align-items: center;
+    padding: 0 7px 10px 7px;
+}
+
+.following_header {
+    font-size: 18px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.following_thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(75px, 125px));
+    justify-content: center;
+    border-radius: 20px;
+    margin-right: -10px;
+}
+

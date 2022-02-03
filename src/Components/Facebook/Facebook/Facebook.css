@@ -1,0 +1,12 @@
+.sociallogin_button {
+    background-color: black;
+    padding: 10px;
+    border-radius: 40px;
+    outline: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+}
+.facebook_col {
+    margin-top: 10px;
+}

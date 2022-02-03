@@ -1,0 +1,31 @@
+.gallerypost_button {
+  max-width: 50px;
+}
+
+.modal {
+  display: flex;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  border-radius: 20px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.gallery_postbuttons {
+  text-align: center;
+  margin-left: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.checkbox_title {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.next_button {
+  width: 25px;
+  height: 20px;
+}

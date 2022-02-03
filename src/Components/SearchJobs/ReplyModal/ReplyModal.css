@@ -1,0 +1,130 @@
+.reply_modal {
+    margin-top: 50px;
+    align-self: center;
+    display: flex;
+    margin-bottom: auto;
+    justify-content: center;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    min-width: 400px;
+    width: 47%;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+}
+
+.profile_col {
+    width: 40%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+
+.profile_col > h1 {
+    font-size: 30px;
+    margin-top: 40px;
+}
+
+.profile_col > img {
+    margin: 0 auto;
+    border-radius: 50%;
+    width: 250px;
+    margin-top: 23px;
+}
+
+.profile_col > button {
+    margin: 0 auto;
+    margin-top: 35px;
+    width: 125px;
+    background: black;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    padding: 10px;
+    transition: 200ms ease-in;
+    height: 40px;
+}
+
+.profile_col > button:hover {
+    cursor: pointer;
+    background: #f1f1f1;
+    color: black;
+    transition: 200ms ease-in;
+}
+
+.info_col {
+    width: 57%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.info_col > h1 {
+    margin: 0 auto;
+    font-size: 26px;
+    margin-bottom: 20px;
+}
+
+.info_col > p {
+    font-size: 13px;
+}
+
+.info_col > textarea {
+    resize: none;
+    outline: none;
+    border: none;
+    align-items: center;
+    border-radius: 20px;
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: calc(92%);
+    background-color: #f1f1f1;
+}
+
+.info_col > input {
+    outline: none;
+    border: none;
+    align-items: center;
+    border-radius: 15px;
+    padding: 15px;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: calc(92%);
+    height: 15px;
+    background-color: #f1f1f1;
+}
+
+.info_col > button {
+    background: black;
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: 10px;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 150px;
+    padding: 10px;
+    transition: 200ms ease-in;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+.info_col > button:hover {
+    background: #f1f1f1;
+    margin-top: 20px;
+    margin-left: auto;
+    color: black;
+    margin-right: 10px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 150px;
+    padding: 10px;
+    transition: 200ms ease-in;
+    cursor: pointer;
+    height: 40px;
+}

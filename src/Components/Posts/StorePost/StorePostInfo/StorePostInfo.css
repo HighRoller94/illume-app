@@ -1,0 +1,116 @@
+.storedetails_container {
+    width: 65%;
+    height: 80%;
+    background-color: white;
+    margin: 0 auto;
+    border-radius: 45px;
+    padding-bottom: 40px;
+    margin-bottom: 60px;
+    margin-top: 125px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.storedetails_row {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.storedetails_container > h2 {
+    margin-top: 40px;
+    margin-left: 80px;
+    font-size: 20px;
+    margin-bottom: 25px;
+}
+
+.storedetails_image { 
+    margin: 70px 0 0 80px;
+    text-align: center;
+    width: 90%;
+}
+
+.storepost_details {
+    margin-top: 80px;
+    margin-left: 90px;
+}
+
+.storepost_details > h1 {
+    font-size: 26px;
+}
+
+.storepost_details > p {
+    margin: 20px 0 20px 0;
+    font-size: 15px;
+}
+
+.storepost_details > h2{
+    margin-top: 5px;
+    font-size: 20px;
+}
+
+.storedetails_buttons {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.store_contactbutton {
+    background: black;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    height: 35px;
+    width: 250px;
+    transition: 200ms ease-in;
+    margin-bottom: 25px;
+}
+
+.store_contactbutton:hover {
+    cursor: pointer;
+}
+
+.storebuttons {
+    background: black;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    height: 35px;
+    width: 250px;
+    transition: 200ms ease-in;
+    margin-bottom: 25px;
+}
+
+.storebuttons:hover {
+    cursor: pointer;
+}
+
+.storepost_suggestions {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 10px;
+}
+
+.other_storeposts {
+    background-color: white;
+    width: 65%;
+    margin: 0 auto;
+    border-radius: 45px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+    margin-bottom: 200px;
+    padding-top: 40px;
+}
+
+.other_storeposts > h1 {
+    font-size: 24px;
+    margin-left: 75px;
+}
+
+.other_posts {
+    display: flex;
+    justify-content: center;
+    padding-bottom: 40px;
+    margin-top: 10px;
+}
+

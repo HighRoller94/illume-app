@@ -1,0 +1,10 @@
+.marketplace_posts {
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    margin-top: 50px !important;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 400px));
+    margin: 0 auto;
+    padding-bottom: 150px;
+    margin-left: 100px;
+}

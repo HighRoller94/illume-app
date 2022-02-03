@@ -1,0 +1,65 @@
+.facebookpost {
+    margin-top: 25px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.facebookpost_header {
+    display: flex;
+    align-items: center;
+}
+
+.facebook_title > h1 {
+    font-size: 20px;
+}
+
+.facebook_title > p {
+    opacity: 50%;
+    font-size: 14px;
+}
+.facebook_profilepic {
+    margin: 30px 20px 30px 30px;
+    width: 45px;
+    border-radius: 50%;
+}
+
+.facebookpost_image {
+    display: flex;
+    width: 85%;
+    max-height: 400px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.facebookpost_body {
+    margin-top: 20px;
+    margin-left: 30px;
+    padding-bottom: 20px;
+}
+
+.facebookpost_input {
+    border: none;
+    outline: none;
+    width: 59%;
+    margin-top: 20px;
+    margin-left: 33px;
+    margin-right: 20px;
+    background-color: #f1f1f1;
+    border-radius: 13px;
+    padding: 10px;
+    margin-bottom: 35px;
+}
+
+.facebookpost_button {
+    border: none;
+    color: white;
+    background-color: black;
+    margin-right: 20px;
+    margin-top: 20px;
+    margin-bottom: 25px;
+    border-radius: 10px;
+    width: 15%;
+    height: 34px;
+    cursor: pointer;
+}

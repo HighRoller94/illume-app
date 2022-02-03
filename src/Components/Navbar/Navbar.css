@@ -1,0 +1,82 @@
+.navbar {
+  height: 60px;
+  display: flex;
+  background-color: white;
+  position: fixed;
+  top: 0;
+  z-index: 100;
+  width: 100%;
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+}
+
+.navbar_logo {
+  width: 90px;
+  padding: 25px;
+  margin-top: -4px;
+  margin-left: 20px;
+}
+
+
+
+.nav_right {
+  max-width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.navbar_option {
+  padding: 20px;
+  font-size: 16px;
+  font-weight: 550;
+  color: lightgrey;
+}
+
+.navbar_option:hover {
+  color: black;
+  font-weight: 550;
+  transition: 200ms ease-in;
+  transform: scale(1.1)
+}
+
+.navbar_optionBasket {
+  display: flex;
+  padding: 6px;
+  margin-left: 15px;
+  color: grey;
+  margin-top: -3px;
+}
+
+.navbar_optionBasket > .MuiSvgIcon-root {
+  margin-top: 4px;
+  font-size: 21px;
+}
+
+.navbar_basketCount {
+  font-size: 17px;
+  margin-top: 3px;
+  margin-left: 12px;
+  margin-right: 10px;
+}
+
+.navbar_basketCount:hover {
+  color: black;
+}
+
+.nav_avatar {
+  margin-right: 25px;
+  margin-left: 25px;
+}
+
+.nav_avatar:hover {
+  cursor: pointer;
+}
+
+.nav_menu {
+  margin-top: 44px;
+}
+
+@media only screen and (max-width: 900px) {
+  .navbar_option {
+    display: none;
+  }
+}

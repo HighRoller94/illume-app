@@ -1,0 +1,21 @@
+.followers_row {
+    display: grid;
+    justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    margin-top: 125px;
+}
+
+.followers_avatar {
+    width: 50px;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.followers_title {
+    text-align: center;
+    justify-content: center;
+}

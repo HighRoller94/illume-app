@@ -1,0 +1,15 @@
+.trending {
+    background-color: white;
+    min-width: 275px;
+    text-align: center;
+    border-radius: 20px;
+    border: 1px solid rgb(233, 233, 233);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    padding: 0 12px 35px 12px;
+}
+
+.trending > h3 {
+    color: black;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}

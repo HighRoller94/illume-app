@@ -1,0 +1,84 @@
+.biographymodal {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    margin-bottom: auto;
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    min-width: 400px;
+    width: 25%;
+    overflow: scroll;
+    padding-bottom: 40px;
+  }
+  .biography_image {
+    border-radius: 50%;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    margin-bottom: 10px;
+  }
+  
+  .biographymodal > input {
+    outline: none;
+    border: none;
+    align-items: center;
+    border-radius: 10px;
+    padding: 7px;
+    font-size: 14px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    width: 87%;
+    background-color: #f1f1f1;
+  }
+  
+  .biographymodal > h1 {
+    margin-bottom: 20px;
+    margin-top: 10px;
+  }
+  .profileimageBio {
+    border-radius: 50%;
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .changeimage_button {
+    background: black;
+    margin-top: 15px;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 175px;
+    font-size: 13px;
+    padding: 10px;
+    margin-bottom: 15px;
+    transition: 200ms ease-in;
+  }
+  
+  .changeimage_button:hover {
+    background: #f1f1f1;
+    color: black;
+    cursor: pointer;
+  }
+  
+  .biobuttons {
+    background: black;
+    margin: 10px;
+    margin-top: 20px;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 150px;
+    padding: 10px;
+    transition: 200ms ease-in;
+  }
+  
+  .biobuttons:hover {
+    background: #f1f1f1;
+    color: black;
+    cursor: pointer;
+  }

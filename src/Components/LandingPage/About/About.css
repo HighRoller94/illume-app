@@ -1,0 +1,190 @@
+.about_container {
+    padding-bottom: 100px;
+}
+
+.about_header {
+    width: 60%;
+    margin: 0 auto;
+    margin-top: 50px;
+    text-align: center;
+}
+
+.about_header > h1 {
+    font-size: 50px;
+    color: rgb(85, 85, 85);
+}
+
+.about_header > p {
+    margin-top: 20px;
+    color: rgb(165, 165, 165);
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.about_header > img {
+    margin: 0 auto;
+    margin-top: 15px;
+    width: 65%;
+    margin-bottom: -25px;
+}
+
+.icons_container {
+    width: 95%;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 125px;
+    display: flex;
+    margin-left: 20px;
+    padding-bottom: 30px;
+}
+
+.job_icon {
+    text-align: center;
+}
+
+.jobs_icon {
+    width: 100%; 
+}
+
+.profile_icon {
+    width: 100%;
+    min-width: 250px;
+}
+
+.store_icon {
+    width: 90%;
+}
+
+.job_icon > h4 {
+    font-size: 26px;
+    margin-top: 30px;
+}
+
+.job_icon > p {
+    margin-top: 10px;
+    font-weight: 700;
+    font-size: 18px;
+    opacity: 0.5;
+}
+
+.scroll_down {
+    margin-top: 85px;
+    text-align: center;
+}
+
+.pagedown {
+    text-align: center;
+    object-fit: cover;
+    background-color: rgb(80, 80, 80);
+    border: none;
+    outline: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    transition: 200ms ease-in;
+}
+
+.pagedown:hover {
+    background-color: black;
+    cursor: pointer;
+    transition: 200ms ease-in;
+    margin-top: 15px;
+}
+
+.down {
+    margin-top: 8px;
+    padding: 10px;
+    width: 30px;
+}
+
+.about_secondcontainer {
+    background-color: white;
+    padding-top: 80px;
+    height: 100vh;
+}
+
+.project_header {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.project_header > h1 {
+    font-size: 50px;
+    text-align: center;
+    opacity: 0.7;
+    margin-top: 10px;
+}
+
+.project_header > p {
+    font-size: 17px;
+    margin-top: 27px;
+    opacity: 0.3;
+    text-align: center;
+}
+
+.secondproject_header {
+    width: 60%;
+    margin: 0 auto;
+}
+
+.secondproject_header > h1 {
+    font-size: 50px;
+    text-align: center;
+    opacity: 0.7;
+    padding-top: 75px;
+}
+
+.secondproject_header > p {
+    font-size: 17px;
+    margin-top: 30px;
+    opacity: 0.3;
+    text-align: center;
+}
+
+
+.projecticons_container {
+    justify-content: space-evenly;
+    align-items: center;
+    margin-top: 90px;
+    display: flex;
+    margin-bottom: 50px;
+}
+
+.illume_logos > img {
+    width: 150px;
+}
+
+.media_icons {
+    width: 100px;
+    margin: 20px 20px 0 20px;
+}
+
+.about_thirdcontainer {
+    height: 100vh;
+}
+
+.about_fourthcontainer {
+    height: 85vh;
+    background-color: white;
+}
+
+.testimonials_header {
+    padding-top: 75px;
+    text-align: center;
+}
+
+.aboutfooter {
+    padding-top: 100px;
+    text-align: center;
+}
+
+.aboutfooter > h3 {
+    transition: 200ms ease-in;
+}
+
+.aboutfooter > h3:hover {
+    cursor: pointer;
+    font-size: 22px;
+    
+}

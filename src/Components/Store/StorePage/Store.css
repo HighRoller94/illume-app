@@ -1,0 +1,35 @@
+.upload_storepost {
+  margin-top: 147px;
+  text-align: center;
+  justify-content: center;
+}
+
+.store_avatar {
+  width: 50px;
+  border-radius: 50%;
+}
+
+.store_row {
+  align-items: center;
+  justify-content: center;
+  grid-template-columns: 15% 50%;
+  grid-column-gap: 50px;
+  text-align: center;
+}
+
+.store_sidebar {
+  background-color: white;
+  min-height: 600px;
+  border-radius: 40px;
+  text-align: center;
+  margin-top: 50px;
+}
+
+.storeposts {
+  padding-top: 25px;
+  padding-bottom: 100px;
+  width: 61%;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 250px));
+}

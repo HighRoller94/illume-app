@@ -1,0 +1,21 @@
+.following_row {
+    display: grid;
+    justify-content: center;
+    margin: 0 auto;
+    width: 70%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 200px));
+    grid-column-gap: 30px;
+    grid-row-gap: 30px;
+    margin-top: 125px;
+}
+
+.following_avatar {
+    width: 50px;
+    align-items: center;
+    border-radius: 50%;
+}
+
+.following_title {
+    text-align: center;
+    justify-content: center;
+}

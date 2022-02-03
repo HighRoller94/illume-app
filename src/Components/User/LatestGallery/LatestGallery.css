@@ -1,0 +1,19 @@
+.latestgalposts {
+    background-color: white;
+    padding: 15px;
+    border-radius: 25px;
+    margin-bottom: 45px;
+    margin-top: -25px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.latestgalposts > h4 {
+    margin-bottom: 15px;
+}
+
+.latestgalthumbs {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 110px));
+    margin-bottom: 20px;
+}

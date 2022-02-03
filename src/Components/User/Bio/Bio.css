@@ -1,0 +1,82 @@
+.bio_section {
+  margin-top: 110px;
+  position: fixed;
+  text-align: center;
+  background-color: white;
+  min-width: 350px;
+  margin-left: 30px;
+  padding-bottom: 40px;
+  border-radius: 30px;
+  border: 1px solid rgb(233, 233, 233);
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.bio_username {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 26px;
+}
+
+.bio_image {
+  border-radius: 50%;
+  width: 225px;
+  height: 225px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+.follow {
+  margin-top: 10px;
+  font: 16px;
+}
+
+.bio_info {
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.bioBody_occupation {
+  font-weight: normal;
+  margin-top: 30px;
+}
+
+.bioBody_location {
+  font-weight: normal;
+  margin-top: 20px;
+}
+
+.bioGallery_link {
+  margin-top: 30px;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(182, 182, 182);
+}
+
+.bioGallery_link:hover {
+  color: black;
+  transition: 200ms ease-in;
+}
+
+.bioStore_link {
+  margin-top: 20px;
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(182, 182, 182);
+}
+
+.bioStore_link:hover {
+  color: black;
+  transition: 200ms ease-in;
+}
+
+.social {
+  margin-top: 20px;
+}
+
+

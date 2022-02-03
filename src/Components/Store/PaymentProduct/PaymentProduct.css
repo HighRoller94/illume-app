@@ -1,0 +1,43 @@
+.paymentproduct {
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+    padding: 30px 0 30px 0;
+    border-bottom: 1px solid grey;
+}
+
+.paymentproduct_info {
+    margin: 0 auto;
+}
+.paymentproduct_info > p {
+    margin: 20px 0 10px 0;
+    font-size: 16px;
+}
+
+.paymentproduct_image {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    text-align: center;
+}
+
+.payment_buttons {
+    margin-left: auto;
+}
+
+
+.payment_buttons > button {
+    font-size: 14px;
+    background: black;
+    color: white;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    width: 150px;
+    height: 30px;
+    margin-bottom: -5px;
+}
+
+.paymentproduct_price {
+    margin-top: 5px;
+}
+

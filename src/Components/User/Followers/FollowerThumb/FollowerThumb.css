@@ -1,0 +1,18 @@
+.followerthumb {
+    width: 105px;
+    height: 85px;
+    padding: 5px;
+    border-radius: 20px;
+    margin-top: 15px;
+
+}
+.followerthumb > p {
+    font-size: 10px;
+    font-weight: 700;
+    
+}
+.follower_image {
+    margin-top: 7px;
+    width: 60px;
+    border-radius: 50%;
+}

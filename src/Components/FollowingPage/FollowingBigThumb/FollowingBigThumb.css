@@ -1,0 +1,21 @@
+.followingbigthumb {
+    text-align: center;
+    padding: 20px;
+    width: 210px;
+    height: 250px;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
+}
+
+.following_profileImg {
+    margin-top: 15px;
+    width: 175px;
+    height: 175px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.followingbigthumb > p {
+    margin-top: 20px;
+}

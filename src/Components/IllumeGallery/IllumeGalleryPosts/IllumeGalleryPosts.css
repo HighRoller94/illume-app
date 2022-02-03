@@ -1,0 +1,10 @@
+.illumegallery_posts {
+    width: 70%;
+    align-items: center;
+    justify-content: center;
+    display: grid;
+    margin-top: 75px !important;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 400px));
+    margin: 0 auto;
+    padding-bottom: 150px;
+}

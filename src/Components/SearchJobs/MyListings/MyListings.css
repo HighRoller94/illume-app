@@ -1,0 +1,11 @@
+.mylistings_container {
+    width: 70%;
+    margin: 0 auto;
+}
+
+.mylistings_container > h1 {
+    text-align: center;
+    margin-top: 110px;
+    font-size: 46px;
+    margin-bottom: 20px;
+}

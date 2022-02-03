@@ -1,0 +1,184 @@
+.col_container {
+    display: grid;
+    grid-template-columns: 15% 60%;
+    grid-column-gap: 45px;
+    justify-content: center;
+    padding-bottom: 75px;
+}
+
+.jobs_header {
+    margin-top: 125px;
+    text-align: center;
+    justify-content: center;
+}
+
+.jobs_header > h1 {
+    font-size: 60px;
+}
+
+.myjobs {
+    height: 32px;
+    width: 107px;
+    font-size: 13px;
+    color: white;
+    background-color: black;
+    border: none;
+    outline: none;
+    border-radius: 12px;
+    margin-top: 25px;
+    transition: 200ms ease-in;
+    margin-bottom: 50px;
+}
+
+.myjobs:hover  {
+    color: black;
+    background-color: white;
+    cursor: pointer;
+}
+
+.left_col {
+    background-color: white;
+    border-radius: 15px;
+    height: 614px;
+    min-width: 270px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 100px;
+}
+
+.left_col > h1 {
+    text-align: center;
+    margin: 15px 0 12px 0;
+    font-size: 25px;
+}
+
+.left_col > p {
+    font-size: 13px;
+    margin-left: 30px;
+}
+
+.left_col > input {
+    width: 70%;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 12px;
+    margin-left: 30px;
+    height: 10px;
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+.within {
+    display: flex;
+    margin-top: 5px;
+}
+
+.within_text {
+    font-size: 12px;
+    margin-left: 30px;
+    margin-top: 10px;
+}
+
+.miles {
+    font-size: 12px;
+    margin-top: 10px;
+    margin-left: 8px;
+}
+
+.within > input {
+    margin-top: 4px;
+    border: none;
+    outline: none;
+    background-color: #f1f1f1;
+    border-radius: 10px;
+    padding: 10px;
+    height: 10px;
+    width: 25px;
+    margin-left: 10px;
+}
+
+.within > button {
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 15px;
+    height: 30px;
+    width: 65px;
+    margin-top: 5px;
+    transition: 200ms ease-in;
+}
+
+.within > button:hover {
+    background-color: #f1f1f1;
+    color: black;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    border-radius: 10px;
+    margin-left: 15px;
+    height: 30px;
+    width: 65px;
+    margin-top: 5px;
+    cursor: pointer;
+    transition: 200ms ease-in;
+}
+
+
+.left_col > h3 {
+    margin-left: 30px;
+    margin-top: 15px;
+}
+
+.salary_buttons {
+    margin-left: 30px;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.salary_buttons > button {
+    background-color: #f1f1f1;
+    color: black;
+    outline: none;
+    border: none;
+    border-radius: 7px;
+    width: 65px;
+    margin-right: 10px;
+    font-size: 12px;
+}
+
+.additional_search > h4 {
+    margin-left: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.additional_search > p {
+    margin-left: 30px;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.more_button {
+    background-color: black;
+    color: white;
+    border: none;
+    outline: none;
+    font-size: 16px;
+    width: 150px;
+    height: 30px;
+    border-radius: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    transition: 200ms ease-in;
+}
+
+.more_button:hover {
+    background-color: white;
+    color: black;
+    cursor: pointer;
+}

@@ -1,0 +1,60 @@
+.uploadwindow {
+  margin-top: 50px;
+  align-self: center;
+  flex-direction: column;
+  text-align: center;
+  margin-bottom: auto;
+  display: inline block;
+  background-color: white;
+  padding: 20px;
+  border-radius: 20px;
+  min-width: 400px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  justify-content: center;
+}
+
+.addnewpost > h2 {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.addnewpost > input {
+  outline: none;
+  border: none;
+  background-color: #f1f1f1;
+  border-radius: 20px;
+  width: 80%;
+  padding: 10px;
+}
+
+.checkgallery_post {
+  margin-bottom: 25px;
+}
+
+.preview_player {
+  text-align: center;
+  margin: 50px 20px;
+}
+
+.checkgallery_post > img {
+  text-align: center;
+  max-width: 350px;
+  margin-top: 40px;
+  margin-bottom: 10px;
+}
+
+.checkgallery_post > p {
+  margin-top: 20px;
+}
+
+.postbuttons {
+  text-align: center;
+  margin-left: 10px;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.progress[value] { 
+  width: 100%;
+}

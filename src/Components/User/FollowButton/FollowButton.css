@@ -1,0 +1,28 @@
+.follow_button {
+  background-color: black;
+  width: 100px;
+  height: 40px;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  color: white;
+  transition: 200ms ease-in;
+}
+
+.follow_button:hover {
+  cursor: pointer;
+}
+
+.unfollow_button {
+  background-color: #f1f1f1;
+  width: 100px;
+  height: 40px;
+  outline: none;
+  border-radius: 20px;
+  border: none;
+  transition: 200ms ease-in;
+}
+
+.unfollow_button:hover {
+  cursor: pointer;
+}

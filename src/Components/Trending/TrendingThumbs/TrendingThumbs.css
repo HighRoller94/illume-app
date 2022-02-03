@@ -1,0 +1,39 @@
+.trending_posts {
+    display: grid;
+    justify-content: center;
+    align-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(50px, 110px));
+    grid-column-gap: 25px;
+    grid-row-gap: 25px;
+}
+
+.trending_thumbs {
+    background-color: #f1f1f1;
+    padding: 15px;
+    max-width: 100px;
+    min-width: 75px;
+    height: 85px;
+    border-radius: 15px;
+    align-content: center;
+    padding-bottom: 9px;
+}
+
+.trending_thumbs:hover { 
+    cursor: pointer;
+}
+
+.trending_video {
+    margin-top: 6px;
+    background-color: black;
+}
+.trending_thumbs > img {
+    margin-top: 1px;
+    width: 100%;
+    height: 75px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.trending_thumbs > p {
+    font-size: 10px;
+}
