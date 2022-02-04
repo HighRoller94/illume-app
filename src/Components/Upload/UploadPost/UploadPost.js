@@ -70,7 +70,7 @@ function UploadPost() {
                     usernameuid: user.uid
                 });
                 setBody("")
-
+                handleClose();
         } else {
             // If image is uploaded continue with alternate function
             if (media) {
@@ -108,7 +108,7 @@ function UploadPost() {
                             setProgress(0);
                             setBody("");
                             setMedia(null);
-                            setOpen(false);
+                            handleClose();
                     }
                 )
             } else {
