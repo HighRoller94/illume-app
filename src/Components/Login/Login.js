@@ -22,13 +22,13 @@ function Login({ buttontext }) {
             })
             .catch(error => alert(error.message))
     }   
-    
+
     return (
             <div>
                     <div className="login">
                         
                             <Link to='/illume'>
-                            <img className="login_logo" src={illumeLogo} alt="Illume" />
+                                <img className="login_logo" src={illumeLogo} alt="Illume" />
                             </Link>
                             <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" />
                             <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="*******" />

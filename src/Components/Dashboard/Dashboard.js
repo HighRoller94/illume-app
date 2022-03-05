@@ -76,7 +76,7 @@ function Dashboard() {
                 <div className="social">
                     <div className="social_login">
                         {!fbUserAccessToken ? (
-                            <button onClick={logInToFB} className="sociallogin_button">Log in to Facebook</button>
+                            <button onClick={logInToFB} className="sociallogin_button" disabled>Log in to Facebook</button>
                         ) : (null)}
                     </div>
                     {fbUserAccessToken ? (

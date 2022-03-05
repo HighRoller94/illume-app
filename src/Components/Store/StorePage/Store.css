@@ -28,8 +28,9 @@
 .storeposts {
   padding-top: 25px;
   padding-bottom: 100px;
-  width: 61%;
-  margin: auto;
+  width: 70%;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 250px));
+  margin: 0 auto;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+
 }

@@ -38,7 +38,7 @@ class Sidebar extends Component {
             </div>
     
             <div className="sidebar_chats">
-                {this.state.visible ? <Rooms /> : <FollowingChat />}
+                <FollowingChat />
             </div>
         </div>
         );

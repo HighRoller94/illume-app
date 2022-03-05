@@ -26,6 +26,7 @@
 .social_login > button {
   margin-top: -16px;
   min-width: 150px;
+  background-color: grey;
 }
 
 .fblogo {
