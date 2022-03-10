@@ -1,6 +1,8 @@
 .navbar {
   height: 60px;
   display: flex;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   position: fixed;
   top: 0;
@@ -9,14 +11,25 @@
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
 }
 
-.navbar_logo {
-  width: 90px;
-  padding: 25px;
-  margin-top: -4px;
-  margin-left: 20px;
+.navbar_container {
+  display: flex;
+  justify-content: space-between;
+  width: 96.5%;
 }
 
+.nav_left {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
 
+.navbar_logo {
+  margin-right: 1rem;
+  margin-top: -.4rem;
+  font-size: 2.3rem;
+  font-family: 'Rochester', serif;
+}
 
 .nav_right {
   max-width: 100%;
@@ -24,18 +37,23 @@
   align-items: center;
 }
 
-.navbar_option {
+.active__option {
   padding: 20px;
-  font-size: 16px;
-  font-weight: 550;
-  color: lightgrey;
+  font-size: 1rem;
+  font-weight: 600;
+  color: black;
 }
 
-.navbar_option:hover {
-  color: black;
-  font-weight: 550;
-  transition: 200ms ease-in;
-  transform: scale(1.1)
+.inactive__option {
+  padding: 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  opacity: .2;
+}
+
+.inactive__option:hover {
+  opacity: 1;
+  transition: 200ms;
 }
 
 .navbar_optionBasket {
@@ -63,8 +81,7 @@
 }
 
 .nav_avatar {
-  margin-right: 25px;
-  margin-left: 25px;
+  margin-left: 1rem;
 }
 
 .nav_avatar:hover {

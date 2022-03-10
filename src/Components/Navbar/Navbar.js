@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { Link, useHistory } from 'react-router-dom';
+import { Link, NavLink, useLocation, useHistory } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider';
 import { auth, db } from '../../firebase'
 import { motion } from 'framer-motion'
@@ -15,10 +15,11 @@ import { useInitFbSDK } from "../../Functions/Facebook";
 import './Navbar.css'
 import menu from '../../Images/menu.svg'
 
-import Searchbar from '../Searchbar/Searchbar';
+import Searchbar from './Searchbar/Searchbar';
 import illumeLogo from '../../Images/illumeLogo.svg'
 
 function Navbar() {
+    const { pathname } = useLocation();
     const history = useHistory();
     const [profileImage, setProfileImage] = useState("");
     const [fbUserAccessToken, setFbUserAccessToken] = useState();
@@ -73,48 +74,62 @@ function Navbar() {
 
     return (
 
-        <div>
-            <div className="navbar">
+        <div className="navbar">
+            <div className="navbar_container">
+                <div className="nav_left">
                     <div className="logo">
-                        <Link to='/dashboard' >
-                            <img className="navbar_logo" src={illumeLogo} alt="" />
-                        </Link>
+                        <NavLink to='/dashboard' >
+                            <h1 className="navbar_logo">illume</h1>
+                        </NavLink>
                     </div>
                     <Searchbar />
-                    <motion.div className="nav_right" layout>
-                        <Link to="/jobs" ><span className="navbar_option">Jobs</span></Link>
-                        <Link to="/home" ><span className="navbar_option">Home</span></Link>
-                        <Link to={`/gallery/${user.uid}`} ><span className="navbar_option">Gallery</span></Link>
-                        <Link to={`/store/${user.uid}`} ><span className="navbar_option">Store</span></Link>
-                        <Link to={`/profile/${user.uid}`} ><span className="navbar_option">Profile</span></Link>
+                </div>
+                <motion.div className="nav_right" layout>
+                    <div className={pathname === "/jobs" ? "active__option": "inactive__option"} component={Link} to="/jobs">
+                        <NavLink to="/jobs" ><span>Jobs</span></NavLink>
+                    </div>
+                    <div className={pathname === "/home" ? "active__option": "inactive__option"} component={Link} to="/home">
+                        <NavLink to="/home" ><span>Home</span></NavLink>
+                    </div>
+                    <div className={pathname === `/gallery/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/gallery/${user.uid}`}>
+                        <NavLink to={`/gallery/${user.uid}`} ><span>Gallery</span></NavLink>
+                    </div>
+                    <div className={pathname === `/store/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/store/${user.uid}`}>
+                        <NavLink to={`/store/${user.uid}`} ><span>Store</span></NavLink>
+                    </div>
+                    <div className={pathname === `/profile/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/profile/${user.uid}`}>
+                        <NavLink to={`/profile/${user.uid}`} ><span>Profile</span></NavLink>
+                    </div>
+                    <div component={Link} to="/checkout">
                         {basket.length > 0 ? ( 
-                            <Link to='/checkout'>
-                                <motion.div 
-                                    initial={{ scale: 1.2, opacity: 1, duration: 1.5 }}
-                                    transition={{ delay: 0.5 }}
-                                    animate={{ scale: 1, opacity: 0.5 }}
-                                    className="navbar_optionBasket"><ShoppingBasketIcon />
-                                    <span className="navbar_basketCount">{basket?.length}</span>
-                                </motion.div>
-                            </Link> 
-                        ) : (null)}
-                        {profileImage ? (
-                            <Avatar className="nav_avatar" onClick={handleClick} src={profileImage} />
-                        ) : (
-                            <Avatar className="nav_avatar" onClick={handleClick} src={userProfile} />
-                        )}
-                        
-                        <Menu
-                            id="simple-menu"
-                            className="nav_menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            onClose={handleClose}
-                        >
-                            <MenuItem onClick={handleClose}>Account</MenuItem>
-                            <MenuItem onClick={() => {handleAuthentication(); fbLogOut();}}>Logout</MenuItem>
-                        </Menu>
+                        <NavLink to='/checkout'>
+                            <motion.div 
+                                initial={{ scale: 1.2, opacity: 1, duration: 1.5 }}
+                                transition={{ delay: 0.5 }}
+                                animate={{ scale: 1, opacity: 0.5 }}
+                                className="navbar_optionBasket"><ShoppingBasketIcon />
+                                <span className="navbar_basketCount">{basket?.length}</span>
+                            </motion.div>
+                        </NavLink> 
+                    ) : (null)}
+                    </div>
+                    {profileImage ? (
+                        <Avatar className="nav_avatar" onClick={handleClick} src={profileImage} />
+                    ) : (
+                        <Avatar className="nav_avatar" onClick={handleClick} src={userProfile} />
+                    )}
+                    
+                    <Menu
+                        id="simple-menu"
+                        className="nav_menu"
+                        anchorEl={anchorEl}
+                        keepMounted
+                        open={Boolean(anchorEl)}
+                        onClose={handleClose}
+                    >
+                        <MenuItem onClick={handleClose}>Account</MenuItem>
+                        <MenuItem onClick={() => {handleAuthentication(); fbLogOut();}}>Logout</MenuItem>
+                    </Menu>
                 </motion.div>
             </div>
         </div>
