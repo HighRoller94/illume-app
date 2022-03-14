@@ -1,8 +1,42 @@
 # Illume
 
-Social Media CRUD application aimed at helping creatives and young professionals network, grow their business and sell their work.
+## React CRUD application
 
-Built with React, Illume includes it's own timeline and profile features, just like any other social network. It expands on this further by including it's own professional user based gallery page, allowing users to upload and showcase their work. It also includes a user based marketplace and store system, as well as ecommerce cart functionality, allowing users to open their own store. 
 
-Users can further search for work within the jobs section, where they can either list their own work listings or reply/apply to others, the ultimate goal being a one-stop shop for everything that a young creative may need.
+Illume is a social media app that aims to help creatives network, grow and manage their business and portfolios.
 
+Built with React, Illume features -
+
+- Custom authentication through Firebase
+- User profiles
+- User based stores or marketplaces which includes
+  - Cart functionality - upload, edit or delete store items. Add others to your cart
+  - Also features stripe payment setup (showcase, real details not to be used)
+  
+- User galleries (/w examples of short galleries/portfolios)
+
+- Timeline based features such as adding, editing and deleting posts. Users can comment on other posts also.
+- Upload images or videos, images feature previews. All posts with media contained in modals when clicked.
+
+- Chat/inbox messaging system
+  - Users can chat to people they follow on Illume
+  
+- Follow based system of networking
+- Dedicated 'jobs' section where users can post job listings/apply to other listings
+- 'Explore' and 'Marketplace' sections
+
+## Libaries Used
+
+- React Router Dom
+- Firebase
+- Firebase functions
+- Query-string
+- Framer Motion
+- Axios
+- React Dom
+- React-masonry CSS
+- React-Player
+
+## Hosting
+
+- Both front end and backend are hosted with Firebase
