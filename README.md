@@ -1,11 +1,11 @@
-# Illume
-
+# Illume <img src="https://user-images.githubusercontent.com/77104720/158188456-a276a72b-41c9-4df3-9912-127ccfb52453.png" align="left" height="48" width="48" >
 ## React CRUD application
 
+### [Live Site](https://illume-68c8e.web.app/home)
 
-Illume is a social media app that aims to help creatives network, grow and manage their business and portfolios.
+- Illume is a social media app that aims to help creatives network, grow and manage their business and portfolios. Built with React.
 
-Built with React, Illume features -
+## Includes -
 
 - Custom authentication through Firebase
 - User profiles
