@@ -114,7 +114,7 @@ function Post({ username, usernameuid, postId, body, imageUrl, timestamp, media 
                             <Link to={`/profile/${usernameuid}`}>
                                 <h3 className="username">{username}</h3>
                             </Link>
-                            <p>{new Date(timestamp?.toDate()).toUTCString()}</p>
+                            <p>{new Date(timestamp?.toDate()).toLocaleString()}</p>
                         </div>
                         {usernameuid === user.uid ? (
                             <MoreHorizIcon onClick={handleClick} />

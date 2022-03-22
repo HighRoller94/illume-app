@@ -116,7 +116,7 @@ function GalleryPostModal({ open, setOpen, galleryPostId, usernameuid  }) {
                                     <img src={userdata.profileImage} alt="" />
                                     <div className="avatar_header">
                                         <h3>{userdata.username}</h3>
-                                        <p>{new Date(postdata.timestamp?.toDate()).toUTCString()}</p>
+                                        <p>{new Date(postdata.timestamp?.toDate()).toLocaleString()}</p>
                                     </div>
                                     </div>
                             </Link>
