@@ -1,39 +1,38 @@
 import React, { useEffect } from 'react';
-  import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 import { AnimatePresence } from 'framer-motion';
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 
-import './App.css';
+import './Styles/styles.scss';
 
-import LandingNav from './Components/LandingPage/LandingNav/LandingNav';
-import ScrollToTop  from './Components/ScrollToTop';
+import ScrollToTop  from './ScrollToTop';
 import MyListings from './Components/SearchJobs/MyListings/MyListings';
 import SearchJobs from './Components/SearchJobs/SearchJobs';
 import JobDetails from './Components/SearchJobs/JobDetails/JobDetails';
 import ListingReplies from './Components/SearchJobs/ListingReplies/ListingReplies';
-import Footer from './Components/Footer/Footer';
+import Footer from './Components/Layout/Footer/Footer';
 import Navbar from './Components/Navbar/Navbar';
 import Explore from './Components/Explore/Explore';
-import FollowingPage from './Components/FollowingPage/FollowingPage';
+import FollowingPage from './Pages/FollowingPage';
 import FollowersPage from './Components/FollowersPage/FollowersPage';
-import Home from './Components/Home/Home';
+import Home from './Pages/Home';
 import AccountDetails from './Components/AccountDetails/AccountDetails';
-import Auth from './Components/Auth/Auth';
+import Auth from './Pages/Auth';
 import Gallery from './Components/Gallery/Gallery';
 import Store from './Components/Store/StorePage/Store';
 import StorePostInfo from './Components/Posts/StorePost/StorePostInfo/StorePostInfo';
 import Checkout from './Components/Store/Checkout/Checkout';
 import Payment from './Components/Store/Payment/Payment';
 import OrderHistory from './Components/Store/OrderHistory/OrderHistory';
-import Profile from './Components/User/Profile/Profile';
-import Inbox from './Components/Inbox/Inbox';
+import Profile from './Pages/Profile';
+import Inbox from './Pages/Inbox';
 import Dashboard from './Components/Dashboard/Dashboard';
 import BigCalendar from './Components/BigCalendar/BigCalendar';
-import Marketplace from './Components/Marketplace/Marketplace';
-import IllumeGallery from './Components/IllumeGallery/IllumeGallery';
+import Marketplace from './Pages/Marketplace';
+import IllumeGallery from './Pages/IllumeGallery';
 
 const promise = loadStripe(
   "pk_test_51JRx82AWnX2oR3avXWJruHDLY6m31mD1Sq9FbBdW2XT4lhyOS1mRdrz84Kh9S7ONfCWPXWZU3u8kPxH1cJJ2Yk9300FSmjz5MS"

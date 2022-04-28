@@ -2,7 +2,7 @@ import React, { useState }from 'react'
 import { Link } from 'react-router-dom'
 import ReactPlayer from "react-player";
 
-import GalleryPostModal from '../../Posts/GalleryPostModal/GalleryPostModal'
+import GalleryPostModal from '../../Gallery/GalleryPostModal'
 import './TrendingThumbs.css'
 
 function TrendingThumbs({ username, galleryPostId, usernameuid, imageUrl, media }) {
