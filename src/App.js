@@ -32,7 +32,6 @@ import Inbox from './Pages/Inbox';
 import Dashboard from './Components/Dashboard/Dashboard';
 import BigCalendar from './Components/BigCalendar/BigCalendar';
 import Marketplace from './Pages/Marketplace';
-import IllumeGallery from './Pages/IllumeGallery';
 
 const promise = loadStripe(
   "pk_test_51JRx82AWnX2oR3avXWJruHDLY6m31mD1Sq9FbBdW2XT4lhyOS1mRdrz84Kh9S7ONfCWPXWZU3u8kPxH1cJJ2Yk9300FSmjz5MS"
@@ -141,11 +140,6 @@ function App() {
               <Gallery />
               <Footer />
             </Route>    
-            <Route path="/illumegallery">
-              <Navbar />
-              <IllumeGallery />
-              <Footer />
-            </Route>   
             <Route path="/photos">
               <Navbar />
               <Footer />

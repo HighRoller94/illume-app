@@ -6,8 +6,8 @@ import { useParams } from 'react-router-dom'
 
 import LatestGallery from '../Components/User/LatestGallery/LatestGallery';
 import Bio from '../Components/User/Bio/Bio';
-import UploadPost from '../Components/Upload/UploadPost/UploadPost';
-import ProfilePosts from '../Components/User/ProfilePosts/ProfilePosts';
+import UploadPost from '../Components/Home/UploadPost';
+import UserPosts from '../Components/User/ProfilePosts/ProfilePosts';
 import Followers from '../Components/User/Followers/Followers';
 import Following from '../Components/User/Following/Following';
 
@@ -38,7 +38,7 @@ function Profile() {
                     
                     </div>
                     <div className="profile_posts">
-                    <ProfilePosts />
+                    <UserPosts />
                     </div>
                 </div>
                 <div className="rightCol_profile">
