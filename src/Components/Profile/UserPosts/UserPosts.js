@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from 'react';
-import { useStateValue } from '../../../StateProvider';
+import { useParams } from 'react-router-dom';
 import { db } from '../../../firebase';
 
 import Post from '../../Posts/Post/Post';
 
 function UserPosts() {
     const [posts, setPosts] = useState([]);
-    const [{ user }] = useStateValue();
+    const { uid } = useParams()
 
     useEffect(() => {
         db
             .collection('users')
-            .doc(user.uid)
+            .doc(uid)
             .collection("Posts")
             .orderBy('timestamp', 'desc')
             .onSnapshot(snapshot => {
@@ -20,7 +20,7 @@ function UserPosts() {
                     post: doc.data()
             })));
         })
-    }, []);
+    }, [uid]);
 
     return (
         <div className="userposts">
@@ -29,7 +29,6 @@ function UserPosts() {
                 <Post 
                     key={id} 
                     postId={id}
-                    user={user}
                     timestamp={post.timestamp} 
                     usernameuid={post.usernameuid} 
                     username={post.username} 
