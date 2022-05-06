@@ -1,8 +1,6 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
-
-import './Listings.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 function Listings({ usernameuid, position, description, job_type, location, listingId, created_at }) {
     return (

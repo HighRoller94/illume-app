@@ -1,11 +1,9 @@
 import React, { useEffect, useState, Component } from 'react';
-import "./Sidebar.css";
 
 import PersonIcon from '@material-ui/icons/Person';
 import PeopleAltIcon from '@material-ui/icons/PeopleAlt';
 
 import FollowingChat from './FollowingChat/FollowingChat'
-import Rooms from './Rooms/Rooms'
 
 import { SearchOutlined } from '@material-ui/icons';
 

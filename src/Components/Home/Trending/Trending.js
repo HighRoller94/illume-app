@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../firebase';
+import { db } from '../../../firebase';
 
 import TrendingThumbs from './TrendingThumbs/TrendingThumbs';
-
-import './Trending.css';
 
 function Trending() {
     const [latestgalposts, setLatestGalPosts] = useState([]);

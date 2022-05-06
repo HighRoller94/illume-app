@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './FollowingThumb.css';
 
 function FollowingThumb({ username, uid, profileImage }) {
 

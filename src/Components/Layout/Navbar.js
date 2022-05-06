@@ -8,15 +8,13 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import MenuIcon from '@material-ui/icons/Menu';
-import userProfile from '../../Images/userProfile.png'
-import { useInitFbSDK } from "../../Functions/Facebook";
-
-
-import './Navbar.css'
-import menu from '../../Images/menu.svg'
 
 import Searchbar from './Searchbar/Searchbar';
-import illumeLogo from '../../Images/illumeLogo.svg'
+
+import userProfile from '../../Assets/Images/userProfile.png'
+import menu from '../../Assets/Images/menu.svg'
+
+import illumeLogo from '../../Assets/Images/illumeLogo.svg'
 
 function Navbar() {
     const { pathname } = useLocation();
@@ -25,9 +23,8 @@ function Navbar() {
     const [fbUserAccessToken, setFbUserAccessToken] = useState();
     const [fbPageAccessToken, setFbPageAccessToken] = useState();
     const [anchorEl, setAnchorEl] = useState(null);
-    const isFbSDKInitialized = useInitFbSDK();
     const [basketcount, setBasketCount] = useState('');
-    // current logged in 
+    // Current logged in 
     const [{ user, basket }] = useStateValue();
     
     const handleClick = (event) => {
@@ -78,18 +75,18 @@ function Navbar() {
             <div className="navbar_container">
                 <div className="nav_left">
                     <div className="logo">
-                        <NavLink to='/dashboard' >
+                        <NavLink to='/home' >
                             <h1 className="navbar_logo">illume</h1>
                         </NavLink>
                     </div>
                     <Searchbar />
                 </div>
                 <motion.div className="nav_right" layout>
-                    <div className={pathname === "/jobs" ? "active__option": "inactive__option"} component={Link} to="/jobs">
-                        <NavLink to="/jobs" ><span>Jobs</span></NavLink>
-                    </div>
                     <div className={pathname === "/home" ? "active__option": "inactive__option"} component={Link} to="/home">
                         <NavLink to="/home" ><span>Home</span></NavLink>
+                    </div>
+                    <div className={pathname === "/jobs" ? "active__option": "inactive__option"} component={Link} to="/jobs">
+                        <NavLink to="/jobs" ><span>Jobs</span></NavLink>
                     </div>
                     <div className={pathname === `/gallery/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/gallery/${user.uid}`}>
                         <NavLink to={`/gallery/${user.uid}`} ><span>Gallery</span></NavLink>
@@ -127,8 +124,8 @@ function Navbar() {
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >
-                        <MenuItem onClick={handleClose}>Account</MenuItem>
-                        <MenuItem onClick={() => {handleAuthentication(); fbLogOut();}}>Logout</MenuItem>
+                        <MenuItem className="menu__item"onClick={handleClose}>Account</MenuItem>
+                        <MenuItem className="menu__item"onClick={() => {handleAuthentication(); fbLogOut();}}>Logout</MenuItem>
                     </Menu>
                 </motion.div>
             </div>

@@ -2,7 +2,6 @@ import React from 'react'
 
 import IllumeGalleryPosts from '../Components/IllumeGallery/IllumeGalleryPosts'
 
-import './IllumeGallery.css'
 
 function IllumeGallery() {
     return (

@@ -1,9 +1,7 @@
 import React, { useState, useEffect }from "react";
 
 import FacebookPost from './FacebookPost/FacebookPost';
-import AddFacebookPost from './AddFacebookPost/AddFacebookPost';
-
-import './Facebook.css'
+import AddFacebookPost from './AddFacebookPost/AddFacebookPostModal';
 
 function Facebook() {
     const PAGE_ID = "";

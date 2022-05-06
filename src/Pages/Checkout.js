@@ -1,12 +1,10 @@
-import React, { useState, useEffect }from 'react'
+import React, { useState, useEffect }from 'react';
 import { useStateValue } from '../StateProvider';
-import Subtotal from '../Components/Checkout/Subtotal/Subtotal';
-import CheckoutProduct from '../CheckoutProduct/CheckoutProduct';
 import { db } from '../firebase';
 import { motion } from 'framer-motion';
 
-import './Checkout.css'
-
+import Subtotal from '../Components/Checkout/Subtotal';
+import CheckoutProduct from '../Components/Checkout/CheckoutProduct';
 
 function Checkout() {
     const [basketitems, setBasketItems] = useState([]);

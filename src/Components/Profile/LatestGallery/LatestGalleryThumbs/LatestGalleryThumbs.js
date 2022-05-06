@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './LatestGalleryThumbs.css'
-
 function LatestGalleryThumbs({imageUrl, id, usernameuid}) {
     return (
         <Link to={`/gallery/${usernameuid}`} >

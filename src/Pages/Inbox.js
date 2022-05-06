@@ -4,8 +4,6 @@ import { motion } from 'framer-motion';
 import Chat from '../Components/Inbox/Chat/Chat';
 import Sidebar from '../Components/Inbox/Sidebar/Sidebar';
 
-import './Inbox.css'
-
 function Inbox() {
     
     return (

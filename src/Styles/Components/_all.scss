@@ -44,12 +44,12 @@
 
 @import './Inbox/Chat';
 @import './Inbox/Sidebar';
-@import './InboxSidebarChat';
+@import './Inbox/SidebarChat';
 
 // MARKETPLACE
 
 @import './Marketplace/MarketplacePost';
-@import './MarketplacePosts';
+@import './Marketplace/MarketplacePosts';
 
 // MODALS
 
@@ -78,13 +78,14 @@
 @import './Profile/FollowButton';
 @import './Profile/Followers';
 @import './Profile/FollowerThumb';
+@import './Profile/FollowingThumb';
 @import './Profile/LatestGallery';
 @import './Profile/LatestGalleryThumbs';
 @import './Profile/UserPosts';
 
 // SEARCH JOBS
 
-@import './SearchJobs/AddJostListing';
+@import './SearchJobs/AddJobListing';
 @import './SearchJobs/ListingReplyModal';
 @import './SearchJobs/Listings';
 @import './SearchJobs/MyListingPosts';
@@ -93,3 +94,4 @@
 // STORE
 
 @import './Store/UploadStorePost';
+@import './Store/SuggestStoreThumb';

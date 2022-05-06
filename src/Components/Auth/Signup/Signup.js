@@ -3,9 +3,6 @@ import { db, auth, storage } from '../../../firebase';
 import { motion } from 'framer-motion';
 import { useHistory } from 'react-router-dom';
 
-import './Signup.css';
-
-
 function Signup() {
     const history = useHistory();
     const [user, setUser] = useState(null);

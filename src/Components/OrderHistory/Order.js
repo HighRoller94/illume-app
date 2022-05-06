@@ -1,16 +1,13 @@
-import React from 'react'
-import moment from 'moment'
-import CurrencyFormat from 'react-currency-format'
+import React from 'react';
+import CurrencyFormat from 'react-currency-format';
 
-import './Order.css'
-
-import PaymentProduct from '../../Store/PaymentProduct/PaymentProduct'
+import PaymentProduct from '../Payment/PaymentProduct';
 
 function Order({ order }) {
     return (
         <div className="order">
             <h2>Order</h2>
-            <p>{moment.unix(order.data.created).format("MMMM Do YYYY, h:mma")}</p>
+            <p>{order.data.created}</p>
             <p className="order_id">
                 <small>{order.id}</small>
             </p>

@@ -1,9 +1,7 @@
-import React, { useState }from 'react'
-import { Link } from 'react-router-dom'
-import ReactPlayer from "react-player";
+import React, { useState } from 'react';
+import ReactPlayer from 'react-player';
 
-import GalleryPostModal from '../../Gallery/GalleryPostModal'
-import './TrendingThumbs.css'
+import GalleryPostModal from '../../../Modals/GalleryPostModal/GalleryPostModal';
 
 function TrendingThumbs({ username, galleryPostId, usernameuid, imageUrl, media }) {
     const [open, setOpen] = useState(false);

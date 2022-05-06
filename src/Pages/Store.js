@@ -5,10 +5,8 @@ import{ useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Avatar } from '@material-ui/core';
 
-import StorePosts from '../Components/Posts/StorePosts';
-import UploadStorePost from '../Components/Upload/UploadStorePost/UploadStorePost';
-
-import './Store.css';
+import StorePosts from '../Components/Store/StorePosts';
+import UploadStorePost from '../Components/Modals/StorePostModal/UploadStorePostModal';
 
 function Store() {
 

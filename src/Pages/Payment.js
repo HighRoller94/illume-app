@@ -1,17 +1,14 @@
-import React, { useState, useEffect }from 'react'
-import { useStateValue } from '../StateProvider'
-import { Link, useHistory } from 'react-router-dom'
-import { motion } from 'framer-motion'
-import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js'
-import CurrencyFormat from 'react-currency-format'
-import { getBasketTotal } from '../reducer'
-import axios from '../../../axios'
-import { db } from '../firebase'
+import React, { useState, useEffect }from 'react';
+import { useStateValue } from '../StateProvider';
+import { Link, useHistory } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
+import CurrencyFormat from 'react-currency-format';
+import { getBasketTotal } from '../reducer';
+import axios from 'axios';
+import { db } from '../firebase';
 
-import PaymentProduct from '../Components/Payment/PaymentProduct'
-
-import './Payment.css'
-
+import PaymentProduct from '../Components/Payment/PaymentProduct';
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();

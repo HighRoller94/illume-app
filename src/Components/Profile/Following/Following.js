@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 
 import FollowingThumb from './FollowingThumb/FollowingThumb';
 
-import './Following.css'
-
 function Following() {
     const [follows, setFollows] = useState([]);
     const { uid } = useParams()

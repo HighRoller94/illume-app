@@ -3,12 +3,9 @@ import { db } from '../firebase'
 import { useParams, useHistory, Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { useStateValue } from '../StateProvider';
-import { moment } from 'moment'
 
 import EditListingModal from '../Components/SearchJobs/JobListings/EditListingModal/EditListingModal'
-import ReplyModal from '../Components/SearchJobs/ReplyModal/ReplyModal'
-
-import './JobDetails.css'
+import ReplyModal from '../Components/Modals/ReplyModal/ReplyModal'
 
 function JobDetails() {
     const history = useHistory();

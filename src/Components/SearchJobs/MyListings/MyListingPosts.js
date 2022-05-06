@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { db } from '../../../../firebase';
-import { useStateValue } from '../../../../StateProvider';
+import { db } from '../../../firebase';
+import { useStateValue } from '../../../StateProvider';
 
-
-import Listings from '../../JobListings/Listings/Listings';
-
-import './MyListingPosts.css'
+import Listings from '../JobListings/Listings/Listings';
 
 function MyListingPosts() {
     const [{ user }] = useStateValue();

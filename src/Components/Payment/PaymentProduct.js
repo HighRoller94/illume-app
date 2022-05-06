@@ -3,8 +3,6 @@ import{ Link } from 'react-router-dom'
 
 import { useStateValue } from '../../StateProvider';
 
-import './PaymentProduct.css'
-
 function PaymentProduct({ storePostId, usernameuid, imageUrl, title, username, price, sizes, colours, hideButton }) {
     const [{ user, basket}, dispatch] = useStateValue();
 

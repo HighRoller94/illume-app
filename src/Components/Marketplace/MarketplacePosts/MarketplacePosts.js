@@ -3,8 +3,6 @@ import { db } from '../../../firebase';
 
 import MarketplacePost from '../MarketplacePost/MarketplacePost';
 
-import './MarketplacePosts.css'
-
 function MarketplacePosts() {
     const [allstoreposts, setAllStorePosts] = useState([])
     

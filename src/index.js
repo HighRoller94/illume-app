@@ -7,8 +7,6 @@ import { StateProvider } from './StateProvider';
 
 import App from './App';
 
-import './index.css';
-
 const renderApp = () => {
 ReactDOM.render(
   <React.StrictMode>

@@ -1,12 +1,10 @@
 import React, { useEffect, useState }from 'react';
-import { db } from '../../firebase';
-import { useStateValue } from '../../StateProvider';
-import { useParams, Link } from 'react-router-dom'
+import { db } from '../firebase';
+import { useStateValue } from '../StateProvider';
+import { useParams, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
-import FollowersBigThumb from './FollowersBigThumb/FollowersBigThumb';
-
-import './FollowersPage.css'
+import FollowersBigThumb from '../Components/FollowersPage/FollowersBigThumb';
 
 function FollowersPage() {
     const [followers, setFollowers] = useState([]);

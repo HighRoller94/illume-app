@@ -1,19 +1,18 @@
-import React, { useEffect, useState } from 'react'
-import { useParams, Link } from 'react-router-dom'
-import { useStateValue } from '../../../StateProvider'
-import { Button } from '@material-ui/core'
-import { db } from '../../../firebase'
+import React, { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { useStateValue } from '../../../StateProvider';
+import { Button } from '@material-ui/core';
+import { db } from '../../../firebase';
 
-import InstagramIcon from '@material-ui/icons/Instagram'
-import FacebookIcon from '@material-ui/icons/Facebook'
-import LanguageIcon from '@material-ui/icons/Language'
-import EditSharpIcon from '@material-ui/icons/EditSharp'
+import InstagramIcon from '@material-ui/icons/Instagram';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import LanguageIcon from '@material-ui/icons/Language';
+import EditSharpIcon from '@material-ui/icons/EditSharp';
 
-import BioModal from './BioModal/BioModal'
-import FollowButton from '../FollowButton/FollowButton'
-import userProfile from '../../../Images/userProfile.png'
+import BioModal from '../../Modals/BioModal/BioModal';
+import FollowButton from '../FollowButton/FollowButton';
+import userProfile from '../../../Assets/Images/userProfile.png';
 
-import './Bio.css';
 
 function Bio() {
     const [userdata, setUserData] = useState('')

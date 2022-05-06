@@ -10,10 +10,8 @@ import { MenuItem } from '@material-ui/core';
 import Menu from '@material-ui/core/Menu';
 import { motion } from 'framer-motion';
 
-import PostModal from '../PostModal/PostModal';
-import EditPostModal from '../EditPostModal/EditPostModal';
-
-import './Post.css';
+import PostModal from '../../Modals/PostModal/PostModal';
+import EditPostModal from '../../Modals/PostModal/EditPostModal';
 
 function Post({ username, usernameuid, postId, body, imageUrl, timestamp, media }) {
     const [comments, setComments] = useState([]);

@@ -3,7 +3,6 @@ import { db } from '../../../firebase'
 import { useStateValue } from '../../../StateProvider';
 
 import Post from '../../Posts/Post/Post';
-import './FollowingPosts.css'
 
 function FollowingPosts() {
     const [posts, setPosts] = useState([])

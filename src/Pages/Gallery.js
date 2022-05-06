@@ -1,16 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useStateValue } from '../../StateProvider';
-import { useParams, Link } from 'react-router-dom'
-import { db } from '../../firebase'
+import React, { useState, useEffect } from 'react';
+import { useStateValue } from '../StateProvider';
+import { useParams, Link } from 'react-router-dom';
+import { db } from '../firebase';
 
-
-import UploadGalleryPost from '../Upload/UploadGalleryPost/UploadGalleryPost';
+import UploadGalleryPost from '../Components/Gallery/UploadGalleryPost';
 import { motion } from 'framer-motion';
 
-import GalleryPosts from '../Posts/GalleryPosts';
-
-
-import './Gallery.css'
+import GalleryPosts from '../Components/Gallery/GalleryPosts';
 
 function Gallery() {
     const { uid } = useParams();

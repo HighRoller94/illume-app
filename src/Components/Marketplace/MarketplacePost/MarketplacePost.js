@@ -8,7 +8,7 @@ import Menu from '@material-ui/core/Menu';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { MenuItem } from '@material-ui/core';
 
-import EditStorePostModal from '../../Posts/EditStorePostModal/EditStorePostModal'
+import EditStorePostModal from '../../Modals/StorePostModal/EditStorePostModal'
 
 function MarketplacePost({ storePostId, title, username, usernameuid, imageUrl, price, sizes, colours}) {
     const [{ basket, user }, dispatch] = useStateValue();

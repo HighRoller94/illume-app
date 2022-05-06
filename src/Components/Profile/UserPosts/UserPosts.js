@@ -4,8 +4,6 @@ import { db } from '../../../firebase';
 
 import Post from '../../Posts/Post/Post';
 
-import './UserPosts.css';
-
 function UserPosts() {
     const [posts, setPosts] = useState([]);
     const [{ user }] = useStateValue();

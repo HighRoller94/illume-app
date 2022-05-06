@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import MarketplacePosts from '../Components/Marketplace/MarketplacePosts/MarketplacePosts'
 
-import './Marketplace.css'
-
 function Marketplace() {
 
     return (

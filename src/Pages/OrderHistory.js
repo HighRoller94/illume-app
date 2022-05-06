@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { db } from '../firebase'
 import { useStateValue } from '../StateProvider'
 
-import Order from '../Components/OrderHistory/Order/Order'
-
-import './OrderHistory.css'
+import Order from '../Components/OrderHistory/Order'
 
 function OrderHistory() {
     const [{ basket, user }, dispatch] = useStateValue();

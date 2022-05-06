@@ -1,8 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import './FollowerThumb.css';
-
 function FollowerThumb({ username, uid, profileImage }) {
     return (
         <div>

@@ -12,9 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-import AddPost from '../../../Images/AddPost.png';
-
-import './UploadPost.css'
+import AddPost from '../../Assets/Images/AddPost.png';
 
 const useStyles = makeStyles((theme) => ({
     modal: {

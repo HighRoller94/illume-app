@@ -8,10 +8,9 @@ import Menu from '@material-ui/core/Menu';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
 import { MenuItem } from '@material-ui/core';
 
-import GalleryPostModal from '../GalleryPostModal/GalleryPostModal';
-import EditGalleryPostModal from './EditGalleryPostModal';
+import GalleryPostModal from '../../Modals/GalleryPostModal/GalleryPostModal';
+import EditGalleryPostModal from '../../Modals/GalleryPostModal/EditGalleryPostModal';
 
-import './GalleryPost.css'
 
 function GalleryPost({ galleryPostId, usernameuid, imageUrl, media }) {
     const [open, setOpen] = useState(false);

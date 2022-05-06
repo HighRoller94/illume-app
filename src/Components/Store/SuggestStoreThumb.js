@@ -1,9 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { db } from '../../../../../firebase';
+import { db } from '../../firebase';
 
-import { useStateValue } from '../../../../../StateProvider'
-import './SuggestStoreThumb.css'
+import { useStateValue } from '../../StateProvider'
 
 function SuggestStoreThumb({ username, usernameuid, imageUrl, price, title, storePostId }) {
     const [{ basket, user }, dispatch] = useStateValue();

@@ -6,8 +6,6 @@ import { motion } from 'framer-motion';
 
 import FollowingBigThumb from '../Components/FollowingPage/FollowingBigThumb';
 
-import './FollowingPage.css'
-
 function FollowingPage() {
     const [follows, setFollows] = useState([]);
     const { uid } = useParams()

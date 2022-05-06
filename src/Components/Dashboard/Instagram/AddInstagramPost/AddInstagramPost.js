@@ -7,7 +7,7 @@ import Fade from '@material-ui/core/Fade';
 import { Button } from '@material-ui/core';
 import AddCircleIcon from '@material-ui/icons/AddCircle';
 
-import AddPost from '../../../../Images/AddPost.png';
+import AddPost from '../../../../Assets/Images/AddPost.png';
 
 import './AddInstagramPost.css'
 

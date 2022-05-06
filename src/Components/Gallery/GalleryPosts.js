@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../firebase';
-
 import { useParams } from 'react-router-dom';
 
-
-import GalleryPost from '../Posts/GalleryPost/GalleryPost';
+import GalleryPost from '../Posts/Gallery/GalleryPost';
 
 function GalleryPosts() {
     const [galleryposts, setGalleryPosts] = useState([]);
@@ -31,9 +29,7 @@ function GalleryPosts() {
     return (
             
                 <div className="galleryposts">
-                    
                     {
-
                     galleryposts.map(({ id, gallerypost }) => (
                         <GalleryPost 
                             key = { id } 
@@ -43,9 +39,7 @@ function GalleryPosts() {
                             media = { gallerypost.media }
                             />
                         ))
-
                     }
-
                 </div>
             
     )

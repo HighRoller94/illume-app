@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { db, storage } from '../../firebase'
+import { db, storage } from '../../../firebase'
 import firebase from 'firebase'
-import { useStateValue } from '../../StateProvider'
+import { useStateValue } from '../../../StateProvider'
 
 import { Button } from '@material-ui/core'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
@@ -10,9 +10,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
-import AddPost from '../../../Images/AddPost.png'
-
-import './UploadStorePost.css';
+import AddPost from '../../../Assets/Images/AddPost.png'
 
 const useStyles = makeStyles((theme) => ({
     modal: {

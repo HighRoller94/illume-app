@@ -1,10 +1,9 @@
-import React, { useState, useEffect } from 'react'
-import { db } from '../../../firebase'
-import { useParams } from 'react-router-dom'
-import { useStateValue } from '../../../StateProvider';
+import React, { useState, useEffect } from 'react';
+import { db } from '../firebase';
+import { useParams } from 'react-router-dom';
+import { useStateValue } from '../StateProvider';
 
-import ReplyThumb from './ReplyThumbs/ReplyThumb'
-import './ListingReplies.css'
+import ReplyThumb from '../Components/SearchJobs/ListingReplies/ReplyThumb';
 
 function ListingReplies() {
     const { listingId } = useParams();

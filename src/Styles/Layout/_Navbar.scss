@@ -9,87 +9,78 @@
   z-index: 100;
   width: 100%;
 	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  .navbar_container {
+    display: flex;
+    justify-content: space-between;
+    width: 96.5%;
+    .nav_left {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      .navbar_logo {
+        margin-right: 1rem;
+        margin-top: -.4rem;
+        font-size: 2.5rem;
+        font-family: 'Rochester', cursive;
+      }
+    }
+    .nav_right {
+      max-width: 100%;
+      display: flex;
+      align-items: center;
+      .active__option {
+        padding: 20px;
+        font-size: 1rem;
+        font-weight: bold;
+        color: black;
+      }
+      .inactive__option {
+        padding: 20px;
+        font-size: 1rem;
+        font-weight: 400;
+        opacity: .2;
+        &:hover {
+          opacity: 1;
+          transition: 200ms;
+        }
+      }
+      .navbar_optionBasket {
+        display: flex;
+        padding: 6px;
+        margin-left: 15px;
+        color: grey;
+        margin-top: -3px;
+        .MuiSvgIcon-root {
+          margin-top: 4px;
+          font-size: 21px;
+        }
+        .navbar_basketCount {
+          font-size: 17px;
+          margin-top: 3px;
+          margin-left: 12px;
+          margin-right: 10px;
+          &:hover {
+            color: black;
+          }
+        }
+      }
+      .nav_avatar {
+        margin-left: 1rem;
+        cursor: pointer;
+      }    
+    }
+  }
 }
 
-.navbar_container {
-  display: flex;
-  justify-content: space-between;
-  width: 96.5%;
-}
 
-.nav_left {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-}
-
-.navbar_logo {
-  margin-right: 1rem;
-  margin-top: -.4rem;
-  font-size: 2.3rem;
-  font-family: 'Rochester', serif;
-}
-
-.nav_right {
-  max-width: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.active__option {
-  padding: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: black;
-}
-
-.inactive__option {
-  padding: 20px;
-  font-size: 1rem;
-  font-weight: 600;
-  opacity: .2;
-}
-
-.inactive__option:hover {
-  opacity: 1;
-  transition: 200ms;
-}
-
-.navbar_optionBasket {
-  display: flex;
-  padding: 6px;
-  margin-left: 15px;
-  color: grey;
-  margin-top: -3px;
-}
-
-.navbar_optionBasket > .MuiSvgIcon-root {
-  margin-top: 4px;
-  font-size: 21px;
-}
-
-.navbar_basketCount {
-  font-size: 17px;
-  margin-top: 3px;
-  margin-left: 12px;
-  margin-right: 10px;
-}
-
-.navbar_basketCount:hover {
-  color: black;
-}
-
-.nav_avatar {
-  margin-left: 1rem;
-}
 
 .nav_avatar:hover {
   cursor: pointer;
 }
 
-.nav_menu {
-  margin-top: 44px;
+#simple-menu {
+  margin-top: 3.05rem;
+  width: 10rem;
 }
 
 @media only screen and (max-width: 900px) {

@@ -1,6 +1,6 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react';
 import { storage, db } from '../../firebase';
-import firebase from 'firebase'
+import firebase from 'firebase';
 import { useStateValue } from '../../StateProvider';
 
 import { Button } from '@material-ui/core';
@@ -11,11 +11,10 @@ import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import ImageIcon from '@material-ui/icons/Image';
 import Fade from '@material-ui/core/Fade';
-import AddPost from '../../../Images/AddPost.png';
+import AddPost from '../../Assets/Images/AddPost.png';
 import ForwardSharpIcon from '@material-ui/icons/ForwardSharp';
-import AddStorePostModal from '../Upload/UploadGalleryPost/AddStorePost/AddStorePostModal'
 
-import './UploadGalleryPost.css'
+import AddStorePostModal from '../Modals/StorePostModal/UploadStorePostModal';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -30,8 +29,7 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-function UploadGalleryPost({ username, usernameuid }) {
-
+function UploadGalleryPost() {
     const [body, setBody] = useState('');
     const [image, setImage] = useState(null);
     const [progress, setProgress] = useState(0);

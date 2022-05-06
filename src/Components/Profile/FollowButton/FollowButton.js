@@ -3,8 +3,6 @@ import { useStateValue } from '../../../StateProvider';
 import { useParams } from 'react-router-dom'
 import { db } from '../../../firebase';
 
-import './FollowButton.css'
-
 function FollowButton() {
     const { uid } = useParams();
     const [{ user }] = useStateValue();

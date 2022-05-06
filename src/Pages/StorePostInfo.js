@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom'
-import { useStateValue } from '../StateProvider'
-import { db } from '../firebase'
-import { motion } from 'framer-motion'
+import React, { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import { useStateValue } from '../StateProvider';
+import { db } from '../firebase';
+import { motion } from 'framer-motion';
 
-import './StorePostInfo.css'
-
-import SuggestStoreThumb from '../Components/Posts/StorePost/StorePostInfo/SuggestStoreThumb/SuggestStoreThumb'
+import SuggestStoreThumb from '../Components/Store/SuggestStoreThumb';
 
 function StorePostInfo() {
     const { uid } = useParams()

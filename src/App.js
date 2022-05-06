@@ -9,28 +9,26 @@ import { Elements } from '@stripe/react-stripe-js'
 import './Styles/styles.scss';
 
 import ScrollToTop  from './ScrollToTop';
-import MyListings from './Components/SearchJobs/MyListings/MyListings';
-import SearchJobs from './Components/SearchJobs/SearchJobs';
-import JobDetails from './Components/SearchJobs/JobDetails/JobDetails';
-import ListingReplies from './Components/SearchJobs/ListingReplies/ListingReplies';
-import Footer from './Components/Layout/Footer/Footer';
-import Navbar from './Components/Navbar/Navbar';
-import Explore from './Components/Explore/Explore';
+import MyListings from './Pages/MyListings';
+import SearchJobs from './Pages/SearchJobs';
+import JobDetails from './Pages/JobDetails';
+import ListingReplies from './Pages/ListingReplies';
+import Footer from './Components/Layout/Footer';
+import Navbar from './Components/Layout/Navbar';
 import FollowingPage from './Pages/FollowingPage';
-import FollowersPage from './Components/FollowersPage/FollowersPage';
+import FollowersPage from './Pages/FollowersPage';
 import Home from './Pages/Home';
-import AccountDetails from './Components/AccountDetails/AccountDetails';
 import Auth from './Pages/Auth';
-import Gallery from './Components/Gallery/Gallery';
-import Store from './Components/Store/StorePage/Store';
-import StorePostInfo from './Components/Posts/StorePost/StorePostInfo/StorePostInfo';
-import Checkout from './Components/Store/Checkout/Checkout';
-import Payment from './Components/Store/Payment/Payment';
-import OrderHistory from './Components/Store/OrderHistory/OrderHistory';
+import AccountDetails from './Pages/AccountDetails';
+import Gallery from './Pages/Gallery';
+import Store from './Pages/Store';
+import StorePostInfo from './Pages/StorePostInfo';
+import Checkout from './Pages/Checkout';
+import Payment from './Pages/Payment';
+import OrderHistory from './Pages/OrderHistory';
 import Profile from './Pages/Profile';
 import Inbox from './Pages/Inbox';
-import Dashboard from './Components/Dashboard/Dashboard';
-import BigCalendar from './Components/BigCalendar/BigCalendar';
+import Dashboard from './Pages/Dashboard';
 import Marketplace from './Pages/Marketplace';
 
 const promise = loadStripe(
@@ -83,14 +81,6 @@ function App() {
               <Navbar />
               <ListingReplies />
           </Route>
-          <Route path="/explore">
-              <Navbar />
-              <Explore />
-          </Route>
-            <Route path="/calendar">
-              <Navbar />
-              <BigCalendar />
-            </Route>
             <Route path="/dashboard">
               <Navbar />
               <Dashboard />
@@ -138,10 +128,6 @@ function App() {
             <Route path="/gallery/:uid">
               <Navbar />
               <Gallery />
-              <Footer />
-            </Route>    
-            <Route path="/photos">
-              <Navbar />
               <Footer />
             </Route>     
             <Route path="/profile/:uid">

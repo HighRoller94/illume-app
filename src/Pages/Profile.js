@@ -4,15 +4,12 @@ import { motion } from 'framer-motion';
 import { useStateValue } from '../StateProvider';
 import { useParams } from 'react-router-dom'
 
-import LatestGallery from '../Components/User/LatestGallery/LatestGallery';
-import Bio from '../Components/User/Bio/Bio';
+import LatestGallery from '../Components/Profile/LatestGallery/LatestGallery';
+import Bio from '../Components/Profile/Bio/Bio';
 import UploadPost from '../Components/Home/UploadPost';
-import UserPosts from '../Components/User/ProfilePosts/ProfilePosts';
-import Followers from '../Components/User/Followers/Followers';
-import Following from '../Components/User/Following/Following';
-
-import './Profile.css';
-
+import UserPosts from '../Components/Profile/UserPosts/UserPosts';
+import Followers from '../Components/Profile/Followers/Followers';
+import Following from '../Components/Profile/Following/Following';
 
 function Profile() {
     const { uid } = useParams();

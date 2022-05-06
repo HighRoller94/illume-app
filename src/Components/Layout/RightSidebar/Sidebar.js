@@ -1,14 +1,12 @@
-import React, { useState, useEffect } from 'react'
-import { useStateValue } from '../../../StateProvider'
+import React from 'react';
+import { useStateValue } from '../../../StateProvider';
 
 import SettingsIcon from '@material-ui/icons/Settings';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import StorageIcon from '@material-ui/icons/Storage';
 
-import SideBarRow from './SideBarRow/SideBarRow'
-
-import './OptionsSideBar.css'
+import SideBarRow from './SideBarRow';
 
 function OptionsSideBar() {
     const [{ user }] = useStateValue()

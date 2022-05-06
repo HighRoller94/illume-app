@@ -1,10 +1,8 @@
 import React from 'react'
 
-import MyListingPosts from '../Components/SearchJobs/MyListings/MyListingPosts/MyListingPosts'
+import MyListingPosts from '../Components/SearchJobs/MyListings/MyListingPosts'
 import AddJobListing from '../Components/SearchJobs/JobListings/AddJobListing'
 import { motion } from 'framer-motion'
-
-import './MyListings.css'
 
 function MyListings() {
     return (

@@ -3,8 +3,6 @@ import { db } from '../../../firebase';
 
 import Listings from './Listings/Listings';
 
-import './JobListings.css'
-
 function JobListings() {
     const [listings, setListings] = useState([])
     const [morelistings, setMoreListings] = useState([])

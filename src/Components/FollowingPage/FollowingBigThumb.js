@@ -1,7 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
-import './FollowingBigThumb.css'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function FollowingBigThumb({ username, uid, profileImage }) {
     return (

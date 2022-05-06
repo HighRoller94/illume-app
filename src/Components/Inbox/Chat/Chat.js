@@ -7,8 +7,6 @@ import { db } from '../../../firebase';
 import firebase from 'firebase';
 import { useStateValue } from '../../../StateProvider';
 
-import "./Chat.css";
-
 function Chat() {
     const { uid } = useParams();
     const [{ user }] = useStateValue();

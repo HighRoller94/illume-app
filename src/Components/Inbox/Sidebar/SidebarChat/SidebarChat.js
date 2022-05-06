@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import './SidebarChat.css';
 import { db } from '../../../../firebase';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../../../../StateProvider';

@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { db, storage } from '../../../../firebase';
+import { db, storage } from '../../../firebase';
 import firebase from 'firebase'
-import { useStateValue } from '../../../../StateProvider';
+import { useStateValue } from '../../../StateProvider';
 import { useParams } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,8 +9,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import Modal from '@material-ui/core/Modal';
 import Backdrop from '@material-ui/core/Backdrop';
 import Fade from '@material-ui/core/Fade';
-
-import './ReplyModal.css'
 
 const useStyles = makeStyles((theme) => ({
     modal: {

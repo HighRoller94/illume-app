@@ -1,7 +1,4 @@
-import React from 'react'
-import moment from 'moment'
-
-import './FacebookPost.css'
+import React from 'react';
 
 function FacebookPost({ message, picture, fbName, profilepic, date }) {
     return (

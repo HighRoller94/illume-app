@@ -5,8 +5,6 @@ import { motion } from 'framer-motion';
 
 import LatestGalleryThumbs from './LatestGalleryThumbs/LatestGalleryThumbs';
 
-import './LatestGallery.css';
-
 function LatestGallery() {
     const [latestgalleryposts, setLatestGalleryPosts] = useState([]);
     const { uid } = useParams();

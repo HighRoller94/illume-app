@@ -1,14 +1,13 @@
-import React from 'react'
-import './Home.css'
-import { motion } from 'framer-motion'
+import React from 'react';
+import { motion } from 'framer-motion';
 
-import FollowingPosts from '../Components/User/FollowingPosts/FollowingPosts'
-import Following from '../Components/Following/Following'
-import Followers from '../Components/Followers/Followers'
-import UploadPost from '../Components/Upload/UploadPost/UploadPost'
-import Trending from '../Components/Trending/Trending'
-import SideBar from '../Components/Home/SideBar/SideBar'
-import OptionsSideBar from '../Components/Home/OptionsSideBar/OptionsSideBar'
+import FollowingPosts from '../Components/Home/FollowingPosts/FollowingPosts';
+import Following from '../Components/Home/Following/Following';
+import Followers from '../Components/Home/Followers/Followers';
+import UploadPost from '../Components/Home/UploadPost';
+import Trending from '../Components/Home/Trending/Trending';
+import SideBar from '../Components/Layout/LeftSidebar/SideBar';
+import OptionsSideBar from '../Components/Layout/RightSidebar/SideBar';
 
 function Home() {
 

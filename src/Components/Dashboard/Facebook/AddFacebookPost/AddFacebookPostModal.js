@@ -9,8 +9,6 @@ import AddCircleIcon from '@material-ui/icons/AddCircle';
 
 import AddPost from '../../../../Images/AddPost.png';
 
-import './AddFacebookPost.css'
-
 const useStyles = makeStyles((theme) => ({
     modal: {
         display: 'flex',

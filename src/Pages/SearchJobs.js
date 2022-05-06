@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom'
 
 import JobListings from '../Components/SearchJobs/JobListings/JobListings';
 
-import './SearchJobs.css'
-
 function SearchJobs() {
 
     const [occupation, setOccupation] = useState('')

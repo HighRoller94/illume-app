@@ -1,8 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-import './SideBarRow.css'
-
 function SideBarRow({ title, Icon, link }) {
     return (
         <Link to={link}>
