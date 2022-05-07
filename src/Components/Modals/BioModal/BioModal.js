@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function BioModal({ open, setOpen, updateBio }) {
+function BioModal({ open, setOpen }) {
     const [insta, setInsta] = useState('')
     const [facebook, setFacebook] = useState('')
     const [website, setWebsite] = useState('')
@@ -52,7 +52,7 @@ function BioModal({ open, setOpen, updateBio }) {
                 const biodata = doc.data()
                 setBioData({ ...biodata })
             })
-    }, [uid])
+    }, [])
     
     const UpdateImage = (e) => {
         if (profileImage) {
@@ -164,7 +164,7 @@ function BioModal({ open, setOpen, updateBio }) {
                         <input type="text" placeholder="Got an facebook?" onChange={event => setFacebook(event.target.value)} value={facebook} />
                         <input type="text" placeholder="Got an website?" onChange={event => setWebsite(event.target.value)} value={website} />
                         <div className="bio_buttons">
-                            <button className="biobuttons" onClick={() => { Update(); UpdateImage(); handleClose(); updateBio(); }}>Update</button>
+                            <button className="biobuttons" onClick={() => { Update(); UpdateImage(); handleClose(); }}>Update</button>
                             <button className="biobuttons" onClick={() => { handleClose(); }}>Close</button>
                         </div>
                     </div>

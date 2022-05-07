@@ -15,14 +15,11 @@ import userProfile from '../../../Assets/Images/userProfile.png';
 
 
 function Bio() {
-    const [userdata, setUserData] = useState('');
-    const [biodata, setBioData] = useState('');
-    const [open, setOpen] = useState(false);
-    const { uid } = useParams();
-    const [{ user }] = useStateValue();
-    const [count, setCount] = useState();
-
-    // Collect the users biography info from the DB
+    const [userdata, setUserData] = useState('')
+    const [biodata, setBioData] = useState('')
+    const [open, setOpen] = useState(false)
+    const { uid } = useParams()
+    const [{ user }] = useStateValue()
 
     useEffect(() => {
         db
@@ -43,13 +40,7 @@ function Bio() {
                 const biodata = doc.data()
                 setBioData({ ...biodata })
             })
-            setCount(0)
-    }, [uid, count])
-
-    function updateBio() {
-        setCount(count +1)
-        console.log(count)
-    }
+    }, [uid])
 
     return (
         
@@ -91,7 +82,7 @@ function Bio() {
                         <a href={biodata.website} target="_blank"><LanguageIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
                     ) : (null)}
                 </div>
-                <BioModal updateBio={updateBio} open={open} setOpen={setOpen} />
+                <BioModal open={open} setOpen={setOpen} />
         </div>
     )
 }
