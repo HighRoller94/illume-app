@@ -26,7 +26,6 @@ function Home() {
                     <Followers />
                 </div>
                 <div className="centerCol_home">
-                    <UploadPost />
                     <FollowingPosts />
                 </div>
                 <div className="rightCol_home">

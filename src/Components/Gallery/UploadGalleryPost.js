@@ -14,7 +14,7 @@ import Fade from '@material-ui/core/Fade';
 import AddPost from '../../Assets/Images/AddPost.png';
 import ForwardSharpIcon from '@material-ui/icons/ForwardSharp';
 
-import AddStorePostModal from '../Modals/StorePostModal/UploadStorePostModal';
+import AddStorePostModal from './AddStorePostModal';
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -38,8 +38,6 @@ function UploadGalleryPost() {
     const [checked, setChecked] = useState(false);
     const [open, setOpen] = useState(false);
     const [storeopen, setStoreOpen] = useState(false);
-    const [price, setPrice] = useState('');
-    const [title, setTitle] = useState('');
     const classes = useStyles();
     const hiddenFileInput = useRef(null);
     const [media, setMedia] = useState();
@@ -199,13 +197,13 @@ function UploadGalleryPost() {
                                     <ImageIcon />
                                 </Button>
                                 {checked ? (
-                                <Button onClick={() => { handleUpload(); setOpen(false); setStoreOpen(true) }}>
-                                    <ForwardSharpIcon />
-                                </Button>
-                                ) : (
-                                <Button disabled={!image && !media} onClick={() => { handleUpload(); setOpen(false); setPreview(null)}}>
-                                    <AddCircleIcon />
-                                </Button>
+                                    <Button onClick={() => { handleUpload(); setOpen(false); setStoreOpen(true) }}>
+                                        <ForwardSharpIcon />
+                                    </Button>
+                                    ) : (
+                                    <Button disabled={!image && !media} onClick={() => { handleUpload(); setOpen(false); setPreview(null)}}>
+                                        <AddCircleIcon />
+                                    </Button>
                                 )}
                                 
                             </div>

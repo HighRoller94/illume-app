@@ -61,26 +61,25 @@ function Signup() {
             transition={{ delay: 0.1}}
             exit={{ opacity: 0}}
             >
-            <div className="stepone">
-                        <form                        >
-                            <div className="header_title">
-                            <h1>Signup to Illume</h1>
-                            <h3>It's free!</h3>
-                            </div>
-                            <div className="stepone_form">
-                                <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="John Smith" required/>
-                                <div className="names">
-                                    <input type="text" value={firstName} onChange={e => setfirstName(e.target.value)} placeholder="John" />
-                                    <input type="text" value={lastName} onChange={e => setlastName(e.target.value)} placeholder="Smith" />
-                                </div>
-                                <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
-                                <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
-                                
-                                <button type="submit" className="signup_button" onClick={Signup}>Create Account</button>
+            <form className="signup">
+                <div className="header__title">
+                <h1>Signup to Illume</h1>
+                <h3>It's free!</h3>
+                </div>
+                <div className="sign-up__Form">
+                    <input type="text" value={username} onChange={e => setUsername(e.target.value)} placeholder="Username" required/>
+                    <div className="sign-up__Names">
+                        <input type="text" value={firstName} onChange={e => setfirstName(e.target.value)} placeholder="First Name" />
+                        <input type="text" value={lastName} onChange={e => setlastName(e.target.value)} placeholder="Last Name" />
+                    </div>
+                    <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email" required />
+                    <div className="password__field">
+                        <input type="password" value={password} onChange={e => setPassword(e.target.value)} placeholder="Password" required />
+                    </div>
                     
-                            </div>
-                        </form>
-            </div>
+                    <button type="submit" className="signup__btn" onClick={Signup}>Create Account</button>
+                </div>
+            </form>
         </motion.div>
     )
 }

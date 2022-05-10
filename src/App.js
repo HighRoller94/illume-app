@@ -67,7 +67,6 @@ function App() {
           <Route path="/jobs">
               <Navbar />
               <SearchJobs />
-              <Footer />
           </Route>
           <Route path="/jobdetails/:uid/:listingId">
               <Navbar />
@@ -84,12 +83,10 @@ function App() {
             <Route path="/dashboard">
               <Navbar />
               <Dashboard />
-              <Footer />
             </Route>
             <Route path="/checkout">
               <Navbar />
               <Checkout />
-              <Footer />
             </Route>
             <Route path="/payment">
               <Navbar />
@@ -100,7 +97,6 @@ function App() {
             <Route path="/orders">
               <Navbar />
               <OrderHistory />
-              <Footer />
             </Route>
             <Route path="/inbox/:uid">
               <Navbar />
@@ -113,27 +109,22 @@ function App() {
             <Route path="/store/:uid">
               <Navbar />
               <Store />
-              <Footer />
             </Route>
             <Route path="/marketplace">
               <Navbar />
               <Marketplace />
-              <Footer />
             </Route>
             <Route path="/details/:uid/:storePostId">
               <Navbar />
               <StorePostInfo />
-              <Footer />
             </Route>
             <Route path="/gallery/:uid">
               <Navbar />
               <Gallery />
-              <Footer />
             </Route>     
             <Route path="/profile/:uid">
               <Navbar />
               <Profile />
-              <Footer />
             </Route>
             <Route path="/followers/:uid">
               <Navbar />
@@ -150,7 +141,6 @@ function App() {
             <Route path="/home">
               <Navbar />
               <Home />
-              <Footer />
             </Route>
           </Switch>
         </AnimatePresence>

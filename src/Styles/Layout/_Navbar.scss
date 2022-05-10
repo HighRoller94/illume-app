@@ -28,17 +28,20 @@
       max-width: 100%;
       display: flex;
       align-items: center;
+      margin-top: 2px;
       .active__option {
-        padding: 20px;
         font-size: 1rem;
-        font-weight: bold;
         color: black;
+        margin: 0 1.2rem;
+        font-family: 'Helvetica', sans-serif;
+        font-weight: 600;
       }
       .inactive__option {
-        padding: 20px;
         font-size: 1rem;
-        font-weight: 400;
         opacity: .2;
+        margin: 0 1.2rem;
+        font-family: 'Helvetica', sans-serif;
+        font-weight: 600;
         &:hover {
           opacity: 1;
           transition: 200ms;
@@ -49,38 +52,41 @@
         padding: 6px;
         margin-left: 15px;
         color: grey;
-        margin-top: -3px;
         .MuiSvgIcon-root {
-          margin-top: 4px;
+          margin-top: 3px;
           font-size: 21px;
         }
         .navbar_basketCount {
           font-size: 17px;
-          margin-top: 3px;
+          width: 1rem;
+          margin-top: 2px;
           margin-left: 12px;
-          margin-right: 10px;
+          margin-right: 0.5rem;
           &:hover {
             color: black;
           }
         }
       }
       .nav_avatar {
-        margin-left: 1rem;
+        margin-top: -1px;
+        margin-left: 1.5rem;
+        font-size: 2rem;
         cursor: pointer;
+        &:hover {
+          cursor: pointer;
+        }
       }    
     }
   }
 }
 
-
-
-.nav_avatar:hover {
-  cursor: pointer;
-}
-
-#simple-menu {
-  margin-top: 3.05rem;
-  width: 10rem;
+.nav__menu {
+  margin-top: 2.75rem;
+  width: 15rem;
+  box-shadow: none;
+  .menu__item {
+    font-family: 'Helvetica', sans-serif;
+  }
 }
 
 @media only screen and (max-width: 900px) {

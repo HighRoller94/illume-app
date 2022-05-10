@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function BioModal({ open, setOpen }) {
+function BioModal({ open, setOpen, updateBio }) {
     const [insta, setInsta] = useState('')
     const [facebook, setFacebook] = useState('')
     const [website, setWebsite] = useState('')
@@ -52,7 +52,7 @@ function BioModal({ open, setOpen }) {
                 const biodata = doc.data()
                 setBioData({ ...biodata })
             })
-    }, [])
+    }, [uid])
     
     const UpdateImage = (e) => {
         if (profileImage) {
@@ -144,9 +144,9 @@ function BioModal({ open, setOpen }) {
                     <div className="biographymodal">
                         <h1>{userdata.username}</h1>
                         {imagepreview ? (
-                            <img className="biography_image" src={imagepreview} />
+                            <img className="biography_image" src={imagepreview} alt="" />
                             ) : (
-                            <img className="biography_image" src={userdata.profileImage} />
+                            <img className="biography_image" src={userdata.profileImage} alt="" />
                         )}
                         <button className="changeimage_button" onClick={handleChange} >Change Profile Picture</button>
                         <input 
@@ -164,7 +164,7 @@ function BioModal({ open, setOpen }) {
                         <input type="text" placeholder="Got an facebook?" onChange={event => setFacebook(event.target.value)} value={facebook} />
                         <input type="text" placeholder="Got an website?" onChange={event => setWebsite(event.target.value)} value={website} />
                         <div className="bio_buttons">
-                            <button className="biobuttons" onClick={() => { Update(); UpdateImage(); handleClose(); }}>Update</button>
+                            <button className="biobuttons" onClick={() => { Update(); UpdateImage(); handleClose(); updateBio(); }}>Update</button>
                             <button className="biobuttons" onClick={() => { handleClose(); }}>Close</button>
                         </div>
                     </div>

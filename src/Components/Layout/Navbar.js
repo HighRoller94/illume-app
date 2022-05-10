@@ -7,14 +7,10 @@ import Avatar from '@material-ui/core/Avatar'
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import ShoppingBasketIcon from '@material-ui/icons/ShoppingBasket';
-import MenuIcon from '@material-ui/icons/Menu';
 
 import Searchbar from './Searchbar/Searchbar';
 
 import userProfile from '../../Assets/Images/userProfile.png'
-import menu from '../../Assets/Images/menu.svg'
-
-import illumeLogo from '../../Assets/Images/illumeLogo.svg'
 
 function Navbar() {
     const { pathname } = useLocation();
@@ -117,10 +113,10 @@ function Navbar() {
                     )}
                     
                     <Menu
-                        id="simple-menu"
-                        className="nav_menu"
+                        className="nav__menu"
                         anchorEl={anchorEl}
                         keepMounted
+                        disableScrollLock={false}
                         open={Boolean(anchorEl)}
                         onClose={handleClose}
                     >

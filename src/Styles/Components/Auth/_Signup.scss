@@ -1,84 +1,71 @@
-.stepone {
+.signup {
   margin: 0 auto;
+  display: flex;
+  flex-direction: column;
   margin-top: 35px;
   text-align: center;
   align-items: center;
   justify-content: center;
-  width: 450px;
-  display: flex;
+  min-width: 450px;
+  .header__title {
+    h1 {
+      font-size: 2rem;
+    }
+    h3 {
+      color: grey;
+      font-weight: 400;
+      margin-bottom: 5px;
+    }
+  }
+  .sign-up__Form {
+    p {
+      opacity: 80%;
+      font-weight: 700;
+      font-size: 14px;
+      padding: 10px;
+    }
+    input {
+      outline: none;
+      border: none;
+      align-items: center;
+      border-radius: 20px;
+      padding: 17px;
+      margin-top: 15px;
+      margin-bottom: 10px;
+      width: 87%;
+      border-radius: 0.5rem;
+      border: 1px solid rgb(235, 235, 235);
+    }
+  }
+  .sign-up_Names {
+    width: 100%;
+    input {
+      outline: none;
+      border: none;
+      padding: 17px;
+      width: 37%;
+      border-radius: 0.5rem;
+      border: 1px solid rgb(235, 235, 235);
+      margin: 11px;
+    }
+  }
+  .signup__btn {
+    background: black;
+    margin-top: 1.75rem;
+    color: white;
+    border-radius: .5rem;
+    outline: none;
+    border: none;
+    width: 40%;
+    padding: 10px;
+    margin-bottom: 10px;
+    transition: 200ms ease-in;
+    &:hover {
+      transition: 200ms ease-in;
+      cursor: pointer;
+      background:#f1f1f1;
+      color: black;
+    }
+  }  
 }
 
-.header_title > h1 {
-  margin-bottom: 5px;
-}
-
-.header_title > h3 {
-  color: grey;
-  margin-bottom: 5px;
-}
-
-.stepone_form > p {
-  opacity: 80%;
-  font-weight: 700;
-  font-size: 14px;
-  padding: 10px;
-}
-
-.stepone_form > input {
-  outline: none;
-  border: none;
-  align-items: center;
-  border-radius: 20px;
-  padding: 17px;
-  margin-top: 15px;
-  margin-bottom: 10px;
-  width: 87%;
-  background-color: #f1f1f1;
-}
-
-.names > input {
-  outline: none;
-  border: none;
-  width: calc(37.5%);
-  padding: 17px;
-  background-color: #f1f1f1;
-  border-radius: 20px;
-  margin: 11px;
-}
-
-.profileImage {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  border: none;
-}
-
-.previewimage {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  object-fit: cover;
-}
-
-.previewimage:hover {
-  cursor: pointer;
-}
-
-.signup_button {
-  background: black;
-  margin-top: 30px;
-  color: white;
-  border-radius: 20px;
-  outline: none;
-  border: none;
-  width: 30%;
-  padding: 10px;
-  margin-bottom: 15px;
-  transition: 200ms ease-in;
-}
-
-.signup_button:hover {
-  background: #f1f1f1;
-  color: black;
-  cursor: pointer;
-}

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../../firebase';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -45,7 +45,7 @@ function Login({ buttontext }) {
             transition={{ delay: 0.1}}
             exit={{ opacity: 0}}>
             <h1>illume</h1>
-            <div class="email__field">
+            <div className="email__field">
                 <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" />
             </div>
             <div className="password__field">

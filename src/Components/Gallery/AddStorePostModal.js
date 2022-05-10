@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
-import { db, storage } from '../../../firebase'
+import { db, storage } from '../../firebase'
 import firebase from 'firebase'
-import { useStateValue } from '../../../StateProvider'
+import { useStateValue } from '../../StateProvider'
 
 import { Button } from '@material-ui/core'
 import AddCircleIcon from '@material-ui/icons/AddCircle'
@@ -10,7 +10,6 @@ import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
 import Backdrop from '@material-ui/core/Backdrop'
 import Fade from '@material-ui/core/Fade'
-import AddPost from '../../../Assets/Images/AddPost.png'
 
 const useStyles = makeStyles((theme) => ({
     modal: {
@@ -20,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-function UploadStorePost() {
+function AddStorePostModal({ username, usernameuid, storeopen, setStoreOpen }) {
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
     const [image, setImage] = useState(null)
@@ -35,7 +34,7 @@ function UploadStorePost() {
     const hiddenFileInput = useRef(null)
 
     const handleClose = () => {
-        setOpen(false);
+        setStoreOpen(false);
         setPreview(null);
         setImage(null);
     };
@@ -47,7 +46,7 @@ function UploadStorePost() {
         }
     };
 
-    const handleUpload = async () => {
+    const handleUpload = () => {
         const uploadTask = storage.ref(`user/${user.uid}/storeimages/${image.name}`).put(image);
 
         uploadTask.on(
@@ -70,7 +69,7 @@ function UploadStorePost() {
                                 colours: colours,
                                 sizes: sizes,
                                 imageUrl: url,
-                                price: Number(price),
+                                price: price,
                                 username: user.displayName,
                                 usernameuid: user.uid,
                         })
@@ -98,14 +97,11 @@ function UploadStorePost() {
     return (
         <div>
             <div>
-                <Button style={{ backgroundColor: 'transparent' }} onClick={() => setOpen(true)}>
-                    <img className="storepost_button" src={AddPost} alt="" />
-                </Button>
                 <Modal
                     aria-labelledby="transition-modal-title"
                     aria-describedby="transition-modal-description"
                     className={classes.modal}
-                    open={open}
+                    open={storeopen}
                     onClose={handleClose}
                     closeAfterTransition
                     BackdropComponent={Backdrop}
@@ -113,8 +109,9 @@ function UploadStorePost() {
                     timeout: 500,
                     }}
                 >
-                    <Fade in={open}>
+                    <Fade in={storeopen}>
                     <div className="modal">
+                        
                         <h2 className="modal_header">Add to Store</h2>
                         <input type="text" className="mainstore_input" placeholder="Title..." onChange={event => setTitle(event.target.value)} value={title} />
                         <input type="text" className="mainstore_input" placeholder="Description..." onChange={event => setDescription(event.target.value)} value={description} />
@@ -150,4 +147,4 @@ function UploadStorePost() {
     )
 }
 
-export default UploadStorePost
+export default AddStorePostModal

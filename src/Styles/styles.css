@@ -5,8 +5,8 @@
 }
 
 .auth__page .bg {
-  -webkit-animation: slide 5s ease-in-out infinite alternate;
-          animation: slide 5s ease-in-out infinite alternate;
+  -webkit-animation: slide 10s ease-in-out infinite alternate;
+          animation: slide 10s ease-in-out infinite alternate;
   background-image: linear-gradient(-60deg, #e0e0e0 50%, #bdbdbd 50%);
   bottom: 0;
   left: -50%;
@@ -19,13 +19,13 @@
 
 .auth__page .bg2 {
   animation-direction: alternate-reverse;
-  -webkit-animation-duration: 4s;
-          animation-duration: 4s;
+  -webkit-animation-duration: 8s;
+          animation-duration: 8s;
 }
 
 .auth__page .bg3 {
-  -webkit-animation-duration: 5s;
-          animation-duration: 5s;
+  -webkit-animation-duration: 10s;
+          animation-duration: 10s;
 }
 
 .auth__page .auth__row {
@@ -51,6 +51,7 @@
   width: 40%;
   border-radius: .5rem;
   padding: 1rem 2rem;
+  padding-top: 1.2rem;
   min-width: 400px;
   margin-top: 100px;
 }
@@ -85,11 +86,6 @@
   color: black;
   -webkit-transition: 200ms ease-in;
   transition: 200ms ease-in;
-}
-
-.buttontext:hover {
-  color: black;
-  cursor: pointer;
 }
 
 @-webkit-keyframes slide {
@@ -1244,6 +1240,7 @@
       -ms-flex-align: center;
           align-items: center;
   height: 35px;
+  margin-top: 1px;
   border-radius: .5rem;
   background-color: #f8f8f8;
   width: 30%;

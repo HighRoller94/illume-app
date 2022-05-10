@@ -72,6 +72,7 @@ function FollowingPosts() {
     return (
         <div className="followingposts">
             
+            <h1>Following Posts</h1>
             {posts.map(({ id, post }) => (
                     <Post 
                         key={id} 

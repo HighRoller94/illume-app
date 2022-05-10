@@ -1,7 +1,15 @@
 .followingposts {
-    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 5rem;
+    h1 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    .loading_following {
+        margin-top: 3rem;
+        margin-left: -1rem;
+    }
 }
 
-.loading_following {
-    margin-top: 50px;
-}
+
