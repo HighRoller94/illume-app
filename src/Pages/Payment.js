@@ -1,6 +1,6 @@
 import React, { useState, useEffect }from 'react';
 import { useStateValue } from '../StateProvider';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { CardElement, useStripe, useElements } from '@stripe/react-stripe-js';
 import CurrencyFormat from 'react-currency-format';
@@ -12,7 +12,7 @@ import PaymentProduct from '../Components/Payment/PaymentProduct';
 
 function Payment() {
     const [{ basket, user }, dispatch] = useStateValue();
-    const history = useHistory();
+    const navigate = useNavigate();
 
     const [succeeded, setSucceeded] = useState(false);
     const [processing, setProcessing] = useState("");
@@ -67,7 +67,7 @@ function Payment() {
                 type: 'EMPTY_BASKET'
             })
 
-            history.replace(`/orders`)
+            navigate(`/orders`)
         })
         
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useStateValue } from '../../StateProvider';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function CheckoutProduct({ storePostId, usernameuid, imageUrl, title, username, price }) {
     const [{ user, basket}, dispatch] = useStateValue();

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { db, storage } from '../../../firebase';
 import firebase from 'firebase'
 import { useStateValue } from '../../../StateProvider';
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 

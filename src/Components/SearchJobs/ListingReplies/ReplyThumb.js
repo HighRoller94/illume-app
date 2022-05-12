@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import ListingReplyModal from '../../Modals/ListingReplyModal/ListingReplyModal'
-
 
 function ReplyThumb({ usernameuid, name, listingId, description, timestamp }) {
     const [replyopen, setReplyOpen] = useState(false);

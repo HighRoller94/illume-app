@@ -1,7 +1,6 @@
-import React, { useState, useCallback, useEffect } from 'react'
+import React from 'react'
 import { motion } from 'framer-motion';
 import { useStateValue } from '../StateProvider';
-import * as queryString from 'query-string';
 
 import UserPosts from '../Components/Profile/UserPosts/UserPosts';
 import FacebookPost from '../Components/Dashboard/Facebook/FacebookPost/FacebookPost';

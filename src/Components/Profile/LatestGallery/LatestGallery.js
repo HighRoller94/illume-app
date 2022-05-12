@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebase';
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { motion } from 'framer-motion';
 
 import LatestGalleryThumbs from './LatestGalleryThumbs/LatestGalleryThumbs';

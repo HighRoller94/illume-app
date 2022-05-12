@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
 import { useStateValue } from '../../../StateProvider';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import FollowingThumb from './FollowingThumb/FollowingThumb';
 

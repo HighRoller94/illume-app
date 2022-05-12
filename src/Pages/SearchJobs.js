@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 import JobListings from '../Components/SearchJobs/JobListings/JobListings';
 

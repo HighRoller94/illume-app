@@ -1,20 +1,14 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
 
-function PrivateRoute({ component: Component, ...rest }) {
+function PrivateRoute({ children }) {
     const [{ user }, dispatch] = useStateValue();
-    console.log(user)
-    return (
-    <Route
-        {...rest}
-        render={props => {
-            return user ? <Component {...props} /> : <Redirect to="/login" />
-        }} 
-        >
 
-        </Route>
-    )
+    if (!user) {
+        return <Navigate to="/login" replace />;
+    }
+    return children;
 }
 
 export default PrivateRoute

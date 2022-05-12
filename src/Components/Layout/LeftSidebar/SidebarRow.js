@@ -1,6 +1,6 @@
 import React from 'react'
 import { Avatar } from '@material-ui/core'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 function SideBarRow({ title, Icon, src, link, img }) {
     return (

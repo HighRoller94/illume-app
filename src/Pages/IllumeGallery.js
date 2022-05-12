@@ -2,7 +2,6 @@ import React from 'react'
 
 import IllumeGalleryPosts from '../Components/IllumeGallery/IllumeGalleryPosts'
 
-
 function IllumeGallery() {
     return (
         <div className="illumegallery">

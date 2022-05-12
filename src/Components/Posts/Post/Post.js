@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactPlayer from "react-player";
 import { db } from '../../../firebase';
 import firebase from 'firebase';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import { useStateValue } from '../../../StateProvider';
 
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';

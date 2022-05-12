@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../../firebase';
-import { Link, useHistory } from 'react-router-dom';
+import { useStateValue } from '../../../StateProvider';
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 
 function Login({ buttontext }) {
-    const history = useHistory();
+    const [{ user }, dispatch] = useStateValue();
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [passType, setPassType] = useState(false);
@@ -18,11 +20,11 @@ function Login({ buttontext }) {
         e.preventDefault()
         auth
             .signInWithEmailAndPassword(email, password)
-            .then(auth => {
-                history.push('/home')
+            .then(authUser => {
+                navigate('/home')
             })
             .catch(error => alert(error.message))
-    }   
+    }
     
     const toggleVisibility = () => {
         setPassType(!passType)

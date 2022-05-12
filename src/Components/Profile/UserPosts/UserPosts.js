@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { db } from '../../../firebase';
 
 import Post from '../../Posts/Post/Post';

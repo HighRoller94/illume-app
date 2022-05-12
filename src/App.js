@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { CompatRouter } from 'react-router-dom-v5-compat';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
@@ -10,6 +9,8 @@ import { Elements } from '@stripe/react-stripe-js'
 import PrivateRoute from './Components/PrivateRoute';
 
 import './Styles/styles.scss';
+
+// PAGES
 
 import ScrollToTop  from './ScrollToTop';
 import MyListings from './Pages/MyListings';
@@ -44,10 +45,8 @@ const promise = loadStripe(
 function App() {
   const [{ user }, dispatch] = useStateValue();
   
-  console.log(user)
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
-
       if (authUser) {
         dispatch({
           type: 'SET_USER',
@@ -59,104 +58,47 @@ function App() {
           user: null
         })
       }
-
     })
   }, [])
 
   return (
     <Router>
-      <CompatRouter>
-        <AnimatePresence exitBeforeEnter>
-          <ScrollToTop />
-          <Switch>
-          <Route path="/jobs">
+      <AnimatePresence exitBeforeEnter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/forgot-password" element={<ForgotPassword />}/>
+          <Route path="/login" element={<Auth />} />
+          <Route path="/" element={
+            <PrivateRoute>
               <Navbar />
-              <SearchJobs />
-              <Footer />
-          </Route>
-          <Route path="/jobdetails/:uid/:listingId">
-              <Navbar />
-              <JobDetails />
-          </Route>
-          <Route path="/myjobs">
-              <Navbar />
-              <MyListings />
-          </Route>
-          <Route path="/listingreplies/:listingId">
-              <Navbar />
-              <ListingReplies />
-          </Route>
-            <Route path="/dashboard">
-              <Navbar />
-              <Dashboard />
-            </Route>
-            <Route path="/checkout">
-              <Navbar />
-              <Checkout />
-            </Route>
-            <Route path="/payment">
-              <Navbar />
+            </PrivateRoute>
+            }>
+            <Route path="home" element={<Home />} />
+            <Route path="jobs" element={<SearchJobs />} />
+            <Route path="jobdetails/:uid/:listingId" element={<JobDetails />} />
+            <Route path="myjobs" element={<MyListings />} />
+            <Route path="listingreplies/:listingId" element={<ListingReplies />} />
+            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="checkout" element={<Checkout />} />
+            <Route path="payment" element={
               <Elements stripe={promise}>
                 <Payment />
               </Elements>
-            </Route>
-            <Route path="/orders">
-              <Navbar />
-              <OrderHistory />
-            </Route>
-            <Route path="/inbox/:uid">
-              <Navbar />
-              <Inbox />
-            </Route>
-            <Route path="/messages/:uid">
-              <Navbar />
-              <Inbox />
-            </Route>
-            <Route path="/store/:uid">
-              <Navbar />
-              <Store />
-              <Footer />
-            </Route>
-            <Route path="/marketplace">
-              <Navbar />
-              <Marketplace />
-            </Route>
-            <Route path="/details/:uid/:storePostId">
-              <Navbar />
-              <StorePostInfo />
-            </Route>
-            <Route path="/gallery/:uid">
-              <Navbar />
-              <Gallery />
-              <Footer />
-            </Route>     
-            <Route path="/profile/:uid">
-              <Navbar />
-              <Profile />
-              <Footer />
-            </Route>
-            <Route path="/followers/:uid">
-              <Navbar />
-              <FollowersPage />
-            </Route>
-            <Route path="/following/:uid">
-              <Navbar />
-              <FollowingPage />
-            </Route>
-            <Route path="/account">
-              <Navbar />
-              <AccountDetails />
-            </Route>
-            <PrivateRoute exact path="/home">
-              <Navbar />
-              <Home />
-              <Footer />
-            </PrivateRoute>
-          <Route path="/forgot-password" component={ForgotPassword}/>
-          <Route path="/login" component={Auth} />
-          </Switch>
-        </AnimatePresence>
-      </CompatRouter>
+            } />
+            <Route path="inbox/:uid" element={<Inbox />} />
+            <Route path="inbox/:uid" element={<Inbox />} />
+            <Route path="message/:uid" element={<Inbox />} />
+            <Route path="store/:uid" element={<Store />} />
+            <Route path="marketplace" element={<Marketplace />} />
+            <Route path="details/:uid/:storePostId" element={<StorePostInfo />} />
+            <Route path="gallery/:uid" element={<Gallery />} />
+            <Route path="profile/:uid" element={<Profile />} />
+            <Route path="followers/:uid" element={<FollowersPage />} />
+            <Route path="following/:uid" element={<FollowingPage />} />
+            <Route path="account" element={<AccountDetails />} />
+          </Route>
+        </Routes>
+      </AnimatePresence>
     </Router>
   );
 }

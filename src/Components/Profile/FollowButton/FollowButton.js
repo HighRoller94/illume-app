@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../../../StateProvider';
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import { db } from '../../../firebase';
 
 function FollowButton() {

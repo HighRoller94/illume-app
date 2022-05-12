@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../firebase'
-import { useParams, useHistory, Link } from 'react-router-dom'
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from 'framer-motion'
 import { useStateValue } from '../StateProvider';
 
@@ -8,7 +8,7 @@ import EditListingModal from '../Components/SearchJobs/JobListings/EditListingMo
 import ReplyModal from '../Components/Modals/ReplyModal/ReplyModal'
 
 function JobDetails() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [{ user }] = useStateValue()
     const { uid } = useParams()
     const { listingId } = useParams()
@@ -45,7 +45,7 @@ function JobDetails() {
             .doc(listingId)
             .delete()
 
-            history.push('/myjobs')
+            navigate('/myjobs')
     };
 
     return (

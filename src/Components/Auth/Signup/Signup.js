@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { db, auth, storage } from '../../../firebase';
 import { motion } from 'framer-motion';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
-    const history = useHistory();
+    const navigate = useNavigate();
     const [user, setUser] = useState(null);
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -50,7 +50,7 @@ function Signup() {
                             })
                     })
                     .then((authUser) => {
-                        history.push('/home')
+                        navigate('/home')
                     })
                 }
 

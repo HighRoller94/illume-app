@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../firebase';
-import { useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 import { useStateValue } from '../StateProvider';
 
 import ReplyThumb from '../Components/SearchJobs/ListingReplies/ReplyThumb';

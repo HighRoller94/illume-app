@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../StateProvider';
 import { db } from '../firebase';
-import{ useParams, Link } from 'react-router-dom';
+import { useParams, Link } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { Avatar } from '@material-ui/core';
 

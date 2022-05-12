@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useStateValue } from '../../StateProvider';
 import { db } from '../../firebase';
-import{ useParams } from 'react-router-dom';
+import { useParams } from "react-router-dom";
 
 import StorePost from '../Posts/StorePost/StorePost';
 function StorePosts() {

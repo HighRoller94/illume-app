@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useParams, Link } from "react-router-dom";
 import { useStateValue } from '../StateProvider';
 import { db } from '../firebase';
 import { motion } from 'framer-motion';

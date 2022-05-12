@@ -2,7 +2,7 @@ import { Avatar, IconButton } from '@material-ui/core';
 import { AttachFile, MoreVert, SearchOutlined } from '@material-ui/icons';
 import React, { useState, useEffect } from 'react';
 
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link } from "react-router-dom";
 import { db } from '../../../firebase';
 import firebase from 'firebase';
 import { useStateValue } from '../../../StateProvider';

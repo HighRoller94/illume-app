@@ -1,7 +1,7 @@
 import React, { useState }from 'react'
 import { motion } from 'framer-motion';
 import { auth } from '../firebase';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 function ForgotPassword() {
     const [email, setEmail] = useState('');

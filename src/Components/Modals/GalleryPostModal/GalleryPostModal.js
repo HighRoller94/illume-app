@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../../../firebase'
 import firebase from 'firebase'
-import { Link } from 'react-router-dom'
+import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
 
 import { useStateValue } from '../../../StateProvider';

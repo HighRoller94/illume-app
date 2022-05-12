@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams } from "react-router-dom";
 import { useStateValue } from '../../../StateProvider'
 
 import { storage, db } from '../../../firebase'
