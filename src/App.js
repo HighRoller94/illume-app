@@ -1,10 +1,13 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { CompatRouter } from 'react-router-dom-v5-compat';
+
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 import { AnimatePresence } from 'framer-motion';
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+import PrivateRoute from './Components/PrivateRoute';
 
 import './Styles/styles.scss';
 
@@ -19,6 +22,7 @@ import FollowingPage from './Pages/FollowingPage';
 import FollowersPage from './Pages/FollowersPage';
 import Home from './Pages/Home';
 import Auth from './Pages/Auth';
+import ForgotPassword from './Pages/ForgotPassword';
 import AccountDetails from './Pages/AccountDetails';
 import Gallery from './Pages/Gallery';
 import Store from './Pages/Store';
@@ -31,6 +35,8 @@ import Inbox from './Pages/Inbox';
 import Dashboard from './Pages/Dashboard';
 import Marketplace from './Pages/Marketplace';
 
+import SideBar from './Components/Layout/LeftSidebar/SideBar';
+
 const promise = loadStripe(
   "pk_test_51JRx82AWnX2oR3avXWJruHDLY6m31mD1Sq9FbBdW2XT4lhyOS1mRdrz84Kh9S7ONfCWPXWZU3u8kPxH1cJJ2Yk9300FSmjz5MS"
 );
@@ -38,6 +44,7 @@ const promise = loadStripe(
 function App() {
   const [{ user }, dispatch] = useStateValue();
   
+  console.log(user)
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
 
@@ -58,15 +65,14 @@ function App() {
 
   return (
     <Router>
-      <div className="app">
-          
-      {user && 
+      <CompatRouter>
         <AnimatePresence exitBeforeEnter>
           <ScrollToTop />
           <Switch>
           <Route path="/jobs">
               <Navbar />
               <SearchJobs />
+              <Footer />
           </Route>
           <Route path="/jobdetails/:uid/:listingId">
               <Navbar />
@@ -109,6 +115,7 @@ function App() {
             <Route path="/store/:uid">
               <Navbar />
               <Store />
+              <Footer />
             </Route>
             <Route path="/marketplace">
               <Navbar />
@@ -121,10 +128,12 @@ function App() {
             <Route path="/gallery/:uid">
               <Navbar />
               <Gallery />
+              <Footer />
             </Route>     
             <Route path="/profile/:uid">
               <Navbar />
               <Profile />
+              <Footer />
             </Route>
             <Route path="/followers/:uid">
               <Navbar />
@@ -138,19 +147,16 @@ function App() {
               <Navbar />
               <AccountDetails />
             </Route>
-            <Route path="/home">
+            <PrivateRoute exact path="/home">
               <Navbar />
               <Home />
-            </Route>
+              <Footer />
+            </PrivateRoute>
+          <Route path="/forgot-password" component={ForgotPassword}/>
+          <Route path="/login" component={Auth} />
           </Switch>
         </AnimatePresence>
-      }
-      {!user && 
-        <Route path="/">
-          <Auth />
-        </Route>
-      }
-      </div>
+      </CompatRouter>
     </Router>
   );
 }

@@ -66,6 +66,15 @@
       color: black;
     }
   }
+  .login_text {
+    p {
+      &:hover {
+          cursor: pointer;
+          color: black;
+          transition: 200ms ease-in;
+      }
+    }
+  }
 }
 
 

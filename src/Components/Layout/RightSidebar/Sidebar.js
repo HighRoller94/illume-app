@@ -14,7 +14,7 @@ function OptionsSideBar() {
         <div className="optionssidebar">
             <SideBarRow link={'/orders'} Icon={ShoppingBasketIcon} title="My Orders"/>
             <SideBarRow link={'/myjobs'} Icon={StorageIcon} title="Listings"/>
-            <SideBarRow link={`/profile/${user.uid}`} Icon={AccountCircleIcon} title="Account"/>
+            <SideBarRow link={`/account`} Icon={AccountCircleIcon} title="Account"/>
             <SideBarRow link={`/profile/${user.uid}`} Icon={SettingsIcon} title="Settings"/>
         </div>
     )

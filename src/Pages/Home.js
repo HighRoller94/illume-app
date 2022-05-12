@@ -18,9 +18,7 @@ function Home() {
             exit={{ opacity: 0}}
             >
             <div className="home_row">
-                <div className="left_options">
-                    <SideBar />
-                </div>
+
                 <div className="leftCol_home">
                     <Following />
                     <Followers />

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { auth } from '../../../firebase';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
 import VisibilityIcon from '@material-ui/icons/Visibility';
@@ -46,10 +46,10 @@ function Login({ buttontext }) {
             exit={{ opacity: 0}}>
             <h1>illume</h1>
             <div className="email__field">
-                <input type="text" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" />
+                <input type="text" autocomplete="off" value={email} onChange={e => setEmail(e.target.value)} placeholder="Email Address" />
             </div>
             <div className="password__field">
-                <input type="password" className="input__password" id="password" value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} />
+                <input type="password" className="input__password" id="password" autocomplete="off" value={password} placeholder="Password" onChange={e => setPassword(e.target.value)} />
                 {passType ? (
                     <VisibilityIcon className="visibility__icon" onClick={toggleVisibility} />
                 ) : (
@@ -58,7 +58,7 @@ function Login({ buttontext }) {
             </div>
             <button type="submit" onClick={Login}>Login</button>
             <div className="login_text">
-                <p>Forgot your password?</p>
+                <Link to="/forgot-password"><p>Forgot your password?</p></Link>
                 <p>{buttontext}</p>
             </div>
         </motion.div>

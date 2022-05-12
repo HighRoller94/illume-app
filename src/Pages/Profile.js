@@ -10,6 +10,8 @@ import UploadPost from '../Components/Home/UploadPost';
 import UserPosts from '../Components/Profile/UserPosts/UserPosts';
 import Followers from '../Components/Profile/Followers/Followers';
 import Following from '../Components/Profile/Following/Following';
+import SideBar from '../Components/Layout/LeftSidebar/SideBar';
+import OptionsSideBar from '../Components/Layout/RightSidebar/SideBar';
 
 function Profile() {
     const { uid } = useParams();
