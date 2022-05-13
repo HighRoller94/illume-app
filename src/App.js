@@ -59,46 +59,46 @@ function App() {
         })
       }
     })
+    console.log(user)
   }, [])
 
+  
   return (
     <Router>
-      <AnimatePresence exitBeforeEnter>
-        <ScrollToTop />
-        <Routes>
-          <Route path="/forgot-password" element={<ForgotPassword />}/>
-          <Route path="/login" element={<Auth />} />
-          <Route path="/" element={
-            <PrivateRoute>
-              <Navbar />
-            </PrivateRoute>
-            }>
-            <Route path="home" element={<Home />} />
-            <Route path="jobs" element={<SearchJobs />} />
-            <Route path="jobdetails/:uid/:listingId" element={<JobDetails />} />
-            <Route path="myjobs" element={<MyListings />} />
-            <Route path="listingreplies/:listingId" element={<ListingReplies />} />
-            <Route path="dashboard" element={<Dashboard />} />
-            <Route path="checkout" element={<Checkout />} />
-            <Route path="payment" element={
-              <Elements stripe={promise}>
-                <Payment />
-              </Elements>
-            } />
-            <Route path="inbox/:uid" element={<Inbox />} />
-            <Route path="inbox/:uid" element={<Inbox />} />
-            <Route path="message/:uid" element={<Inbox />} />
-            <Route path="store/:uid" element={<Store />} />
-            <Route path="marketplace" element={<Marketplace />} />
-            <Route path="details/:uid/:storePostId" element={<StorePostInfo />} />
-            <Route path="gallery/:uid" element={<Gallery />} />
-            <Route path="profile/:uid" element={<Profile />} />
-            <Route path="followers/:uid" element={<FollowersPage />} />
-            <Route path="following/:uid" element={<FollowingPage />} />
-            <Route path="account" element={<AccountDetails />} />
-          </Route>
-        </Routes>
-      </AnimatePresence>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/forgot-password" element={<ForgotPassword />}/>
+        <Route path="/login" element={<Auth />} />
+        <Route element={
+          <PrivateRoute>
+            <Navbar />
+          </PrivateRoute>
+          }>
+          <Route path="home" element={<Home />} />
+          <Route path="jobs" element={<SearchJobs />} />
+          <Route path="jobdetails/:uid/:listingId" element={<JobDetails />} />
+          <Route path="myjobs" element={<MyListings />} />
+          <Route path="listingreplies/:listingId" element={<ListingReplies />} />
+          <Route path="dashboard" element={<Dashboard />} />
+          <Route path="checkout" element={<Checkout />} />
+          <Route path="payment" element={
+            <Elements stripe={promise}>
+              <Payment />
+            </Elements>
+          } />
+          <Route path="inbox/:uid" element={<Inbox />} />
+          <Route path="inbox/:uid" element={<Inbox />} />
+          <Route path="message/:uid" element={<Inbox />} />
+          <Route path="store/:uid" element={<Store />} />
+          <Route path="marketplace" element={<Marketplace />} />
+          <Route path="details/:uid/:storePostId" element={<StorePostInfo />} />
+          <Route path="gallery/:uid" element={<Gallery />} />
+          <Route path="profile/:uid" element={<Profile />} />
+          <Route path="followers/:uid" element={<FollowersPage />} />
+          <Route path="following/:uid" element={<FollowingPage />} />
+          <Route path="account" element={<AccountDetails />} />
+        </Route>
+      </Routes>
     </Router>
   );
 }

@@ -20,10 +20,14 @@ function Login({ buttontext }) {
         e.preventDefault()
         auth
             .signInWithEmailAndPassword(email, password)
-            .then(authUser => {
-                navigate('/home')
-            })
-            .catch(error => alert(error.message))
+                .then(auth => {
+                    dispatch({
+                        type: 'SET_USER',
+                        user: auth.user
+                    })
+                    navigate('/home')
+                })
+                .catch(error => alert(error.message))
     }
     
     const toggleVisibility = () => {
@@ -37,7 +41,7 @@ function Login({ buttontext }) {
         } else if (passType === false) {
             passwordInput.type = "password";
         }
-    })
+    }, [])
     
     return (
         <motion.div 
