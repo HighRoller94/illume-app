@@ -71,6 +71,7 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
                 username: user.displayName,
                 usernameuid: user.uid
             });
+            handleClose();
         } else {
             // If image is uploaded continue with alternate function
             
@@ -119,6 +120,7 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
                             setImage(null);
                             setEditOpen(false)
                         }
+                        handleClose();
     };
     
     useEffect(() => {
