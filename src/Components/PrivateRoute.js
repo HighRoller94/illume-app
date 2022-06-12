@@ -1,16 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { auth } from '../firebase';
 import { Navigate, Outlet } from 'react-router-dom';
 import { useStateValue } from '../StateProvider';
 
-function PrivateRoute({ children }) {
+export default function PrivateRoute({ children }) {
     const [{ user }, dispatch] = useStateValue();
 
-    if (!user) {
-        return <Navigate to="/login" replace />;
-    }
-    
-    return children ? children : <Outlet />;
+    return user ? children : <Navigate to="login" />;
 }
-
-export default PrivateRoute

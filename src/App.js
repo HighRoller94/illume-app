@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
-import { AnimatePresence } from 'framer-motion';
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
 import PrivateRoute from './Components/PrivateRoute';
@@ -46,33 +45,31 @@ function App() {
   const [{ user }, dispatch] = useStateValue();
   
   useEffect(() => {
-    auth.onAuthStateChanged(authUser => {
-      if (authUser) {
+    auth.onAuthStateChanged(user => {
+      if (user) {
         dispatch({
           type: 'SET_USER',
-          user: authUser
+          user: user
         })
+        console.log("User logged in")
       } else {
         dispatch({
           type: 'SET_USER',
           user: null
         })
+        console.log("User logged out")
       }
     })
-    console.log(user)
-  }, [])
-
+  }, [user])
   
   return (
     <Router>
       <ScrollToTop />
       <Routes>
-        <Route path="/forgot-password" element={<ForgotPassword />}/>
-        <Route path="/login" element={<Auth />} />
-        <Route element={
-          <PrivateRoute>
-            <Navbar />
-          </PrivateRoute>
+          <Route element={
+            <PrivateRoute>
+              <Navbar />
+            </PrivateRoute>
           }>
           <Route path="home" element={<Home />} />
           <Route path="jobs" element={<SearchJobs />} />
@@ -87,8 +84,7 @@ function App() {
             </Elements>
           } />
           <Route path="inbox/:uid" element={<Inbox />} />
-          <Route path="inbox/:uid" element={<Inbox />} />
-          <Route path="message/:uid" element={<Inbox />} />
+          <Route path="messages/:uid" element={<Inbox />} />
           <Route path="store/:uid" element={<Store />} />
           <Route path="marketplace" element={<Marketplace />} />
           <Route path="details/:uid/:storePostId" element={<StorePostInfo />} />
@@ -98,6 +94,8 @@ function App() {
           <Route path="following/:uid" element={<FollowingPage />} />
           <Route path="account" element={<AccountDetails />} />
         </Route>
+        <Route path="login" element={<Auth />} />
+        <Route path="*" element={<Navigate to={!user ? "login" : "home"} />} />
       </Routes>
     </Router>
   );
