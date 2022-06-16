@@ -113,13 +113,6 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
                             }
                         )}
                         )}
-                        // Reset and close upload form when upload complete
-                        if (progress == 100) {
-                            setProgress(0);
-                            setUpdatedBody("");
-                            setImage(null);
-                            setEditOpen(false)
-                        }
                         handleClose();
     };
     

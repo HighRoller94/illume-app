@@ -50,8 +50,7 @@ function PostModal({ open, setOpen, postId, usernameuid }) {
                 .onSnapshot((snapshot) => {
                     setComments(snapshot.docs.map((doc) => doc.data()));
                 });
-        
-
+                
         return () => {
             unsubscribe();
         };

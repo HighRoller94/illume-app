@@ -172,7 +172,7 @@ function Post({ username, usernameuid, postId, body, imageUrl, timestamp, media 
             <EditPostModal
                 usernameuid = { usernameuid }
                 editopen = { editopen }
-                setEditOpen = { setEditOpen}
+                setEditOpen = { setEditOpen }
                 postId = { postId }
             />
         </div>

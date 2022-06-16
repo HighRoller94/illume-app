@@ -92,7 +92,7 @@ function App() {
           <Route path="profile/:uid" element={<Profile />} />
           <Route path="followers/:uid" element={<FollowersPage />} />
           <Route path="following/:uid" element={<FollowingPage />} />
-          <Route path="account" element={<AccountDetails />} />
+          <Route path="" element={<AccountDetails />} />
         </Route>
         <Route path="login" element={<Auth />} />
         <Route path="*" element={<Navigate to={!user ? "login" : "home"} />} />
