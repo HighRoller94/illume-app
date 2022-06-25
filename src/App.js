@@ -22,8 +22,6 @@ import FollowingPage from './Pages/FollowingPage';
 import FollowersPage from './Pages/FollowersPage';
 import Home from './Pages/Home';
 import Auth from './Pages/Auth';
-import ForgotPassword from './Pages/ForgotPassword';
-import AccountDetails from './Pages/AccountDetails';
 import Gallery from './Pages/Gallery';
 import Store from './Pages/Store';
 import StorePostInfo from './Pages/StorePostInfo';
@@ -92,7 +90,6 @@ function App() {
           <Route path="profile/:uid" element={<Profile />} />
           <Route path="followers/:uid" element={<FollowersPage />} />
           <Route path="following/:uid" element={<FollowingPage />} />
-          <Route path="" element={<AccountDetails />} />
         </Route>
         <Route path="login" element={<Auth />} />
         <Route path="*" element={<Navigate to={!user ? "login" : "home"} />} />

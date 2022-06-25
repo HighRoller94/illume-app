@@ -13,13 +13,12 @@ function Inbox() {
             animate={{ opacity: 1}}
             exit={{ opacity: 0}}
             >
-                <div className="inbox_sidebar">
-                    <Sidebar />
-                </div>
-                <div className="inbox_chat">
-                    <Chat />
-                </div>
-            
+            <div className="inbox_sidebar">
+                <Sidebar />
+            </div>
+            <div className="inbox_chat">
+                <Chat />
+            </div>
         </motion.div>
     )
 }

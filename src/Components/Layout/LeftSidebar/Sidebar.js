@@ -26,11 +26,11 @@ function SideBar() {
     return (
         <div className="sidebar">
             <SideBarRow link={`/profile/${user.uid}`} title={user.displayName} src={profileImage}/>
-            <SideBarRow src={logo} title="Explore"/>
-            <SideBarRow Icon={DashboardIcon} title="Dashboard"/>
+            <SideBarRow link={'/explore'} src={logo} title="Explore"/>
+            <SideBarRow link={'/dashboard'} Icon={DashboardIcon} title="Dashboard"/>
             <SideBarRow link={`/inbox/${user.uid}`} Icon={ChatIcon} title="Inbox"/>
             <SideBarRow link={'/marketplace'} Icon={StorefrontIcon} title="Marketplace"/>
-            <SideBarRow Icon={PhotoLibraryIcon} title="Illume Gallery"/>
+            <SideBarRow link={'/illumegallery'} Icon={PhotoLibraryIcon} title="Illume Gallery"/>
         </div>
     )
 }

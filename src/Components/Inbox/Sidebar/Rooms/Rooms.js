@@ -34,12 +34,12 @@ function Rooms() {
                 <h3>Add new room</h3>
             </div>
             {rooms.map(room => (
-                    <SidebarChat 
-                        key={room.id} 
-                        id={room.id}
-                        name={room.data.username} 
-                        profileImage={room.data.profileImage}
-                    />
+                <SidebarChat 
+                    key={room.id} 
+                    id={room.id}
+                    name={room.data.username} 
+                    profileImage={room.data.profileImage}
+                />
             ))}
         </div>
     )

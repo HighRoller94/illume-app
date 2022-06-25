@@ -58,11 +58,11 @@ function Navbar() {
     }, [basketcount])
 
     useEffect(() => {
-            db
-                .collection('users')
-                .doc(user.uid)
-                .onSnapshot((snapshot) => 
-                    setProfileImage(snapshot.data().profileImage))
+        db
+            .collection('users')
+            .doc(user.uid)
+            .onSnapshot((snapshot) => 
+                setProfileImage(snapshot.data().profileImage))
     }, [])
 
     return (
@@ -89,6 +89,9 @@ function Navbar() {
                         </div>
                         <div className={pathname === `/store/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/store/${user.uid}`}>
                             <NavLink to={`/store/${user.uid}`} ><span>Store</span></NavLink>
+                        </div>
+                        <div className={pathname === `/inbox/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/profile/${user.uid}`}>
+                            <NavLink to={`/inbox/${user.uid}`} ><span>Inbox</span></NavLink>
                         </div>
                         <div className={pathname === `/profile/${user.uid}` ? "active__option": "inactive__option"} component={Link} to={`/profile/${user.uid}`}>
                             <NavLink to={`/profile/${user.uid}`} ><span>Profile</span></NavLink>
@@ -120,8 +123,8 @@ function Navbar() {
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                            <MenuItem className="menu__item"onClick={handleClose}>Account</MenuItem>
-                            <MenuItem className="menu__item"onClick={() => {handleAuthentication(); fbLogOut();}}>Logout</MenuItem>
+                            <MenuItem className="menu__item" onClick={handleClose}>Account</MenuItem>
+                            <MenuItem className="menu__item" onClick={() => {handleAuthentication(); fbLogOut();}}>Logout</MenuItem>
                         </Menu>
                     </motion.div>
                 </div>
