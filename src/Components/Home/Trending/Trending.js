@@ -1,49 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebase';
+import { query, onSnapshot, collectionGroup, orderBy } from 'firebase/firestore';
 
 import TrendingThumbs from './TrendingThumbs/TrendingThumbs';
 
 function Trending() {
-    const [latestgalposts, setLatestGalPosts] = useState([]);
+    const [trending, setTrending] = useState([]);
 
     useEffect(() => {
-        const unsubscribe = 
-        db
-            .collectionGroup('Gallery Posts')
-            .orderBy('timestamp', 'desc')
-            .limit(6)
-            .onSnapshot(snapshot => {
-                setLatestGalPosts(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    galpost: doc.data()
-                })));
-            })
+        const trendingPostsRef = collectionGroup(db, "Gallery Posts");
+        const q = query(trendingPostsRef, orderBy("timestamp", "desc"));
 
-        return () => {
-            unsubscribe();
-        }
+        const unsub = onSnapshot(q, (snapshot) =>
+            setTrending(snapshot.docs.map((doc) => doc.data())))
 
+        return unsub;
     }, []);
-
 
     return (
         <div className="trending">
-            <h3>Latest</h3>
+            <h3>Trending</h3>
             <div className="trending_posts">
-                { 
-                
-                    latestgalposts.map(({ id, galpost}) => (
-                        <TrendingThumbs
-                            key={id}
-                            galleryPostId={id}
-                            usernameuid={galpost.usernameuid}
-                            username={galpost.username}
-                            imageUrl={galpost.imageUrl}
-                            media={galpost.media}
-                        />
-                    ))
-                
-                }
+                {trending.map(({ id, galpost}) => (
+                    <TrendingThumbs
+                        key={id}
+                        galleryPostId={id}
+                        usernameuid={galpost.usernameuid}
+                        username={galpost.username}
+                        imageUrl={galpost.imageUrl}
+                        media={galpost.media}
+                    />
+                ))}
             </div>
         </div>
     )
