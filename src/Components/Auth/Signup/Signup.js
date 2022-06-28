@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { db, auth, storage } from '../../../firebase';
+import { db, auth } from '../../../firebase';
+import { getAuth, createUserWithEmailAndPassword } from 'firebase/auth'
 import { motion } from 'framer-motion';
 import { useNavigate } from "react-router-dom";
 
@@ -33,8 +34,9 @@ function Signup() {
     const Signup = (e) => {
         e.preventDefault()
 
-        auth
-        .createUserWithEmailAndPassword(email, password).then((authUser) => {
+        const auth = getAuth();
+        createUserWithEmailAndPassword(auth, email, password)
+            .then((authUser) => {
                 db
                     .collection("users")
                     .doc(authUser.user.uid)
