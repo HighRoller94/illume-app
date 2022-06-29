@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../../../firebase'
-import firebase from 'firebase'
 import { Link } from "react-router-dom";
 import ReactPlayer from "react-player";
+import { query, onSnapshot, collection, orderBy, getDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 
 import { useStateValue } from '../../../StateProvider';
 
@@ -28,47 +28,32 @@ function GalleryPostModal({ open, setOpen, galleryPostId, usernameuid  }) {
     const [postdata, setPostData] = useState([]);
 
     useEffect(() => {
-            db
-                .collection("users")
-                .doc(usernameuid)
-                .collection("Gallery Posts")
-                .doc(galleryPostId)
-                .get()
-                .then(doc => {
-                    const postdata = doc.data()
-                    setPostData({ ...postdata })
-                })
+        const postRef = doc(db, 'users', `${user.uid}`, "Gallery Posts", `${galleryPostId}`);
+        const unsub = getDoc(postRef)
+            .then((doc) => {
+                let postdata = doc.data()
+                setPostData({ ...postdata })
+            }
+        )
+        return unsub;
     }, [])
 
     useEffect(() => {
-        let unsubscribe;
-        if (galleryPostId) {
-            unsubscribe = db
-                .collection("users")
-                .doc(usernameuid)
-                .collection("Gallery Posts")
-                .doc(galleryPostId)
-                .collection("comments")
-                .orderBy('timestamp', 'asc')
-                .onSnapshot((snapshot) => {
-                    setComments(snapshot.docs.map((doc) => doc.data()));
-                });
-        }
-
-        return () => {
-            unsubscribe();
-        };
+        const postCommentsRef = collection(db, 'users', `${usernameuid}`, "Gallery Posts", `${galleryPostId}`, "comments");
+        const q = query(postCommentsRef, orderBy("timestamp", "asc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setComments(snapshot.docs.map((doc) => doc.data())))
+        return unsub;
     }, [galleryPostId]);
 
     useEffect(() => {
-        db
-            .collection('users')
-            .doc(usernameuid)
-            .get()
-            .then(doc => {
-                const data = doc.data()
-                setUserData({ ...data })
-            })
+        const userRef = doc(db, 'users', `${usernameuid}`);
+        const unsub = getDoc(userRef)
+        .then((doc) => {
+            setUserData(doc.data())
+            }
+        )
+        return unsub;
     }, [])
 
     const handleModalClose = () => {
@@ -77,19 +62,15 @@ function GalleryPostModal({ open, setOpen, galleryPostId, usernameuid  }) {
 
     const postComment = (event) => {
         event.preventDefault();
-
-        db
-            .collection("users")
-            .doc(usernameuid)
-            .collection("Gallery Posts")
-            .doc(galleryPostId)
-            .collection("comments")
-            .add({
-                username: user.displayName,
-                text: comment,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-        setComment('');
+        const postRef = collection(db, "users", `${usernameuid}`, "Gallery Posts", `${galleryPostId}`, "comments");
+        addDoc(postRef, {
+            username: user.displayName,
+            text: comment,
+            timestamp: serverTimestamp(),
+        })
+        .then(() => {
+            setComment('');
+        })
     } 
 
     return (
@@ -111,15 +92,15 @@ function GalleryPostModal({ open, setOpen, galleryPostId, usernameuid  }) {
                         <div className="left-col">
                             <Link to={`profile/${usernameuid}`}>
                                 <div className="avatar_container">
-                                    <img src={userdata.profileImage} alt="" />
+                                    <img src={userdata?.profileImage} alt="" />
                                     <div className="avatar_header">
-                                        <h3>{userdata.username}</h3>
-                                        <p>{new Date(postdata.timestamp?.toDate()).toLocaleString()}</p>
+                                        <h3>{userdata?.username}</h3>
+                                        <p>{new Date(postdata?.timestamp?.toDate()).toLocaleString()}</p>
                                     </div>
                                     </div>
                             </Link>
                         <div className="galmodal_body">
-                            <p>{postdata.body}</p>
+                            <p>{postdata?.body}</p>
                         </div>
                         <div className="gal_comments">
                             {comments.map((comment) => (
@@ -133,15 +114,15 @@ function GalleryPostModal({ open, setOpen, galleryPostId, usernameuid  }) {
                                 </button>
                             </form>
                         </div>
-                        {postdata.imageUrl ? (
+                        {postdata?.imageUrl ? (
                             <div className="right-col">
-                                <img className="modalimage" src={postdata.imageUrl} alt="" />
+                                <img className="modalimage" src={postdata?.imageUrl} alt="" />
                             </div>
                         ) : (
                             <div className="modalplayer">
                                 <ReactPlayer
                                     className="reactmodal_player"
-                                    url={postdata.media}
+                                    url={postdata?.media}
                                     width="100%"
                                     height="70%"
                                     controls={true}
