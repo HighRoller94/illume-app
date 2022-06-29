@@ -1,34 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebase';
-import { query, onSnapshot, collectionGroup, orderBy } from 'firebase/firestore';
+import { query, onSnapshot, collectionGroup, orderBy, limit } from 'firebase/firestore';
 
 import TrendingThumbs from './TrendingThumbs/TrendingThumbs';
 
 function Trending() {
-    const [trending, setTrending] = useState([]);
+    const [trendingPosts, setTrendingPosts] = useState([]);
 
     useEffect(() => {
         const trendingPostsRef = collectionGroup(db, "Gallery Posts");
-        const q = query(trendingPostsRef, orderBy("timestamp", "desc"));
+        const q = query(trendingPostsRef, orderBy("timestamp", "desc"), limit(6));
 
         const unsub = onSnapshot(q, (snapshot) =>
-            setTrending(snapshot.docs.map((doc) => doc.data())))
+            setTrendingPosts(snapshot.docs.map((doc) => ({
+                id: doc.id,
+                post: doc.data()
+            }))))
 
         return unsub;
+        
     }, []);
-
+    console.log(trendingPosts)
     return (
         <div className="trending">
             <h3>Trending</h3>
             <div className="trending_posts">
-                {trending.map(({ id, galpost}) => (
+                {trendingPosts.map(({id, post}) => (
                     <TrendingThumbs
-                        key={id}
                         galleryPostId={id}
-                        usernameuid={galpost.usernameuid}
-                        username={galpost.username}
-                        imageUrl={galpost.imageUrl}
-                        media={galpost.media}
+                        usernameuid={post.usernameuid}
+                        imageUrl={post.imageUrl}
+                        media={post.media}
                     />
                 ))}
             </div>
