@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../../../firebase';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { useStateValue } from '../../../../StateProvider';
 
 import { Avatar } from '@material-ui/core';
 
 function SidebarChat({ id, name, profileImage }) {
-
+    const { pathname } = useLocation();
+    
     const [messages, setMessages] = useState("");
     const [{ user }] = useStateValue();
 
@@ -25,17 +26,16 @@ function SidebarChat({ id, name, profileImage }) {
         }
     }, [id])
 
-
     return (
         <Link to={`/messages/${id}`}>
-            <div className="sidebarChat">
-                    <div>
-                        <Avatar className="avatar" src={profileImage} />
-                    </div>
-                    <div className="sidebarInfo">
-                        <h2>{name}</h2>
-                        <p className="sidebarMessage">{messages[0]?.message}</p>
-                    </div>
+            <div className={pathname === `/messages/${id}` ? "activeSidebarChat": "sidebarChat"}>
+                <div>
+                    <Avatar className="avatar" src={profileImage} />
+                </div>
+                <div className="sidebarInfo">
+                    <h2>{name}</h2>
+                    <p className="sidebarMessage">{messages[0]?.message}</p>
+                </div>
             </div>
         </Link>
     );

@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { storage, db } from '../../../firebase';
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 import { useStateValue } from '../../../StateProvider';
+import { getDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 import { Button } from '@material-ui/core';
 import ImageIcon from '@material-ui/icons/Image';
@@ -32,16 +33,13 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
 
     useEffect(() => {
         // Load existing post data using postId
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Posts")
-            .doc(postId)
-            .get()
-            .then(doc => {
-                const postdata = doc.data()
-                setPostData({ ...postdata })
-            })
+        const postRef = doc(db, 'users', `${user.uid}`, "Posts", `${postId}`);
+        const unsub = getDoc(postRef)
+        .then((doc) => {
+            setPostData(doc.data())
+            }
+        )
+        return unsub;
     }, [])
 
     const handleClose = () => {
@@ -60,17 +58,13 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
     const handleEdit = () => {
         // If no image upload post
         if (!image) {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Posts")
-            .doc(postId)
-            .update({
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            const postRef = doc(db, 'users', `${user.uid}`, "Posts", `${postId}`)
+            updateDoc(postRef, {
+                timestamp: serverTimestamp(),
                 body: updatedbody,
                 username: user.displayName,
                 usernameuid: user.uid
-            });
+            })
             handleClose();
         } else {
             // If image is uploaded continue with alternate function
@@ -147,12 +141,12 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
                     <div className="modalwindow">
                         <div className="addnewpost">
                             <h2>Edit Post</h2>
-                            <input type="text" placeholder={postdata.body} onChange={event => setUpdatedBody(event.target.value)} value={updatedbody} />
+                            <input type="text" placeholder={postdata?.body} onChange={event => setUpdatedBody(event.target.value)} value={updatedbody} />
                         </div>
                         <div className="preview">
-                            {preview || postdata.imageUrl ? (
+                            {preview || postdata?.imageUrl ? (
                                 <div className="checkgallery_post">
-                                    <img src={preview || postdata.imageUrl} />
+                                    <img src={preview || postdata?.imageUrl} />
                                 </div>
                             ) : (
                                 null
@@ -167,7 +161,7 @@ function EditPostModal({ editopen, setEditOpen, postId }) {
                                 <ImageIcon />
                             </Button>
                             <Button 
-                                disabled={!postdata.body} onClick={() => { handleEdit(); }}>
+                                disabled={!postdata?.body} onClick={() => { handleEdit(); }}>
                                 <AddCircleIcon />
                             </Button>
                         </div>

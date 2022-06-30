@@ -3,77 +3,51 @@ import { useParams, Link } from "react-router-dom";
 import { useStateValue } from '../StateProvider';
 import { db } from '../firebase';
 import { motion } from 'framer-motion';
-
+import { collection, query, onSnapshot, collectionGroup, getDoc, doc, deleteDoc, limit, orderBy } from 'firebase/firestore'
 import SuggestStoreThumb from '../Components/Store/SuggestStoreThumb';
 
 function StorePostInfo() {
     const { uid } = useParams()
     const { storePostId } = useParams()
-    const [suggeststoreposts, setSuggestStorePosts] = useState([])
-    const [morestoreposts, setMoreStorePosts] = useState([])
+    const [suggestStorePosts, setSuggestStorePosts] = useState([])
+    const [moreStorePosts, setMoreStorePosts] = useState([])
     const [postdata, setPostData] = useState('')
     const [{ basket, user }, dispatch] = useStateValue();
 
     const handleDelete = () => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Store Posts")
-            .doc(storePostId)
-            .delete()
+        const postRef = doc(db, 'users', `${user.uid}`, "Store Posts", `${storePostId}`)
+        deleteDoc(postRef)
     };
 
     useEffect(() => {
-        db
-            .collection("users")
-            .doc(uid)
-            .collection("Store Posts")
-            .doc(storePostId)
-            .get()
-            .then(doc => {
-                const data = doc.data()
-                setPostData({ ...data })
-            })
+        const postRef = doc(db, 'users', `${uid}`, "Store Posts", `${storePostId}`)
+        const unsub = getDoc(postRef)
+        .then((doc) => {
+            setPostData(doc.data())
+        })
+        return unsub;
     }, [storePostId])
 
     useEffect(() => {
-
-        const unsubscribe =
-        db
-            .collection("users")
-            .doc(uid)
-            .collection("Store Posts")
-            .limit(4)
-            .orderBy('timestamp', 'desc')
-            .onSnapshot(snapshot => {
-                setSuggestStorePosts(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    suggeststorepost: doc.data()
-                })))
-            })
-
-            return () => {
-                unsubscribe();
-            }
+        const storePostsRef = collection(db, 'users', `${uid}`, "Store Posts")
+        const q = query(storePostsRef, orderBy("timestamp", "desc"), limit(4))
+        const unsub = onSnapshot(q, (snapshot) => 
+            setSuggestStorePosts(snapshot.docs.map((doc) => ({
+                id: doc.id,
+                post: doc.data()
+            }))))
+        return unsub;
     }, [uid])
 
     useEffect(() => {
-
-        const unsubscribe =
-        db
-            .collectionGroup("Store Posts")
-            .limit(4)
-            .orderBy('timestamp', 'desc')
-            .onSnapshot(snapshot => {
-                setMoreStorePosts(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    morestorepost: doc.data()
-                })))
-            })
-
-            return () => {
-                unsubscribe();
-            }
+        const allStorePosts = collectionGroup(db, "Store Posts")
+        const q = query(allStorePosts, orderBy("timestamp", "desc"), limit(4));
+        const unsub = onSnapshot(q, (snapshot) => 
+            setMoreStorePosts(snapshot.docs.map((doc) => ({
+                id: doc.id,
+                post: doc.data()
+            }))))
+        return unsub;
     }, [])
 
     const addToBasket = () => {
@@ -126,16 +100,16 @@ function StorePostInfo() {
                 <h2>More from <Link to={`/store/${postdata.usernameuid}`}>
                     {postdata.username}...</Link></h2>
                 <div className="storepost_suggestions">
-                    {suggeststoreposts.map(({ id, suggeststorepost }) => (
+                    {suggestStorePosts.map(({ id, post }) => (
                         <SuggestStoreThumb
                             addToBasket = {addToBasket}
                             key = { id }
                             storePostId = { id }
-                            username = { suggeststorepost.username }
-                            usernameuid = { suggeststorepost.usernameuid}
-                            imageUrl = { suggeststorepost.imageUrl }
-                            title = { suggeststorepost.title }
-                            price = { suggeststorepost.price }
+                            username = { post.username }
+                            usernameuid = { post.usernameuid}
+                            imageUrl = { post.imageUrl }
+                            title = { post.title }
+                            price = { post.price }
                         />
                     ))}
                 </div>
@@ -143,16 +117,16 @@ function StorePostInfo() {
             <div className="other_storeposts">
                     <h1>More from the store...</h1>
                     <div className="other_posts">
-                        {morestoreposts.map(({ id, morestorepost }) => (
+                        {moreStorePosts.map(({ id, post }) => (
                             <SuggestStoreThumb
                                 addToBasket = {addToBasket}
                                 key = { id }
                                 storePostId = { id }
-                                username = { morestorepost.username }
-                                usernameuid = { morestorepost.usernameuid}
-                                imageUrl = { morestorepost.imageUrl }
-                                title = { morestorepost.title }
-                                price = { morestorepost.price }
+                                username = { post.username }
+                                usernameuid = { post.usernameuid}
+                                imageUrl = { post.imageUrl }
+                                title = { post.title }
+                                price = { post.price }
                             />
                         ))}
                     </div>

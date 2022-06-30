@@ -3,6 +3,8 @@ import { useStateValue } from '../../../StateProvider'
 import { db } from '../../../firebase'
 import { motion } from 'framer-motion'
 import { Link } from "react-router-dom";
+import { deleteDoc, doc } from 'firebase/firestore';
+
 
 import Menu from '@material-ui/core/Menu';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -39,14 +41,12 @@ function StorePost({ storePostId, username, usernameuid, imageUrl, title, price,
         });
     };
 
-    const handleDelete = () => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Store Posts")
-            .doc(storePostId)
-            .delete()
+    const handleDelete = (e) => {
+        e.preventDefault()
+        const postRef = doc(db, "users", `${user.uid}`, "Store Posts", `${storePostId}`)
+        deleteDoc(postRef)
     };
+
 
     return (
         <div>

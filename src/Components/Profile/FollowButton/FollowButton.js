@@ -3,117 +3,80 @@ import { useStateValue } from '../../../StateProvider';
 import { useParams } from "react-router-dom";
 import { db } from '../../../firebase';
 
+import { getDoc, doc, deleteDoc, collection, setDoc} from 'firebase/firestore';
+
 function FollowButton() {
     const { uid } = useParams();
     const [{ user }] = useStateValue();
-    const [following, setFollowing] = useState('');
-    
+    const [following, setFollowing] = useState(false);
+    const [followingData, setFollowingData] = useState('');
+    const [followerData, setFollowerData] = useState('');
+
     useEffect(() => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Following")
-            .doc(uid)
-            .get()
-            .then(doc => {
-                if (doc.exists) {
-                    setFollowing(true)
-                }
-            })
+        const followRef = doc(db, 'users', `${user.uid}`, "Following", `${uid}`)
+        const unsub = getDoc(followRef)
+        .then((doc) => {
+            if (doc.exists) {
+                setFollowing(true)
+            }
+        })
+        return unsub;
     }, [uid]);
 
-    const Follow = async () => {
-        const following = db.collection("users").doc(uid) 
-        const userdata = await following.get().then((doc) => doc.data())
-        const follower = db.collection("users").doc(user.uid) 
-        const docdata = await follower.get().then((doc) => doc.data())
+    console.log(following)
 
-        if (userdata) {
-                db
-                    .collection("users")
-                    .doc(user.uid)
-                    .collection("Following")
-                    .doc(uid)
-                    .set({ ...userdata })
-                db
-                    .collection("users")
-                    .doc(uid)
-                    .collection("Followers")
-                    .doc(user.uid)
-                    .set({ ...docdata })
-            
-                    setFollowing(true)
-        }
-            
-            const posts = db
-                .collection("users")
-                .doc(uid)
-                .collection("Posts")
-                .orderBy('timestamp', 'desc')
-                .limit(20)
-                .get()
-            
-            const collection = await posts.then(function(querySnapshot) {
-                    querySnapshot.forEach(function(doc) {
-                        const writeBatch = db.batch();
-                        const destination = db.collection("users").doc(user.uid).collection("Following Posts")
-                        writeBatch.set(destination.doc(doc.id), doc.data());
-                        writeBatch.commit();
-                    })
+    const Follow = async () => {
+        // Grabbing the user data of the profile visited
+        const followingRef = await doc(db, 'users', `${uid}`)
+            getDoc(followingRef)
+            .then((doc) => {
+                setFollowingData(doc.data())
             })
+        // Grabbing the user data of the logged in user
+        const followerRef = await doc(db, 'users', `${user.uid}`)
+            getDoc(followerRef)
+            .then((doc) => {
+                setFollowerData(doc.data())
+            })
+        // Adds the data of the logged in user to the profile users list of followers
+        // then adds the profile users data to the logged in users list of followed users
+        if (followingData) {
+            const followingUser = await doc(db, "users", `${user.uid}`, 'Following', `${uid}`)
+            await setDoc(followingUser, followingData)
+            const followerUser = await doc(db, "users", `${uid}`, 'Followers', `${user.uid}`)
+            await setDoc(followerUser, followerData)
         }
+        setFollowing(true);
+    }
     
     const Unfollow = async () => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Following")
-            .doc(uid)
-            .delete()
         
-        db
-            .collection("users")
-            .doc(uid)
-            .collection("Followers")
-            .doc(user.uid)
-            .delete()
-            
-        const deleteFollowingPosts = 
-        
-            db
-                .collection("users")
-                .doc(user.uid)
-                .collection("Following Posts")
-                .where("usernameuid", "==", uid)
-                deleteFollowingPosts.get().then(function(snapshot) {
-                    snapshot.forEach(function(doc) {
-                        doc.ref.delete();
-            });
+        const followingUser = doc(db, "users", `${user.uid}`, 'Following', `${uid}`)
+        deleteDoc(followingUser)
 
-            setFollowing(false)
-        });
+        const followerUser = doc(db, "users", `${uid}`, 'Following', `${user.uid}`)
+        deleteDoc(followerUser)
+
+        setFollowing(false)
     }
 
     return (
         <div>
-                    {!following ? (
-                        <button
-                            className="follow_button" 
-                            onClick = {Follow}
-                        >
-                            Follow
-                        </button>
-                    ) : (
-                        <button
-                            className="unfollow_button" 
-                            onClick = {Unfollow}
-                        >
-                            Unfollow
-                        </button>
-
-                    )}
-                
-                    
+            {!following ? (
+                <button
+                    className="follow_button" 
+                    onClick = {Follow}
+                >
+                    Follow
+                </button>
+            ) : (
+                <button
+                    className="unfollow_button" 
+                    onClick = {Unfollow}
+                >
+                    Unfollow
+                </button>
+            )}
         </div>
     )
 }

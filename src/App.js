@@ -1,22 +1,25 @@
 import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
-
 import { auth } from './firebase';
 import { useStateValue } from './StateProvider';
 import { loadStripe } from '@stripe/stripe-js'
 import { Elements } from '@stripe/react-stripe-js'
+
+// CUSTOM 
+
 import PrivateRoute from './Components/PrivateRoute';
+import ScrollToTop  from './ScrollToTop';
+
+// STYLES
 
 import './Styles/styles.scss';
 
 // PAGES
 
-import ScrollToTop  from './ScrollToTop';
 import MyListings from './Pages/MyListings';
 import SearchJobs from './Pages/SearchJobs';
 import JobDetails from './Pages/JobDetails';
 import ListingReplies from './Pages/ListingReplies';
-import Footer from './Components/Layout/Footer';
 import Navbar from './Components/Layout/Navbar';
 import FollowingPage from './Pages/FollowingPage';
 import FollowersPage from './Pages/FollowersPage';
@@ -32,8 +35,6 @@ import Profile from './Pages/Profile';
 import Inbox from './Pages/Inbox';
 import Dashboard from './Pages/Dashboard';
 import Marketplace from './Pages/Marketplace';
-
-import SideBar from './Components/Layout/LeftSidebar/SideBar';
 
 const promise = loadStripe(
   "pk_test_51JRx82AWnX2oR3avXWJruHDLY6m31mD1Sq9FbBdW2XT4lhyOS1mRdrz84Kh9S7ONfCWPXWZU3u8kPxH1cJJ2Yk9300FSmjz5MS"

@@ -12,33 +12,33 @@ function FollowingPosts() {
     const [isEmpty, setIsEmpty] = useState(false);
 
     useEffect(() => {
-        // Sets a ref to the collection
-        const followingPostsRef = collection(db, 'users', `${user.uid}`, "Following Posts");
-        const q = query(followingPostsRef, orderBy("timestamp", "desc"));
-
-        const unsub = onSnapshot(q, (snapshot) =>
-            setPosts(snapshot.docs.map((doc) => doc.data())))
-
-        return unsub;
+        const getFollowingPosts = async () => {
+            const followingPostsRef = collection(db, 'users', `${user.uid}`, "Following Posts");
+            const q = query(followingPostsRef, orderBy("timestamp", "desc"));
+            const unsub = await onSnapshot(q, (snapshot) =>
+                setPosts(snapshot.docs.map((doc) => ({ 
+                    id: doc.id,
+                    post: doc.data()
+                }))))
+            return unsub;
+        }
+        
+        getFollowingPosts();
     }, []);
     
-    // if no posts then return loading as visual indicator
     if (posts.length === 0) {
         return <h1>Loading...</h1>
     }
 
-    // Sets the state to either loading or load more posts button (depending on loading state)
     const state = !loading && <button className="more_button">See More</button>
 
     return (
         <div className="followingposts">
             
             <h1>Following Posts</h1>
-            {posts.map(({ id, post }) => (
-                <Post 
-                    key={id} 
-                    postId={id} 
-                    user={user} 
+            {posts.map(({id, post}) => (
+                <Post  
+                    postId={id}
                     timestamp={post.timestamp}
                     usernameuid={post.usernameuid} 
                     username={post.username} 
@@ -51,7 +51,7 @@ function FollowingPosts() {
 
             <div className="loading_following">
                 {isEmpty ? (
-                    <h1>"No more posts :("</h1>
+                    <h1>"No more posts"</h1>
                 ):(
                     (state)
                 )}

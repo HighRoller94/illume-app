@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { storage, db } from '../../../firebase';
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
+import { getDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 import { useStateValue } from '../../../StateProvider';
 
 import { Button } from '@material-ui/core';
@@ -32,16 +33,13 @@ function EditGalleryPostModal({ editopen, setEditOpen, galleryPostId }) {
 
     useEffect(() => {
         // Load existing post data using postId
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Gallery Posts")
-            .doc(galleryPostId)
-            .get()
-            .then(doc => {
-                const postdata = doc.data()
-                setPostData({ ...postdata })
-            })
+        const postRef = doc(db, 'users', `${user.uid}`, "Gallery Posts", `${galleryPostId}`);
+        const unsub = getDoc(postRef)
+        .then((doc) => {
+            setPostData(doc.data())
+            }
+        )
+        return unsub;
     }, [])
 
     const handleClose = () => {
@@ -60,17 +58,14 @@ function EditGalleryPostModal({ editopen, setEditOpen, galleryPostId }) {
     const handleEdit = () => {
             // This uploads the file to firebase storage
             if (!image) {
-            db
-                .collection("users")
-                .doc(user.uid)
-                .collection("Gallery Posts")
-                .doc(galleryPostId)
-                .update({
-                    timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                const postRef = doc(db, 'users', `${user.uid}`, "Gallery Posts", `${galleryPostId}`)
+                updateDoc(postRef, {
+                    timestamp: serverTimestamp(),
                     body: updatedbody,
                     username: user.displayName,
                     usernameuid: user.uid
-                });
+                })
+                handleClose();
             } else {
             const uploadTask = storage.ref(`user/${user.uid}/gallerypostimages/${image.name}`).put(image);
             uploadTask.on(

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { db } from '../../../firebase';
+import { query, onSnapshot, collection, orderBy } from 'firebase/firestore';
 
 import Post from '../../Posts/Post/Post';
 
@@ -9,17 +10,18 @@ function UserPosts() {
     const { uid } = useParams()
 
     useEffect(() => {
-        db
-            .collection('users')
-            .doc(uid)
-            .collection("Posts")
-            .orderBy('timestamp', 'desc')
-            .onSnapshot(snapshot => {
-                setPosts(snapshot.docs.map(doc => ({
+        const getUserPosts = async () => {
+            const postsRef = collection(db, 'users', `${uid}`, "Posts");
+            const q = query(postsRef, orderBy("timestamp", "desc"));
+            const unsub = await onSnapshot(q, (snapshot) =>
+                setPosts(snapshot.docs.map((doc) => ({ 
                     id: doc.id,
                     post: doc.data()
-            })));
-        })
+                }))))
+            return unsub;
+        }
+        
+        getUserPosts();
     }, [uid]);
 
     return (

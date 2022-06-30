@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { db } from '../../../firebase';
 import ReactPlayer from "react-player";
 import { useStateValue } from '../../../StateProvider';
+import { deleteDoc, doc } from 'firebase/firestore';
 
 import Menu from '@material-ui/core/Menu';
 import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
@@ -26,13 +27,10 @@ function GalleryPost({ galleryPostId, usernameuid, imageUrl, media }) {
         setAnchorEl(event.currentTarget);
     };
 
-    const handleDelete = () => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Gallery Posts")
-            .doc(galleryPostId)
-            .delete()
+    const handleDelete = (e) => {
+        e.preventDefault()
+        const postRef = doc(db, "users", `${user.uid}`, "Gallery Posts", `${galleryPostId}`)
+        deleteDoc(postRef)
     };
 
     return (

@@ -1,5 +1,5 @@
 .navbar {
-  height: 60px;
+  height: 64px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,7 +8,7 @@
   top: 0;
   z-index: 10;
   width: 100%;
-	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid #f8f8f8;
   .navbar_container {
     display: flex;
     justify-content: space-between;

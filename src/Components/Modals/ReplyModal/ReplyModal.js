@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { db, storage } from '../../../firebase';
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 import { useStateValue } from '../../../StateProvider';
 import { useParams } from "react-router-dom";
 

@@ -25,6 +25,3 @@ app.post('/payments/create', async (request, response) => {
 })
 
 exports.api = functions.https.onRequest(app)
-
-// Example endpoint
-// http://localhost:5001/illume-68c8e/us-central1/api

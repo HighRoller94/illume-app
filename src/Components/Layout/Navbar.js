@@ -2,6 +2,7 @@ import React, { useEffect, useState, useCallback } from 'react'
 import { Link, NavLink, useLocation, useNavigate, Outlet } from 'react-router-dom';
 import { useStateValue } from '../../StateProvider';
 import { auth, db } from '../../firebase'
+import { onSnapshot, collection, doc, getDoc} from 'firebase/firestore';
 import { motion } from 'framer-motion'
 import Avatar from '@material-ui/core/Avatar'
 import Menu from '@material-ui/core/Menu';
@@ -48,22 +49,22 @@ function Navbar() {
     }, []);
 
     useEffect(() => {
-        db
-            .collection('users')
-            .doc(user.uid)
-            .collection("Basket")
-            .get()
-            .then(snapshot => 
-                setBasketCount(snapshot.size));
-    }, [basketcount])
+        const basketRef = collection(db, 'users', `${user.uid}`, "Basket");
+        const unsub = onSnapshot(basketRef, (snapshot) => {
+            setBasketCount(snapshot.size)
+        })
+        return unsub;
+    }, [basketcount]);
 
     useEffect(() => {
-        db
-            .collection('users')
-            .doc(user.uid)
-            .onSnapshot((snapshot) => 
-                setProfileImage(snapshot.data().profileImage))
-    }, [])
+        const userRef = doc(db, 'users', `${user.uid}`);
+        const unsub = getDoc(userRef)
+        .then((doc) => {
+            setProfileImage(doc.data().profileImage)
+            }
+        )
+        return unsub;
+    }, []);
 
     return (
         <div>
@@ -78,6 +79,9 @@ function Navbar() {
                         <Searchbar />
                     </div>
                     <motion.div className="nav_right" layout>
+                        {/* <div className={`option ${pathname === "/home" ? "active" : ""}`} component={Link} to="/home">
+                            <NavLink to="/home" ><span>Home</span></NavLink>
+                        </div> */}
                         <div className={pathname === "/home" ? "active__option": "inactive__option"} component={Link} to="/home">
                             <NavLink to="/home" ><span>Home</span></NavLink>
                         </div>

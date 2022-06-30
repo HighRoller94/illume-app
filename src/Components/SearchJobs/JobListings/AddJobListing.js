@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { db } from '../../../firebase';
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 import { useStateValue } from '../../../StateProvider';
 
 import { Button } from '@material-ui/core';

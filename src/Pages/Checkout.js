@@ -7,26 +7,7 @@ import Subtotal from '../Components/Checkout/Subtotal';
 import CheckoutProduct from '../Components/Checkout/CheckoutProduct';
 
 function Checkout() {
-    const [basketitems, setBasketItems] = useState([]);
     const [{ user, basket }, dispatch] = useStateValue();
-    
-    useEffect(() => {
-        const unsubscribe = 
-        db
-            .collection('users')
-            .doc(user.uid)
-            .collection("Basket")
-            .onSnapshot(snapshot => {
-                setBasketItems(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    basketitem: doc.data()
-            })));
-        })
-        return () => {
-            unsubscribe();
-        }
-        
-    }, []);
     
     return (
         <motion.div

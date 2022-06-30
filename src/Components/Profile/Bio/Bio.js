@@ -3,6 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import { useStateValue } from '../../../StateProvider';
 import { Button } from '@material-ui/core';
 import { db } from '../../../firebase';
+import { doc, getDoc } from 'firebase/firestore';
 
 import InstagramIcon from '@material-ui/icons/Instagram';
 import FacebookIcon from '@material-ui/icons/Facebook';
@@ -15,8 +16,8 @@ import userProfile from '../../../Assets/Images/userProfile.png';
 
 
 function Bio() {
-    const [userdata, setUserData] = useState('');
-    const [biodata, setBioData] = useState('');
+    const [userData, setUserData] = useState('');
+    const [bioData, setBioData] = useState('');
     const [open, setOpen] = useState(false);
     const { uid } = useParams();
     const [{ user }] = useStateValue();
@@ -25,25 +26,26 @@ function Bio() {
     // Collect the users biography info from the DB
 
     useEffect(() => {
-        db
-            .collection('users')
-            .doc(uid)
-            .get()
-            .then(doc => {
-                const data = doc.data()
-                setUserData({ ...data })
-            })
-        db
-            .collection('users')
-            .doc(uid)
-            .collection('Additional Info')
-            .doc('Bio')
-            .get()
-            .then(doc => {
-                const biodata = doc.data()
-                setBioData({ ...biodata })
-            })
-            setCount(0)
+        const getUserData = async () => {
+            const userRef =  doc(db, "users", `${uid}`)
+            const unsub = await getDoc(userRef)
+                .then((doc) => {
+                    setUserData(doc.data())
+                })
+            return unsub;
+        }
+        const getBioData = async () => {
+            const bioRef = doc(db, "users", `${uid}`, "Additional Info", "Bio")
+            const unsub = await getDoc(bioRef)
+                .then((doc) => {
+                    setBioData(doc.data())
+                    setCount(0)
+                })
+            return unsub;
+        }
+
+        getUserData();
+        getBioData();
     }, [uid, count])
 
     function updateBio() {
@@ -53,25 +55,25 @@ function Bio() {
     return (
         
         <div className="bio_section">
-                <h1 className="bio_username">{userdata.username}</h1>
-                {userdata.profileImage ? (
-                    <img className="bio_image" src={userdata.profileImage} alt="" />
+                <h1 className="bio_username">{userData?.username}</h1>
+                {userData?.profileImage ? (
+                    <img className="bio_image" src={userData?.profileImage} alt="" />
                 ) : (
                     <img className="bio_image" src={userProfile} alt="" />
                 )}
                 <div className="follow">
                     {uid !== user.uid ? (
-                            <FollowButton />
+                        <FollowButton />
                     ) : ( 
-                            <Button>
-                                <EditSharpIcon onClick={() => setOpen(true)}/>
-                            </Button>
+                        <Button>
+                            <EditSharpIcon onClick={() => setOpen(true)}/>
+                        </Button>
                     )}
                 </div>
                 <div className="bio_info">
-                    <p className="bioBody_info">{biodata.biography}</p>
-                    <p className="bioBody_occupation">{biodata.occupation}</p>
-                    <p className="bioBody_location">{biodata.location}</p>
+                    <p className="bioBody_info">{bioData?.biography}</p>
+                    <p className="bioBody_occupation">{bioData?.occupation}</p>
+                    <p className="bioBody_location">{bioData?.location}</p>
                     <Link to={`/gallery/${uid}`} >
                             <p className="bioGallery_link">Gallery</p>
                     </Link>
@@ -80,17 +82,17 @@ function Bio() {
                     </Link>
                 </div>
                 <div className="social">
-                    {biodata.insta ? ( 
-                        <a href={biodata.insta} target="_blank" rel="noreferrer"><InstagramIcon style={{ fontSize: '40px', margin: '15px' }} /></a>
+                    {bioData?.insta ? ( 
+                        <a href={bioData?.insta} target="_blank" rel="noreferrer"><InstagramIcon style={{ fontSize: '40px', margin: '15px' }} /></a>
                     ) : (null)}
-                    {biodata.facebook ? ( 
-                        <a href={biodata.facebook} target="_blank" rel="noreferrer"><FacebookIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
+                    {bioData?.facebook ? ( 
+                        <a href={bioData?.facebook} target="_blank" rel="noreferrer"><FacebookIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
                     ) : (null)}
-                    {biodata.website ? (
-                        <a href={biodata.website} target="_blank" rel="noreferrer"><LanguageIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
+                    {bioData?.website ? (
+                        <a href={bioData?.website} target="_blank" rel="noreferrer"><LanguageIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
                     ) : (null)}
                 </div>
-                <BioModal updateBio={updateBio} open={open} setOpen={setOpen} />
+                <BioModal userData={userData} bioData={bioData} updateBio={updateBio} open={open} setOpen={setOpen} />
         </div>
     )
 }

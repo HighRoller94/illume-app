@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { db } from '../../../firebase'
-import firebase from 'firebase'
 import { useStateValue } from '../../../StateProvider';
+import { query, onSnapshot, collection, orderBy, getDoc, doc, addDoc, serverTimestamp } from 'firebase/firestore';
 
 import { makeStyles } from '@material-ui/core/styles'
 import Modal from '@material-ui/core/Modal'
@@ -18,54 +18,39 @@ const useStyles = makeStyles((theme) => ({
 
 function PostModal({ open, setOpen, postId, usernameuid }) {
     const classes = useStyles();
-    const [userdata, setUserData] = useState('')
+    const [userData, setUserData] = useState('')
     const [comments, setComments] = useState([]);
     const [comment, setComment] = useState('');
     const [{ user }] = useStateValue();
-    const [postdata, setPostData] = useState([]);
+    const [postData, setPostData] = useState([]);
 
     useEffect(() => {
-        db
-            .collection("users")
-            .doc(usernameuid)
-            .collection("Posts")
-            .doc(postId)
-            .get()
-            .then(doc => {
-                const postdata = doc.data()
-                setPostData({ ...postdata })
-            })
+        const postRef = doc(db, 'users', `${usernameuid}`, "Posts", `${postId}`);
+        const unsub = getDoc(postRef)
+            .then((doc) => {
+                setPostData(doc.data())
+            }
+        )
+        return unsub;
     }, [])
 
     useEffect(() => {
-        let unsubscribe;
-        
-            unsubscribe = db
-                .collection("users")
-                .doc(usernameuid)
-                .collection("Posts")
-                .doc(postId)
-                .collection("comments")
-                .orderBy('timestamp', 'asc')
-                .onSnapshot((snapshot) => {
-                    setComments(snapshot.docs.map((doc) => doc.data()));
-                });
-                
-        return () => {
-            unsubscribe();
-        };
+        const userRef = doc(db, 'users', `${usernameuid}`);
+        const unsub = getDoc(userRef)
+        .then((doc) => {
+            setUserData(doc.data())
+            }
+        )
+        return unsub;
+    }, [])
+
+    useEffect(() => {
+        const postCommentsRef = collection(db, 'users', `${usernameuid}`, "Posts", `${postId}`, "comments");
+        const q = query(postCommentsRef, orderBy("timestamp", "asc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setComments(snapshot.docs.map((doc) => doc.data())))
+        return unsub;
     }, []);
-
-    useEffect(() => {
-        db
-            .collection('users')
-            .doc(usernameuid)
-            .get()
-            .then(doc => {
-                const data = doc.data()
-                setUserData({ ...data })
-            })
-    }, [])
 
     const handleModalClose = () => {
         setOpen(false);
@@ -74,18 +59,15 @@ function PostModal({ open, setOpen, postId, usernameuid }) {
     const postComment = (event) => {
         event.preventDefault();
 
-        db
-            .collection("users")
-            .doc(usernameuid)
-            .collection("Posts")
-            .doc(postId)
-            .collection("comments")
-            .add({
-                username: user.displayName,
-                text: comment,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-        setComment('');
+        const postRef = collection(db, "users", `${usernameuid}`, "Posts", `${postId}`, "comments");
+        addDoc(postRef, {
+            username: user.displayName,
+            text: comment,
+            timestamp: serverTimestamp(),
+        })
+        .then(() => {
+            setComment('');
+        })
     } 
 
     return (
@@ -105,14 +87,14 @@ function PostModal({ open, setOpen, postId, usernameuid }) {
                 <div className="gallerymodal">
                         <div className="left-col">
                         <div className="avatar_container">
-                            <img src={userdata.profileImage} alt="" />
+                            <img src={userData?.profileImage} alt="" />
                             <div className="avatar_header">
-                                <h3>{userdata.username}</h3>
-                                <p>{new Date(postdata.timestamp?.toDate()).toLocaleString()}</p>
+                                <h3>{userData?.username}</h3>
+                                <p>{new Date(postData?.timestamp?.toDate()).toLocaleString()}</p>
                             </div>
                         </div>
                         <div className="galmodal_body">
-                            <p>{postdata.body}</p>
+                            <p>{postData?.body}</p>
                         </div>
                         <div className="gal_comments">
                             {comments.map((comment) => (
@@ -127,7 +109,7 @@ function PostModal({ open, setOpen, postId, usernameuid }) {
                             </form>
                         </div>
                         <div className="right-col">
-                            <img className="modalimage" src={postdata.imageUrl} alt="" />
+                            <img className="modalimage" src={postData?.imageUrl} alt="" />
                         </div>
                     </div>
             </Fade>

@@ -1,10 +1,10 @@
 import { Avatar, IconButton } from '@material-ui/core';
-import { AttachFile, MoreVert, SearchOutlined } from '@material-ui/icons';
+import { Send, Videocam, AttachFile, MoreVert, Phone } from '@material-ui/icons';
 import React, { useState, useEffect } from 'react';
 
 import { useParams, Link } from "react-router-dom";
 import { db } from '../../../firebase';
-import firebase from 'firebase';
+import firebase from 'firebase/compat/app'
 import { useStateValue } from '../../../StateProvider';
 
 function Chat() {
@@ -79,46 +79,45 @@ function Chat() {
             <div className="chat_header">
                 <Link to={`/profile/${uid}`}>
                     <div className="chat_headerlink">
-                        <Avatar src={profileImage} />
-                        <div className="chat_headerInfo">
-                            <h2>{userName}</h2>
-                        </div>
+                        <Avatar className="chat__HeaderAvatar" src={profileImage} />
+                        <h2 className="chat__HeaderName">{userName}</h2>
                     </div>
                 </Link>
                 <div className="chat_headerRight">
                     <IconButton>
-                        <SearchOutlined />
+                        <Phone />
                     </IconButton>
                     <IconButton>
-                        <AttachFile />
+                        <Videocam />
                     </IconButton>
                     <IconButton>
                         <MoreVert />
                     </IconButton>
                 </div>
             </div>
-
             <div className="chat_body">
-                {messages.map((message) => (
+                {messages.map((message, id) => (
                     <p className={`chat_message ${message.sender === user.displayName && "chat_receiver"}`}>
                         <span className="chat_name">{message.sender}</span>
                         {message.message}
-                        <span className="chat_timestamp">{new Date(message.timestamp?.toDate()).toUTCString()}</span>
+                        <span className="chat_timestamp">{new Date(message.timestamp?.toDate()).toLocaleString()}</span>
                     </p>
                 ))}
-                
             </div>
-
             <div className="chat_footer">
-                
-                <form>
+                <form className="chat__Form">
                     <input value={input} onChange={e => setInput(e.target.value)}
                         placeholder="Type a message"
                         type="text"
                     />
-                    <button onClick={sendMessage}
+                    <div className="footer__Options">
+                        <IconButton>
+                            <AttachFile />
+                        </IconButton>
+                    </div>
+                    <button className="footer__Submit" onClick={sendMessage}
                     type="submit">
-                        Send
+                        <Send />
                     </button>
                 </form>
                 

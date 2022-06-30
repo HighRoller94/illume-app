@@ -31,20 +31,18 @@ function SuggestStoreThumb({ username, usernameuid, imageUrl, price, title, stor
 
     return (
         <div className="storethumbs">
-            
-                <div className="storethumb">
-                    <Link to={`/details/${usernameuid}/${storePostId}`} >
-                        <img className="storethumb_img" src={imageUrl} />
-                    </Link>
-                    <p><strong>{title}</strong></p>
-                    <p>£{price}</p>
-                    {usernameuid === user.uid ? (
-                        <button className="storethumb_button" onClick={handleDelete}>Remove Item</button>
-                    ) : (
-                        <button className="storethumb_button" onClick={addToBasket}>Add to Basket</button>
-                    )}
-                </div>
-            
+            <div className="storethumb">
+                <Link to={`/details/${usernameuid}/${storePostId}`} >
+                    <img className="storethumb_img" src={imageUrl} />
+                </Link>
+                <p><strong>{title}</strong></p>
+                <p>£{price}</p>
+                {usernameuid === user.uid ? (
+                    <button className="storethumb_button" onClick={handleDelete}>Remove Item</button>
+                ) : (
+                    <button className="storethumb_button" onClick={addToBasket}>Add to Basket</button>
+                )}
+            </div>
         </div>  
     )
 }

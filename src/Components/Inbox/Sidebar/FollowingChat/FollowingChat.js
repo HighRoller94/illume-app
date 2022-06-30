@@ -11,7 +11,6 @@ function FollowingChat() {
     useEffect(() => {
 
         const unsubscribe = db
-    
             .collection("users")
             .doc(user.uid)
             .collection("Following")
@@ -23,7 +22,6 @@ function FollowingChat() {
                         data: doc.data(),
                     }))
                 ))
-    
             return () => {
                 unsubscribe();
             }
@@ -32,12 +30,12 @@ function FollowingChat() {
     return (
         <div>
             {users.map(user => (
-                    <SidebarChat 
-                        key={user.id} 
-                        id={user.id}
-                        name={user.data.username} 
-                        profileImage={user.data.profileImage}
-                    />
+                <SidebarChat 
+                    key={user.id} 
+                    id={user.id}
+                    name={user.data.username} 
+                    profileImage={user.data.profileImage}
+                />
             ))}
         </div>
     )

@@ -12,13 +12,17 @@ function Following() {
     const [{ user }] = useStateValue();
 
     useEffect(() => {
-        const followingRef = collection(db, 'users', `${user.uid}`, "Following");
-        const q = query(followingRef, limit(6));
+        const getFollowingUsers = async () => {
+            const followingRef = collection(db, 'users', `${user.uid}`, "Following");
+            const q = query(followingRef, limit(6));
+            
+            const unsub = await onSnapshot(q, (snapshot) =>
+                setFollowing(snapshot.docs.map((doc) => doc.data()))
+            )
+            return unsub;
+        }
 
-        const unsub = onSnapshot(q, (snapshot) =>
-            setFollowing(snapshot.docs.map((doc) => doc.data())))
-
-        return unsub;
+        getFollowingUsers();
     }, []);
 
     return (
@@ -34,14 +38,13 @@ function Following() {
             </Link>
                 <div className="following_thumbs">
                 {
-                    following.map(({ id, follow }) => (
+                    following.map((follow) => (
                         <FollowingThumb
-                            key={id}
+                            key={follow.username}
                             username={follow.username}
                             uid={follow.uid}
-                            firstName={follow.firstName}
-                            lastName={follow.lastName}
-                            profileImage={follow.profileImage} />
+                            profileImage={follow.profileImage} 
+                        />
                     ))
                 }
                 </div>

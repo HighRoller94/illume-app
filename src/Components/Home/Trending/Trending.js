@@ -20,7 +20,7 @@ function Trending() {
         return unsub;
         
     }, []);
-    console.log(trendingPosts)
+
     return (
         <div className="trending">
             <h3>Trending</h3>

@@ -1,77 +1,101 @@
-.sidebar_chat {
+.sidebar_Chat {
   display: flex;
   flex-direction: column;
+  .sidebar_head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+    .sidebar_heading {
+      display: flex;
+      width: 90%;
+      margin: 0 auto;
+      .avatar {
+        margin-left: 0;
+        margin-top: 0;
+        font-size: 2rem;
+        width: 55px;
+        height: 55px;
+      }
+      .sidebar__User {
+        display: flex;
+        flex-direction: column;
+        margin-left: 1rem;
+        h1 {
+          font-size: 1.5rem;
+          margin-top: 2px;
+        }
+        .user__Status {
+          display: flex;
+          align-items: center;
+          cursor: pointer;
+          transition: 200ms ease-in;
+          p {
+            font-size: .8rem;
+            margin-top: 1px;
+          }
+          &:hover {
+            p {
+              opacity: .8;
+            }
+          }
+          .user__Available {
+            margin-right: .5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: green;
+          }
+          .user__Unavailable {
+            margin-right: .5rem;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: grey;
+          }
+        }
+      }
+    }    
+  }
+  .sidebar_search {
+    display: flex;
+    align-items: center;
+    .sidebar_searchContainer {
+      display: flex;
+      align-items: center;
+      background-color: #f3f3f3;
+      width: 75%;
+      margin: 0 auto;
+      padding: .3rem .7rem;
+      border-radius: .5rem;
+      margin-bottom: 1.5rem;
+      .MuiSvgIcon-root {
+        color: rgb(201, 201, 201);
+          font-size: 20px;
+          padding: 5px;
+      }
+      input {
+        border: none;
+        outline: none;
+        margin-left: 10px;
+        background: none;
+        width: 100%;
+      }
+    }
+  }
 }
 
-.sidebar_header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px;
-}
 
-.sidebar_headerRight {
-  display: flex;
-  text-align: center;
-  align-items: center;
-  justify-content: space-between;
-  min-width: 10vw;
-}
 
-.followers_button > button {
-outline: none;
-border: none;
-background-color: #f1f1f1;
-padding: 10px;
-border-radius: 15px;
-width: 150px;
-transition: 200ms ease-in;
-}
 
-.followers_button:hover > button {
-  background-color: black;
-  color: white;
-  cursor: pointer;
-}
 
-.sidebar_headerRight > .MuiSvgIcon-Root {
-  margin-right: 2vw;
-  font-size: 24px !important;
-}
 
-.sidebar_search {
 
-  display: flex;
-  align-items: center;
-  height: 39px;
-  padding: 10px;
-}
 
-.sidebar_searchContainer {
-  display: flex;
-  align-items: center;
-  background-color: white;
-  width: 100%;
-  height: 35px;
-  
-  border-radius: 20px;
-}
-
-.sidebar_searchContainer > .MuiSvgIcon-root {
-  color: gray;
-  padding: 10px;
-}
-
-.sidebar_searchContainer > input {
-  
-  border: none;
-  outline: none;
-  margin-left: 10px;
-  width: 100%;
-}
+.sidebar_searchContainer > 
 
 .sidebar_chats {
   background-color: white;
   overflow: hidden;
-  
+  padding: 1rem 0;
 }

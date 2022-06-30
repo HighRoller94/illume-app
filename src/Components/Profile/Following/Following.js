@@ -2,29 +2,29 @@ import React, { useEffect, useState }from 'react';
 import { db } from '../../../firebase';
 import { useParams, Link } from "react-router-dom";
 import { motion } from 'framer-motion';
+import { onSnapshot, collection, limit, query } from 'firebase/firestore';
 
 import FollowingThumb from './FollowingThumb/FollowingThumb';
 
 function Following() {
-    const [follows, setFollows] = useState([]);
+    const [following, setFollowing] = useState([]);
     const { uid } = useParams()
 
     useEffect(() => {
-        const unsubscribe = 
-        db
-            .collection("users")
-            .doc(uid)
-            .collection("Following")
-            .limit(6)
-            .onSnapshot(snapshot => {
-                setFollows(snapshot.docs.map(doc => ({
+        const getFollowingUsers = async () => {
+            const followingRef = collection(db, 'users', `${uid}`, "Following");
+            const q = query(followingRef, limit(6));
+            
+            const unsub = await onSnapshot(q, (snapshot) =>
+                setFollowing(snapshot.docs.map((doc) => ({
                     id: doc.id,
                     follow: doc.data()
                 })))
-            }) 
-        return () => {
-            unsubscribe();
+            )
+            return unsub;
         }
+
+        getFollowingUsers();
     }, [uid]);
 
     return (
@@ -40,7 +40,7 @@ function Following() {
             </Link>
                 <div className="following_thumbs">
                 {
-                    follows.map(({ id, follow }) => (
+                    following.map(({ id, follow }) => (
                         <FollowingThumb
                             key={id}
                             username={follow.username}

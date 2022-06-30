@@ -12,13 +12,17 @@ function Followers() {
     const [{ user }] = useStateValue();
 
     useEffect(() => {
-        const followersRef = collection(db, 'users', `${user.uid}`, "Followers");
-        const q = query(followersRef, limit(6));
-
-        const unsub = onSnapshot(q, (snapshot) =>
-            setFollowers(snapshot.docs.map((doc) => doc.data())))
-
-        return unsub;
+        const getFollowers = async () => {
+            const followersRef = collection(db, 'users', `${user.uid}`, "Followers");
+            const q = query(followersRef, limit(6));
+    
+            const unsub = onSnapshot(q, (snapshot) =>
+                setFollowers(snapshot.docs.map((doc) => doc.data())))
+    
+            return unsub;
+        }
+        
+        getFollowers();
     }, []);
 
     return (
@@ -33,9 +37,9 @@ function Followers() {
             </Link>
                 <div className="followers_thumbs">
                 {
-                    followers.map(({ id, follow }) => (
+                    followers.map((follow) => (
                         <FollowerThumb
-                            key={id}
+                            key={follow.username}
                             username={follow.username}
                             uid={follow.uid}
                             firstName={follow.firstName}

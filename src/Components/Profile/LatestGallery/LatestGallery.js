@@ -1,56 +1,41 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebase';
 import { useParams } from "react-router-dom";
-import { motion } from 'framer-motion';
+import { query, onSnapshot, collection, orderBy, limit } from 'firebase/firestore';
 
 import LatestGalleryThumbs from './LatestGalleryThumbs/LatestGalleryThumbs';
 
 function LatestGallery() {
-    const [latestgalleryposts, setLatestGalleryPosts] = useState([]);
+    const [latestGalleryPosts, setLatestGalleryPosts] = useState([]);
     const { uid } = useParams();
 
     useEffect(() => {
-        const unsubscribe = 
-        db
-            .collection('users')
-            .doc(uid)
-            .collection('Gallery Posts')
-            .limit(3)
-            .orderBy('timestamp', 'desc')
-            .onSnapshot(snapshot => {
-                setLatestGalleryPosts(snapshot.docs.map(doc => ({
-                    id: doc.id,
-                    latestgallerypost: doc.data()
-            })));
-        })
-
-        return () => {
-            unsubscribe();
-        }
-        
+        const latestGalleryPostsRef = collection(db, "users", `${uid}`, 'Gallery Posts')
+        const q = query(latestGalleryPostsRef, orderBy("timestamp", "desc"), limit(3))
+        const unsub = onSnapshot(q, (snapshot) => 
+            setLatestGalleryPosts(snapshot.dosc.map((doc) => ({
+                id: doc.id,
+                post: doc.data()
+            }))))
+        return unsub;
     }, [uid]);
 
     return (
-        <motion.div 
-        className="latestgalposts"
-        initial={{ opacity: 0}}
-        animate={{ opacity: 1}}
-        exit={{ opacity: 0}}
-        >
+        <div>
             <h4>Latest Gallery Posts</h4>
             <div className="latestgalthumbs">
-                {latestgalleryposts.map(({ id, latestgallerypost }) => (
+                {latestGalleryPosts.map(({ id, post }) => (
                     <LatestGalleryThumbs 
                         key = { id }
                         galleryPostId = { id }
-                        usernameuid = { latestgallerypost.usernameuid }
-                        username = { latestgallerypost.username }
-                        body = { latestgallerypost.body }
-                        imageUrl = { latestgallerypost.imageUrl }
-                        />
+                        usernameuid = { post.usernameuid }
+                        username = { post.username }
+                        body = { post.body }
+                        imageUrl = { post.imageUrl }
+                    />
                 ))}
             </div>
-        </motion.div>
+        </div>
     )
 }
 

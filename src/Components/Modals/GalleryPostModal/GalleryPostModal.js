@@ -28,7 +28,7 @@ function GalleryPostModal({ open, setOpen, galleryPostId, usernameuid  }) {
     const [postdata, setPostData] = useState([]);
 
     useEffect(() => {
-        const postRef = doc(db, 'users', `${user.uid}`, "Gallery Posts", `${galleryPostId}`);
+        const postRef = doc(db, 'users', `${usernameuid}`, "Gallery Posts", `${galleryPostId}`);
         const unsub = getDoc(postRef)
             .then((doc) => {
                 let postdata = doc.data()

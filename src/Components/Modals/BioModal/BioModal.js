@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react'
 import { useParams } from "react-router-dom";
 import { useStateValue } from '../../../StateProvider'
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
 
 import { storage, db } from '../../../firebase'
 import Modal from '@material-ui/core/Modal'
@@ -17,13 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-function BioModal({ open, setOpen, updateBio }) {
+function BioModal({ bioData, userData, open, setOpen, updateBio }) {
     const [insta, setInsta] = useState('')
     const [facebook, setFacebook] = useState('')
     const [website, setWebsite] = useState('')
-    const [biodata, setBioData] = useState('')
     const [biography, setBio] = useState('')
-    const [userdata, setUserData] = useState('')
     const classes = useStyles()
     const [occupation, setOccupation] = useState('')
     const [location, setLocation] = useState('')
@@ -31,28 +30,6 @@ function BioModal({ open, setOpen, updateBio }) {
     const [imagepreview, setImagePreview] = useState()
     const fileInputRef = useRef()
     const [{ user }] = useStateValue()
-    const { uid } = useParams()
-    
-    useEffect(() => {
-        db
-            .collection('users')
-            .doc(uid)
-            .get()
-            .then(doc => {
-                const data = doc.data()
-                setUserData({ ...data })
-            })
-        db
-            .collection('users')
-            .doc(uid)
-            .collection('Additional Info')
-            .doc('Bio')
-            .get()
-            .then(doc => {
-                const biodata = doc.data()
-                setBioData({ ...biodata })
-            })
-    }, [uid])
     
     const UpdateImage = (e) => {
         if (profileImage) {
@@ -75,24 +52,18 @@ function BioModal({ open, setOpen, updateBio }) {
                         })
                 }
             )
-        } else {
-
         }
     }
 
     const Update = () => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Additional Info")
-            .doc("Bio")
-            .set({
-                biography: biography || biodata.biography || '',
-                occupation: occupation || biodata.occupation || '',
-                location: location || biodata.location || '',
-                facebook: facebook || biodata.facebook || '',
-                insta: insta || biodata.insta || ''
-            })
+        const bioRef = doc(db, 'users', `${user.uid}`, "Additional Info", "Bio")
+        updateDoc(bioRef, {
+            biography: biography || bioData.biography || '',
+            occupation: occupation || bioData.occupation || '',
+            location: location || bioData.location || '',
+            facebook: facebook || bioData.facebook || '',
+            insta: insta || bioData.insta || ''
+        })
     }
 
     const handleClose = () => {
@@ -142,11 +113,11 @@ function BioModal({ open, setOpen, updateBio }) {
                 >
                     <Fade in={open}>
                     <div className="biographymodal">
-                        <h1>{userdata.username}</h1>
+                        <h1>{userData?.username}</h1>
                         {imagepreview ? (
                             <img className="biography_image" src={imagepreview} alt="" />
                             ) : (
-                            <img className="biography_image" src={userdata.profileImage} alt="" />
+                            <img className="biography_image" src={userData?.profileImage} alt="" />
                         )}
                         <button className="changeimage_button" onClick={handleChange} >Change Profile Picture</button>
                         <input 

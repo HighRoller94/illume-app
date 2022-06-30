@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { storage, db } from '../../../firebase';
-import firebase from 'firebase'
+import firebase from 'firebase/compat/app'
 import { useStateValue } from '../../../StateProvider';
+import { getDoc, updateDoc, doc, serverTimestamp } from 'firebase/firestore';
 
 import { Button } from '@material-ui/core';
 import ImageIcon from '@material-ui/icons/Image';
@@ -20,7 +21,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function EditStorePostModal({ editopen, setEditOpen, storePostId }) {
-
     const classes = useStyles();
     const [preview, setPreview] = useState();
     const [image, setImage] = useState();
@@ -38,16 +38,13 @@ function EditStorePostModal({ editopen, setEditOpen, storePostId }) {
 
     useEffect(() => {
         // Load existing post data using postId
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Store Posts")
-            .doc(storePostId)
-            .get()
-            .then(doc => {
-                const postdata = doc.data()
-                setPostData({ ...postdata })
-            })
+        const postRef = doc(db, 'users', `${user.uid}`, "Store Posts", `${storePostId}`);
+        const unsub = getDoc(postRef)
+        .then((doc) => {
+            setPostData(doc.data())
+            }
+        )
+        return unsub;
     }, [])
 
     const handleClose = () => {
@@ -66,13 +63,9 @@ function EditStorePostModal({ editopen, setEditOpen, storePostId }) {
     const handleEdit = () => {
         // If no image upload post
         if (!image) {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Store Posts")
-            .doc(storePostId)
-            .update({
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+            const postRef = doc(db, 'users', `${user.uid}`, "Store Posts", `${storePostId}`)
+            updateDoc(postRef, {
+                timestamp: serverTimestamp(),
                 title: updatedtitle || postdata.title,
                 description: updateddesc || postdata.description,
                 stock: updatedstock || postdata.stock,
@@ -81,7 +74,8 @@ function EditStorePostModal({ editopen, setEditOpen, storePostId }) {
                 price: Number(updatedprice || postdata.price),
                 username: user.displayName,
                 usernameuid: user.uid,
-            });
+            })
+            handleClose();
         } else {
             // If image is uploaded continue with alternate function
             

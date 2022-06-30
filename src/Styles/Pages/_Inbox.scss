@@ -1,13 +1,13 @@
 .inbox_container {
   display: grid;
   grid-template-columns: 20% 50%;
-  grid-column-gap: 50px;
-  margin-top: 60px;
-  z-index: 99;
+  margin-top: 64px;
   .inbox_sidebar {
     background-color: white;
     min-width: 350px;
-    height: 93.5vh;
+    height: 93vh;
+    z-index: 99;
+    border: 1px solid #fafafa;
   }
   .inbox_chat {
     display: flex;

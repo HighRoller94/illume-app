@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import ReactPlayer from "react-player";
 import { db } from '../../../firebase';
-import firebase from 'firebase';
+import { query, onSnapshot, collection, orderBy, addDoc, serverTimestamp, doc, getDoc, deleteDoc } from 'firebase/firestore';
 import { Link } from "react-router-dom";
 import { useStateValue } from '../../../StateProvider';
 
@@ -23,58 +23,39 @@ function Post({ username, usernameuid, postId, body, imageUrl, timestamp, media 
     const [editopen, setEditOpen] = useState(false);
 
     useEffect(() => {
-        let unsubscribe;
         if (postId) {
-            unsubscribe = db
-                .collection("users")
-                .doc(usernameuid)
-                .collection("Posts")
-                .doc(postId)
-                .collection("comments")
-                .orderBy('timestamp', 'asc')
-                .onSnapshot((snapshot) => {
-                    setComments(snapshot.docs.map((doc) => doc.data()));
-                });
+            const postCommentsRef = collection(db, "users", `${usernameuid}`, "Posts", `${postId}`, "comments");
+            const q = query(postCommentsRef, orderBy("timestamp", "asc"));
+            const unsub = onSnapshot(q, (snapshot) =>
+                setComments(snapshot.docs.map((doc) => doc.data())))
+            return unsub;
         }
-        return () => {
-            unsubscribe();
-        };
     }, [postId]);
-
-    useEffect (() => {
-        db
-            .collection('users')
-            .doc(usernameuid)
-            .collection('Posts')
-            .doc(postId)
-            .get()
-    }, [])
 
     useEffect(() => {
         if (usernameuid) {
-            db
-                .collection('users')
-                .doc(usernameuid)
-                .onSnapshot((snapshot) => 
-                    setUserImage(snapshot.data().profileImage))
+            const imageRef = doc(db, "users", `${usernameuid}`)
+            const unsub = getDoc(imageRef)
+            .then((doc) => {
+                let userImage = doc.data().profileImage
+                setUserImage(userImage)
+            })
+            return unsub;
         }
     }, [usernameuid])
 
     const postComment = (event) => {
         event.preventDefault();
 
-        db
-            .collection("users")
-            .doc(usernameuid)
-            .collection("Posts")
-            .doc(postId)
-            .collection("comments")
-            .add({
-                username: user.displayName,
-                text: comment,
-                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        });
-        setComment('');
+        const postRef = collection(db, "users", `${usernameuid}`, "Posts", `${postId}`, "comments");
+        addDoc(postRef, {
+            username: user.displayName,
+            text: comment,
+            timestamp: serverTimestamp(),
+        })
+        .then(() => {
+            setComment('');
+        })
     } 
     
     const handleClick = (event) => {
@@ -85,13 +66,10 @@ function Post({ username, usernameuid, postId, body, imageUrl, timestamp, media 
         setAnchorEl(null);
     };
 
-    const handleDelete = () => {
-        db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Posts")
-            .doc(postId)
-            .delete()
+    const handleDelete = (e) => {
+        e.preventDefault()
+        const postRef = doc(db, "users", `${user.uid}`, "Posts", `${postId}`)
+        deleteDoc(postRef)
     };
 
     return (
@@ -126,10 +104,9 @@ function Post({ username, usernameuid, postId, body, imageUrl, timestamp, media 
                             open={Boolean(anchorEl)}
                             onClose={handleClose}
                         >
-                                    <MenuItem onClick={() => {setEditOpen(true); setAnchorEl(null)} } style={{ backgroundColor: 'transparent' }} >Edit</MenuItem>
-                                    <MenuItem onClick={handleDelete} style={{ backgroundColor: 'transparent' }} >Delete</MenuItem>
-                                    <MenuItem></MenuItem>
-                                </Menu>
+                            <MenuItem onClick={() => {setEditOpen(true); setAnchorEl(null)} } style={{ backgroundColor: 'transparent' }} >Edit</MenuItem>
+                            <MenuItem onClick={handleDelete} style={{ backgroundColor: 'transparent' }} >Delete</MenuItem>
+                        </Menu>
                     </div>
                     {imageUrl ? (
                         <div>

@@ -1,11 +1,13 @@
 export const initialState = {
     basket: [],
     user: null,
+    status: true,
     following: [],
 }
 
 export const actionTypes = {
     SET_USER : "SET_USER",
+    SET_STATUS : "SET_STATUS",
     USER_FOLLOWING: "USER_FOLLOWING",
 };
 
@@ -44,13 +46,16 @@ const reducer = (state, action) => {
                     ...state,
                     following: action.following
                 }
-
             case actionTypes.SET_USER:
                 return {
                     ...state,
                     user: action.user
                 }
-                
+            case actionTypes.SET_STATUS:
+                return {
+                    ...state,
+                    user: action.user
+                }
             default:
                 return state;
     }
