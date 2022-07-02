@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
 import { useParams, Link } from "react-router-dom";
 import { motion } from 'framer-motion';
@@ -11,21 +11,21 @@ function Followers() {
     const { uid } = useParams()
 
     useEffect(() => {
-        const getFollowerUsers = async () => {
-            const followingRef = collection(db, 'users', `${uid}`, "Following");
-            const q = query(followingRef, limit(6));
-            
-            const unsub = await onSnapshot(q, (snapshot) =>
-                setFollowers(snapshot.docs.map((doc) => ({
-                    id: doc.id,
-                    follow: doc.data()
-                })))
-            )
-            return unsub;
-        }
-
         getFollowerUsers();
     }, [uid]);
+
+    const getFollowerUsers = async () => {
+        const followingRef = collection(db, 'users', `${uid}`, "Followers");
+        const q = query(followingRef, limit(6));
+        
+        const unsub = await onSnapshot(q, (snapshot) =>
+            setFollowers(snapshot.docs.map((doc) => ({
+                id: doc.id,
+                follow: doc.data()
+            })))
+        )
+        return unsub;
+    }
 
     return (
         <motion.div 

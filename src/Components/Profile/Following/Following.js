@@ -1,4 +1,4 @@
-import React, { useEffect, useState }from 'react';
+import React, { useEffect, useState } from 'react';
 import { db } from '../../../firebase';
 import { useParams, Link } from "react-router-dom";
 import { motion } from 'framer-motion';
@@ -11,11 +11,11 @@ function Following() {
     const { uid } = useParams()
 
     useEffect(() => {
-        const getFollowingUsers = async () => {
+        const getFollowingUsers = () => {
             const followingRef = collection(db, 'users', `${uid}`, "Following");
             const q = query(followingRef, limit(6));
             
-            const unsub = await onSnapshot(q, (snapshot) =>
+            const unsub = onSnapshot(q, (snapshot) =>
                 setFollowing(snapshot.docs.map((doc) => ({
                     id: doc.id,
                     follow: doc.data()
@@ -23,22 +23,16 @@ function Following() {
             )
             return unsub;
         }
-
         getFollowingUsers();
     }, [uid]);
 
+
     return (
-        
-        <motion.div 
-            className="following_profile"
-            initial={{ opacity: 0}}
-            animate={{ opacity: 1}}
-            exit={{ opacity: 0}}
-            >
+        <div className="following_profile">
             <Link to={`/following/${uid}`} >
                 <h2 className="following_header">Following</h2>
             </Link>
-                <div className="following_thumbs">
+            <div className="following_thumbs">
                 {
                     following.map(({ id, follow }) => (
                         <FollowingThumb
@@ -50,9 +44,8 @@ function Following() {
                             profileImage={follow.profileImage} />
                     ))
                 }
-                </div>
-            
-        </motion.div>
+            </div>
+        </div>
     )
 }
 
