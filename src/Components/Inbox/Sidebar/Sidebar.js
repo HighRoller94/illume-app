@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStateValue } from '../../../StateProvider';
-import { auth, db } from '../../../firebase'
-import { collection, getDocs } from "firebase/firestore"; 
+import { db } from '../../../firebase'
+import { doc, getDoc } from 'firebase/firestore';
 
 import userProfile from '../../../Assets/Images/userProfile.png';
 import newMessage from '../../../Assets/Icons/newMessage.svg';
@@ -27,21 +27,16 @@ function Sidebar() {
     }
 
     useEffect(() => {
-        db.collection('users').doc(user.uid)
-            .onSnapshot((snapshot) => 
-                setProfileImage(snapshot.data().profileImage)
-            )
-
-        getInboxMessages();
+        getUserImage();
     }, [])
 
-    
-    const getInboxMessages = () => {
-        const subColRef = collection(db, "users", `${user.uid}`, "Inbox")
-        getDocs(subColRef).then((snapshot) => {
-            console.log(snapshot.docs)
-        })
-
+    const getUserImage = async () => {
+        const userRef =  doc(db, "users", `${user.uid}`)
+        const unsub = await getDoc(userRef)
+            .then((doc) => {
+                setProfileImage(doc.data().profileImage)
+            })
+        return unsub;
     }
 
     return (
@@ -76,7 +71,7 @@ function Sidebar() {
                 </div>
             </div>
             <div className="sidebar_chats">
-                <FollowingChat />
+                <FollowingChat users={users}/>
             </div>
         </div>
     );

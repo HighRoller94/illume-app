@@ -2,29 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../../../firebase';
 import { Link, useLocation } from 'react-router-dom';
 import { useStateValue } from '../../../../StateProvider';
+import { query, onSnapshot, collection, orderBy } from 'firebase/firestore';
 
 import { Avatar } from '@material-ui/core';
 
 function SidebarChat({ id, name, profileImage }) {
     const { pathname } = useLocation();
-    
     const [messages, setMessages] = useState("");
     const [{ user }] = useStateValue();
 
     useEffect(() => {
         if (id) {
-            db
-            .collection('users')
-            .doc(user.uid)
-            .collection('Inbox')
-            .doc(id)
-            .collection('Messages')
-            .orderBy('timestamp', 'desc')
-            .onSnapshot((snapshot) => 
-                setMessages(snapshot.docs.map((doc) => doc.data()))
-            );
+            getMessages();
         }
     }, [id])
+
+    const getMessages = async () => {
+        const messagesRef = collection(db, "users", `${user.uid}`, "Inbox", `${id}`, "Messages");
+        const q = query(messagesRef, orderBy("timestamp", "desc"));
+        const unsub = onSnapshot(q, (snapshot) =>
+            setMessages(snapshot.docs.map((doc) => doc.data())))
+        return unsub;
+    }
 
     return (
         <Link to={`/messages/${id}`}>

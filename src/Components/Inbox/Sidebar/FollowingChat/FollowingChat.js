@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../../../../firebase';
 import { useStateValue } from '../../../../StateProvider';
-
+import { collection, onSnapshot } from 'firebase/firestore';
 import SidebarChat from '../SidebarChat/SidebarChat';
 
 function FollowingChat() {
@@ -9,32 +9,28 @@ function FollowingChat() {
     const [{ user }] = useStateValue();
 
     useEffect(() => {
-
-        const unsubscribe = db
-            .collection("users")
-            .doc(user.uid)
-            .collection("Following")
-            .where ('uid', '!=', user.uid)
-            .onSnapshot((snapshot) =>
-                setUsers(
-                    snapshot.docs.map((doc) => ({
-                        id: doc.id,
-                        data: doc.data(),
-                    }))
-                ))
-            return () => {
-                unsubscribe();
-            }
+        getUserMessages();
     }, []);
 
+    const getUserMessages = async () => {
+        const userMessagesRef = collection(db, 'users', user.uid, 'Following')
+        const unsub = await onSnapshot(userMessagesRef, (snapshot) => 
+            setUsers(snapshot.docs.map((doc) => ({
+                id: doc.id,
+                user: doc.data()
+            }))))
+        return unsub;
+    }
+
+    console.log(users)
     return (
         <div>
-            {users.map(user => (
+            {users.map(({id, user}) => (
                 <SidebarChat 
                     key={user.id} 
-                    id={user.id}
-                    name={user.data.username} 
-                    profileImage={user.data.profileImage}
+                    id={id}
+                    name={user.username} 
+                    profileImage={user.profileImage}
                 />
             ))}
         </div>
