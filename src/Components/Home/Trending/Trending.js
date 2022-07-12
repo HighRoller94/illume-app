@@ -8,17 +8,20 @@ function Trending() {
     const [trendingPosts, setTrendingPosts] = useState([]);
 
     useEffect(() => {
-        const trendingPostsRef = collectionGroup(db, "Gallery Posts");
-        const q = query(trendingPostsRef, orderBy("timestamp", "desc"), limit(6));
-
-        const unsub = onSnapshot(q, (snapshot) =>
-            setTrendingPosts(snapshot.docs.map((doc) => ({
-                id: doc.id,
-                post: doc.data()
-            }))))
-
-        return unsub;
+        const getTrendingPosts = async () => {
+            const trendingPostsRef = collectionGroup(db, "Gallery Posts");
+            const q = query(trendingPostsRef, orderBy("timestamp", "desc"), limit(6));
+    
+            const unsub = await onSnapshot(q, (snapshot) =>
+                setTrendingPosts(snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    post: doc.data()
+                }))))
+    
+            return unsub;
+        }
         
+        getTrendingPosts();
     }, []);
 
     return (

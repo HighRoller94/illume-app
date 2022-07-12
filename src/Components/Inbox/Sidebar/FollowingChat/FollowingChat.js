@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../../../../firebase';
 import { useStateValue } from '../../../../StateProvider';
 import { collection, onSnapshot } from 'firebase/firestore';
+
 import SidebarChat from '../SidebarChat/SidebarChat';
 
 function FollowingChat() {

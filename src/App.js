@@ -25,6 +25,7 @@ import FollowingPage from './Pages/FollowingPage';
 import FollowersPage from './Pages/FollowersPage';
 import Home from './Pages/Home';
 import Auth from './Pages/Auth';
+import IllumeGallery from './Pages/IllumeGallery';
 import Gallery from './Pages/Gallery';
 import Store from './Pages/Store';
 import StorePostInfo from './Pages/StorePostInfo';
@@ -82,6 +83,7 @@ function App() {
               <Payment />
             </Elements>
           } />
+          <Route path="illumegallery" element={<IllumeGallery />} />
           <Route path="inbox/:uid" element={<Inbox />} />
           <Route path="messages/:uid" element={<Inbox />} />
           <Route path="store/:uid" element={<Store />} />

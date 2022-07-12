@@ -10,31 +10,42 @@ function LatestGallery() {
     const { uid } = useParams();
 
     useEffect(() => {
-        const latestGalleryPostsRef = collection(db, "users", `${uid}`, 'Gallery Posts')
-        const q = query(latestGalleryPostsRef, orderBy("timestamp", "desc"), limit(3))
-        const unsub = onSnapshot(q, (snapshot) => 
-            setLatestGalleryPosts(snapshot.dosc.map((doc) => ({
-                id: doc.id,
-                post: doc.data()
-            }))))
-        return unsub;
+        const getLatestGalleryPosts = async () => {
+            const latestGalleryPostsRef = collection(db, "users", `${uid}`, 'Gallery Posts')
+            const q = query(latestGalleryPostsRef, orderBy("timestamp", "desc"), limit(3))
+            const unsub = onSnapshot(q, (snapshot) => 
+                setLatestGalleryPosts(snapshot.docs.map((doc) => ({
+                    id: doc.id,
+                    post: doc.data()
+                }))))
+            return unsub;
+        }
+        
+        getLatestGalleryPosts();
     }, [uid]);
 
     return (
         <div>
-            <h4>Latest Gallery Posts</h4>
-            <div className="latestgalthumbs">
-                {latestGalleryPosts.map(({ id, post }) => (
-                    <LatestGalleryThumbs 
-                        key = { id }
-                        galleryPostId = { id }
-                        usernameuid = { post.usernameuid }
-                        username = { post.username }
-                        body = { post.body }
-                        imageUrl = { post.imageUrl }
-                    />
-                ))}
-            </div>
+            {latestGalleryPosts.length > 1 ? (
+                <div>
+                    <h4>Latest Gallery Posts</h4>
+                    <div className="latestgalthumbs">
+                    {latestGalleryPosts.map(({ id, post }) => (
+                        <LatestGalleryThumbs 
+                            key = { id }
+                            galleryPostId = { id }
+                            usernameuid = { post.usernameuid }
+                            username = { post.username }
+                            body = { post.body }
+                            imageUrl = { post.imageUrl }
+                        />
+                    ))}
+                    </div>
+                </div>
+            ) : (
+                null
+            )} 
+            
         </div>
     )
 }

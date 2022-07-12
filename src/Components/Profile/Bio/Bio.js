@@ -15,8 +15,7 @@ import FollowButton from '../FollowButton/FollowButton';
 import userProfile from '../../../Assets/Images/userProfile.png';
 
 
-function Bio() {
-    const [userData, setUserData] = useState('');
+function Bio({ userData }) {
     const [bioData, setBioData] = useState('');
     const [open, setOpen] = useState(false);
     const { uid } = useParams();
@@ -26,14 +25,6 @@ function Bio() {
     // Collect the users biography info from the DB
 
     useEffect(() => {
-        const getUserData = async () => {
-            const userRef =  doc(db, "users", `${uid}`)
-            const unsub = await getDoc(userRef)
-                .then((doc) => {
-                    setUserData(doc.data())
-                })
-            return unsub;
-        }
         const getBioData = async () => {
             const bioRef = doc(db, "users", `${uid}`, "Additional Info", "Bio")
             const unsub = await getDoc(bioRef)
@@ -44,7 +35,6 @@ function Bio() {
             return unsub;
         }
 
-        getUserData();
         getBioData();
     }, [uid, count])
 
@@ -53,46 +43,45 @@ function Bio() {
     }
 
     return (
-        
         <div className="bio_section">
-                <h1 className="bio_username">{userData?.username}</h1>
-                {userData?.profileImage ? (
-                    <img className="bio_image" src={userData?.profileImage} alt="" />
-                ) : (
-                    <img className="bio_image" src={userProfile} alt="" />
+            <h1 className="bio_username">{userData?.username}</h1>
+            {userData?.profileImage ? (
+                <img className="bio_image" src={userData?.profileImage} alt="" />
+            ) : (
+                <img className="bio_image" src={userProfile} alt="" />
+            )}
+            <div className="follow">
+                {uid !== user.uid ? (
+                    <FollowButton />
+                ) : ( 
+                    <Button>
+                        <EditSharpIcon onClick={() => setOpen(true)}/>
+                    </Button>
                 )}
-                <div className="follow">
-                    {uid !== user.uid ? (
-                        <FollowButton />
-                    ) : ( 
-                        <Button>
-                            <EditSharpIcon onClick={() => setOpen(true)}/>
-                        </Button>
-                    )}
-                </div>
-                <div className="bio_info">
-                    <p className="bioBody_info">{bioData?.biography}</p>
-                    <p className="bioBody_occupation">{bioData?.occupation}</p>
-                    <p className="bioBody_location">{bioData?.location}</p>
-                    <Link to={`/gallery/${uid}`} >
-                            <p className="bioGallery_link">Gallery</p>
-                    </Link>
-                    <Link to={`/store/${uid}`} >
-                            <p className="bioStore_link">Store</p>
-                    </Link>
-                </div>
-                <div className="social">
-                    {bioData?.insta ? ( 
-                        <a href={bioData?.insta} target="_blank" rel="noreferrer"><InstagramIcon style={{ fontSize: '40px', margin: '15px' }} /></a>
-                    ) : (null)}
-                    {bioData?.facebook ? ( 
-                        <a href={bioData?.facebook} target="_blank" rel="noreferrer"><FacebookIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
-                    ) : (null)}
-                    {bioData?.website ? (
-                        <a href={bioData?.website} target="_blank" rel="noreferrer"><LanguageIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
-                    ) : (null)}
-                </div>
-                <BioModal userData={userData} bioData={bioData} updateBio={updateBio} open={open} setOpen={setOpen} />
+            </div>
+            <div className="bio_info">
+                <p className="bioBody_info">{bioData?.biography}</p>
+                <p className="bioBody_occupation">{bioData?.occupation}</p>
+                <p className="bioBody_location">{bioData?.location}</p>
+                <Link to={`/gallery/${uid}`} >
+                        <p className="bioGallery_link">Gallery</p>
+                </Link>
+                <Link to={`/store/${uid}`} >
+                        <p className="bioStore_link">Store</p>
+                </Link>
+            </div>
+            <div className="social">
+                {bioData?.insta ? ( 
+                    <a href={bioData?.insta} target="_blank" rel="noreferrer"><InstagramIcon style={{ fontSize: '40px', margin: '15px' }} /></a>
+                ) : (null)}
+                {bioData?.facebook ? ( 
+                    <a href={bioData?.facebook} target="_blank" rel="noreferrer"><FacebookIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
+                ) : (null)}
+                {bioData?.website ? (
+                    <a href={bioData?.website} target="_blank" rel="noreferrer"><LanguageIcon style={{ fontSize: '40px', margin: '15px' }}/></a>
+                ) : (null)}
+            </div>
+            <BioModal userData={userData} bioData={bioData} updateBio={updateBio} open={open} setOpen={setOpen} />
         </div>
     )
 }
