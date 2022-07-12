@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { db } from '../../../firebase';
 import { useStateValue } from '../../../StateProvider';
+import { query, onSnapshot, collection, orderBy } from 'firebase/firestore';
 
 import Listings from '../JobListings/Listings/Listings';
 
@@ -9,17 +10,19 @@ function MyListingPosts() {
     const [mylistings, setMyListings] = useState([])
 
     useEffect(() => {
-        db
-            .collection('users')
-            .doc(user.uid)
-            .collection('Job Listings')
-            .orderBy('date_posted', 'desc')
-            .onSnapshot(snapshot => {
-                setMyListings(snapshot.docs.map(doc => ({
+        const getMyJobListings = async () => {
+            const listingsRef = collection(db, 'users', user.uid, "Job Listings");
+            const q = query(listingsRef, orderBy("date_posted", "desc"));
+
+            const unsub = await onSnapshot(q, (snapshot) => 
+                setMyListings(snapshot.docs.map((doc) => ({
                     id: doc.id,
                     listing: doc.data()
-                })));
-            })
+                }))))
+
+            return unsub;
+        }
+        getMyJobListings();
     }, []);
 
 
