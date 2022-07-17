@@ -1,15 +1,20 @@
-import { Avatar, IconButton } from '@material-ui/core';
-import { Send, Videocam, AttachFile, MoreVert, Phone } from '@material-ui/icons';
-import React, { useState, useEffect } from 'react';
+import { IconButton } from '@material-ui/core';
+import { Send, AttachFile, MoreVert } from '@material-ui/icons';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { useParams, Link } from "react-router-dom";
 import { db } from '../../../firebase';
 import { query, onSnapshot, collection, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
 import { useStateValue } from '../../../StateProvider';
 
+import ChatHeader from './ChatHeader/ChatHeader';
+import ChatBody from './ChatBody/ChatBody';
+import ChatFooter from './ChatFooter/ChatFooter';
+
 import Message from './Message/Message';
 
 function Chat({ userData }) {
+    const hiddenFileInput = useRef(null);
     const { uid } = useParams();
     const [{ user }] = useStateValue();
     const [messages, setMessages] = useState([]);
@@ -57,29 +62,22 @@ function Chat({ userData }) {
 
     return (
         <div className="chat">
-            <div className="chat_header">
-                <Link to={`/profile/${uid}`}>
-                    <div className="chat_headerlink">
-                        <Avatar className="chat__HeaderAvatar" src={userData?.profileImage} />
-                        <h2 className="chat__HeaderName">{userData?.username}</h2>
-                    </div>
-                </Link>
-                <div className="chat_headerRight">
-                    <IconButton>
-                        <Phone />
-                    </IconButton>
-                    <IconButton>
-                        <Videocam />
-                    </IconButton>
-                    <IconButton>
-                        <MoreVert />
-                    </IconButton>
-                </div>
-            </div>
+            <ChatHeader userData={userData} />
             <div className="chat_body">
-                {messages.map(message => (
-                    <Message message={message.message}/>
-                ))}
+                <form className="chat__drop" enctype="multipart/form-data">
+                    <input type="file" className="photos" multiple="true" style={{ display: "none" }}/>
+                    <div className="chat__Messages">
+                        {messages.map(message => (
+                            <Message message={message.message}/>
+                        ))}
+                    </div>
+                </form>
+            </div>
+            <div class="chat__FilePreviews">
+                <div class="prev-img">
+                    <span>&times;</span>
+                    <img src="https://picsum.photos/id/237/200/300" alt="asd"/>
+                </div>
             </div>
             <div className="chat_footer">
                 <form className="chat__Form">
@@ -92,11 +90,10 @@ function Chat({ userData }) {
                             <AttachFile />
                         </IconButton>
                     </div>
-                    <button className="footer__Submit" onClick={sendMessage} type="submit">
+                    <button className="footer__Submit" disabled={!input} onClick={sendMessage} type="submit">
                         <Send />
                     </button>
                 </form>
-                
             </div>
         </div>
     );
