@@ -1,10 +1,9 @@
-import { IconButton } from '@material-ui/core';
-import { Send, AttachFile, MoreVert } from '@material-ui/icons';
+
 import React, { useState, useEffect, useRef } from 'react';
 
-import { useParams, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { db } from '../../../firebase';
-import { query, onSnapshot, collection, orderBy, addDoc, serverTimestamp } from 'firebase/firestore';
+import { query, onSnapshot, collection, orderBy } from 'firebase/firestore';
 import { useStateValue } from '../../../StateProvider';
 
 import ChatHeader from './ChatHeader/ChatHeader';
@@ -18,7 +17,9 @@ function Chat({ userData }) {
     const { uid } = useParams();
     const [{ user }] = useStateValue();
     const [messages, setMessages] = useState([]);
+    const [media, setMedia] = useState([]);
     const [input, setInput] = useState('');
+    const [highlight, setHighlight] = useState(false);
 
     useEffect(() => {
         if (uid) {
@@ -37,64 +38,58 @@ function Chat({ userData }) {
         return unsub;
     }
 
-    const sendMessage = async (e) => {
+    const handleFiles = files => {
+        let mediaArray = [];
+        for (let file of files) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.addEventListener('load', () => {
+                let fileObject = {
+                    name: file.name,
+                    type: file.type,
+                    size: file.size,
+                    src: reader.result
+                }
+                mediaArray.push(fileObject);
+                setMedia([...media, ...mediaArray])
+            })
+        }
+    }
+    
+    const handleHighlight = (e) => {
         e.preventDefault();
+        e.stopPropagation();
+        setHighlight(true);
+    }
 
-        const receiverMessageRef = collection(db, 'users', `${uid}`, "Inbox", `${user.uid}`, "Messages")
-        addDoc(receiverMessageRef, {
-            message: input,
-            sender: user.displayName,
-            uid: user.uid,
-            timestamp: serverTimestamp(),
-        })
+    const handleUnhighlight = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setHighlight(false);
+    }
 
-        const senderMessageRef = collection(db, 'users', `${user.uid}`, "Inbox", `${uid}`, "Messages")
-        addDoc(senderMessageRef, {
-            message: input,
-            sender: user.displayName,
-            uid: user.uid,
-            timestamp: serverTimestamp(),
-        })
-
-        setInput('');
-    };
-
+    const handleDrop = (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        let dt = e.dataTransfer;
+        let files = dt.files;
+        setHighlight(false)
+        handleFiles(files);
+    }
 
     return (
         <div className="chat">
             <ChatHeader userData={userData} />
-            <div className="chat_body">
-                <form className="chat__drop" enctype="multipart/form-data">
-                    <input type="file" className="photos" multiple="true" style={{ display: "none" }}/>
-                    <div className="chat__Messages">
-                        {messages.map(message => (
-                            <Message message={message.message}/>
-                        ))}
-                    </div>
-                </form>
-            </div>
-            <div class="chat__FilePreviews">
-                <div class="prev-img">
-                    <span>&times;</span>
-                    <img src="https://picsum.photos/id/237/200/300" alt="asd"/>
+
+            <div className={highlight ? "chat_body highlight" : "chat_body"} onDragEnter={handleHighlight} onDragOver={handleHighlight} onDragLeave={handleUnhighlight} onDrop={handleDrop}>
+                <div className="chat__Messages">
+                    {messages.map(message => (
+                        <Message message={message.message}/>
+                    ))}
                 </div>
             </div>
-            <div className="chat_footer">
-                <form className="chat__Form">
-                    <input value={input} onChange={e => setInput(e.target.value)}
-                        placeholder="Type a message"
-                        type="text"
-                    />
-                    <div className="footer__Options">
-                        <IconButton>
-                            <AttachFile />
-                        </IconButton>
-                    </div>
-                    <button className="footer__Submit" disabled={!input} onClick={sendMessage} type="submit">
-                        <Send />
-                    </button>
-                </form>
-            </div>
+
+            <ChatFooter media={media} setMedia={setMedia} handleFiles={handleFiles} />
         </div>
     );
 }
