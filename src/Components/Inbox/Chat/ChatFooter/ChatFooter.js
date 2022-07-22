@@ -1,10 +1,11 @@
 import React, { useState, useRef } from 'react';
 import { Send, AttachFile } from '@material-ui/icons';
 import { IconButton } from '@material-ui/core';
-import { db } from '../../../../firebase';
+import { db, storage } from '../../../../firebase';
 import { useParams } from "react-router-dom";
 import { useStateValue } from '../../../../StateProvider';
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 
 function ChatFooter({ media, setMedia, handleFiles }) {
     const [input, setInput] = useState('');
@@ -12,20 +13,48 @@ function ChatFooter({ media, setMedia, handleFiles }) {
     const [{ user }] = useStateValue();
     const hiddenFileInput = useRef(null);
 
+    console.log(media)
+
     const sendMessage = async (e) => {
         e.preventDefault();
 
         const receiverMessageRef = collection(db, 'users', `${uid}`, "Inbox", `${user.uid}`, "Messages")
-        addDoc(receiverMessageRef, {
-            message: input,
-            sender: user.displayName,
-            uid: user.uid,
-            timestamp: serverTimestamp(),
-        })
+        if (!media) {
+            addDoc(receiverMessageRef, {
+                message: input,
+                media: media,
+                sender: user.displayName,
+                uid: user.uid,
+                timestamp: serverTimestamp(),
+            })
+        } else {
+            // This uploads the file to firebase storage
+                const storageRef = ref(storage, `user/${user.uid}/inboxMedia/${uid}/${media[0].name}`)
+                const uploadTask = uploadBytesResumable(storageRef, media)
+                const receiverMessageRef = collection(db, 'users', `${uid}`, "Inbox", `${user.uid}`, "Messages")
 
+                uploadTask.on(
+                    "state_changed",
+                    () => {
+                    // Complete upload function for image
+                    getDownloadURL(uploadTask.snapshot.ref)
+                    .then((url) => {
+                        // Post upload to db, grabbing url from 'getDownloadUrl()'
+                        addDoc(receiverMessageRef, {
+                            message: input,
+                            media: url,
+                            sender: user.displayName,
+                            uid: user.uid,
+                            timestamp: serverTimestamp(),
+                    });
+                })}
+            )
+        }
+        
         const senderMessageRef = collection(db, 'users', `${user.uid}`, "Inbox", `${uid}`, "Messages")
         addDoc(senderMessageRef, {
             message: input,
+            media: media,
             sender: user.displayName,
             uid: user.uid,
             timestamp: serverTimestamp(),

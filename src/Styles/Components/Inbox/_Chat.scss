@@ -5,6 +5,7 @@
   width: 95%;  
   min-width: 600px;
   padding: 15px;
+  height: 91vh;
   margin-top: -10px;
   .chat_header {
     padding: 20px;
@@ -63,6 +64,63 @@
       margin-left: auto;
       background-color: #303030;
       color: #f1f1f1;
+    }
+  }
+  .highlight {
+    background-color: #d6d6d6;
+  }
+  .chat__FilePreviews {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 100px;
+    margin-top: 1rem;
+    gap: 10px;
+    .prev-img {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+      
+      span {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+        
+        color: #333;
+        font-size: 0.87rem;
+        padding-bottom: 0.1rem;
+        width: 20px;
+        height: 20px;
+        background-color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        display: none;
+      }
+      &:hover span {
+        display: flex;
+        cursor: pointer;
+        &::after {
+          content: "";
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          left: 0;
+          top: 0;
+          background-color: rgba(0, 0, 0, 0.2);
+        }
+      }
+      img {
+        -o-object-fit: cover;
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
+      }
     }
   }
   .chat_footer {
